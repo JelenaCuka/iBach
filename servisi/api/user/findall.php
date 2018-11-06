@@ -6,7 +6,8 @@ require_once "../../config/database.php";
 require_once "../../model/User.php";
 require_once "../../controller/UserController.php";
 
-if (isset($_POST["findall"]) && !empty($_POST["findall"])){
+if (isset($_GET["findall"]) && !empty($_GET["findall"]))
+{
     //database connection
     $db = connect();
 
@@ -15,6 +16,6 @@ if (isset($_POST["findall"]) && !empty($_POST["findall"])){
     $userController = new UserController($user);
 
     //controller function to push the right data
-    print $userController->findAllUsers();
+    print $userController->findAll();
 }
 ?>

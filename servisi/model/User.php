@@ -16,48 +16,23 @@ class User
     {
         $this->db = $db;
     }
-    public function findOne()
+    
+    public function findOne($id)
     {
-        $this->username = $_POST["username"];
-        $this->password = $_POST["password"]; 
-        $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE username = ? and deleted_at is null");
-        $stmt->bind_param("s", $this->username);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $r = $result->fetch_assoc();
-        if(!empty($r)){
-            if($this->passwordIsCorrect($r["password"])){
-                $userArray=array();
-                $userArray["info"]=array("status"=>"200","description"=>"Login success.");
-                $userArray["user"]=$r;
-                return json_encode($userArray);
-            }else{
-                return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));
-            }
-        }else{
-            return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));
-        }
-    }
-    public function findOneById($id){
         $this->id=$id;
-        $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE id = ? and deleted_at is null");
+        $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE id = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
 
         $result = $stmt->get_result();
         $r = $result->fetch_assoc();
         if(!empty($r)){
-                $userArray=array();
-                $userArray["info"]=array("status"=>"200","description"=>"User found.");
-                $userArray["user"]=$r;
-                return json_encode($userArray);
+            return json_encode( array("status"=>"200","data"=>$r));
         }else{
             return json_encode( array("status"=>"404","description"=>"Not found. There is no user with that id."));
         }
-
-
     }
+
     public function findAll()
     {
         $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user");
@@ -70,21 +45,49 @@ class User
         {
             array_push($userList, $r);
         }
-        if(!empty($userList)){
-            return json_encode($userList);
-        }else{
-            return json_encode( array("status"=>"200","description"=>"Table users has no entries"));
+        if(!empty($userList))
+        {
+            return json_encode( array("status"=>"200","users"=>$userList));
+        }else
+        {
+            return json_encode( array("status"=>"200","description"=>"Table users has no entries."));
         }
     }
-    public function save()
-    {
-        $this->username = $_POST["username"];
-        $this->password = password_hash($_POST["password"], PASSWORD_DEFAULT); //crypt password
-        $this->email = $_POST["email"];
-        $this->firstName = $_POST["first_name"];
-        $this->lastName = $_POST["last_name"];
 
-        if($this->usernameIsNotDuplicate()&&$this->emailIsNotDuplicate()){
+    public function login($username,$password)
+    {
+        $this->username = $username;
+        $this->password = $password; 
+        $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE username = ? and deleted_at is null");
+        $stmt->bind_param("s", $this->username);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $r = $result->fetch_assoc();
+        if(!empty($r))
+        {
+            if( password_verify($this->password,$r["password"]) )
+            {
+                return json_encode( array("status"=>"200","description"=>"Login successful.","user"=>$r));
+            }else
+            {
+                return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));
+            }//WRONG PASSWORD
+        }else
+        {
+            return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));
+        }
+    }
+    
+    public function save($username,$password,$email,$firstName,$lastName)
+    {
+        $this->username = $username;
+        $this->password = $password;
+        $this->email = $email;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+
+        if( $this->usernameIsNotDuplicate() && $this->emailIsNotDuplicate() ){
             if($this->saveUserToDatabase()){
                 $row = array();
                 $row["status"]= "200";
@@ -120,58 +123,39 @@ class User
                 return json_encode($row);
             }
         }
-    
     }
-    public function update()
+    
+    public function update($id,$first_name,$last_name,$password)
     {
-        $noDuplicatesToUpdate=true;
-        $errorlog="";
-        if( isset($_POST["email"]) && !empty($_POST["email"]) ){
-            $this->email = $_POST["email"];
-            if(!$this->emailIsNotDuplicate()){
-                $noDuplicatesToUpdate=false;
-                $errorlog.=" Email is already taken. Can't update.";
-            }
-        }
-        if( isset($_POST["username"]) && !empty($_POST["username"]) ){
-            $this->username = $_POST["username"];
-            if(!$this->usernameIsNotDuplicate()){
-                $noDuplicatesToUpdate=false;
-                $errorlog.=" Username is already taken. Can't update.";
-            }
-        }
-        if($noDuplicatesToUpdate){
-            if($this->updateUser() ){
-                $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE id = ? and deleted_at is null");
-                $stmt->bind_param("s", $this->id);
-                $stmt->execute();
+        $this->password = $password;
+        $this->firstName = $first_name;
+        $this->lastName = $last_name;
+        $this->id=$id;
+        if($this->updateUser() ){
+            $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE id = ? and deleted_at  IS NULL");
+            $stmt->bind_param("i", $this->id);
+            $stmt->execute();
 
-                $result = $stmt->get_result();
-                $r = $result->fetch_assoc();
-                if(!empty($r)){
-                        $userArray=array();
-                        $userArray["info"]=array("status"=>"200","description"=>"User successfully updated.");
-                        $userArray["user"]=$r;
-                        return json_encode($userArray);
-                }else{
-                    return json_encode( array("status"=>"404","description"=>"Not found. Unknown update error."));
-                }
+            $result = $stmt->get_result();
+            $r = $result->fetch_assoc();
+            if(!empty($r)){
+                return json_encode( array("status"=>"200","description"=>"User successfully updated.","user"=>$r));
             }else{
-                $row = array();
-                $row["status"]= "400";
-                $row["description"] = "User not updated.";
-                return json_encode($row);
+                return json_encode( array("status"=>"404","description"=>"Not found. Unknown update error."));
             }
         }else{
-            return json_encode( array("status"=>"400","description"=>$errorlog));
+            $row = array();
+            $row["status"]= "400";
+            $row["description"] = " Bad request.";
+            return json_encode($row);
         }
-        
     }
+
     public function delete($id)
     {
         $this->id = $id;
 
-        $stmt = $this->db->prepare("UPDATE user SET deleted_at = CURRENT_TIMESTAMP WHERE id = ? and deleted_at is null");
+        $stmt = $this->db->prepare("UPDATE user SET deleted_at = NOW() WHERE id = ? and deleted_at IS NULL");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
 
@@ -184,46 +168,21 @@ class User
 
             return json_encode($row);
 
-        }elseif($stmt->affected_rows === 0){
-            $stmt = $this->db->prepare("SELECT id FROM user where id=?");
-            $stmt->bind_param("i", $this->id);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows === 1){
-                $row = array();
-                $row["status"]= "200";
-                $row["description"] = "0 users deleted";
-                $stmt->close();
-                
-                return json_encode($row);
-                //ex:User exists but maybe is already deleted or something else
-
-            }else{
-                $row = array();
-                $row["status"]= "400";
-                $row["description"] = " Bad request.";
-                $stmt->close();
-
-                return json_encode($row);
-                //ex:ID is properly formated (integer)but there's no user with that id
-            }
         }
         else
         {
-            http_response_code(500);
             $row = array();
-            $row["status"] = "500";
-            $row["description"] = "Internal server error. 0 rows affected";
+            $row["status"]= "400";
+            $row["description"] = " Bad request.";
             $stmt->close();
 
             return json_encode($row);
         }
     }
     
-    public function usernameIsNotDuplicate(){
-        //both active and deactivated accounts are considered
-        $stmt = $this->db->prepare("SELECT COUNT(id) FROM user WHERE username=?");
+    public function usernameIsNotDuplicate()
+    {
+        $stmt = $this->db->prepare("SELECT COUNT(id) FROM user WHERE username=? and deleted_at IS NULL");
         $stmt->bind_param("s",$this->username);
         $stmt->execute();
 
@@ -237,9 +196,10 @@ class User
             return true;
         }
     }
-    public function emailIsNotDuplicate(){
+    public function emailIsNotDuplicate()
+    {
         //only active are considered
-        $stmt = $this->db->prepare("SELECT COUNT(id) FROM user WHERE email=? and deleted_at is null");
+        $stmt = $this->db->prepare("SELECT COUNT(id) FROM user WHERE email=? and deleted_at IS NULL");
         $stmt->bind_param("s", $this->email);
         $stmt->execute();
 
@@ -253,8 +213,9 @@ class User
             return true;
         }
     }
-    public function saveUserToDatabase(){
-        $stmt = $this->db->prepare("INSERT INTO user (first_name, last_name, email, deleted_at,modified_at,username,password) VALUES (?,?,?,null,now(),?,?)");
+    public function saveUserToDatabase()
+    {
+        $stmt = $this->db->prepare("INSERT INTO user (first_name, last_name, email, deleted_at,modified_at,username,password) VALUES (?,?,?,NULL,NOW(),?,?)");
         $stmt->bind_param("sssss", $this->firstName, $this->lastName, $this->email, $this->username, $this->password);
         $stmt->execute();
 
@@ -269,66 +230,11 @@ class User
             return false;
         }
     }
-    public function passwordIsCorrect($hash){
-        if(password_verify($this->password,$hash)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    public function prepareUpdateValues(){
-        $bindArray=array();
-        $bindArray["bindType"]="i";//id is integer//add values to begining
-        $bindArray["bindValuesArray"]=array();
-        $bindArray["queryStart"]="update user set ";
-        $bindArray["queryEnd"]=" where id=?";
-        $bindArray["queryMiddle"]="";
-        $bindArray["queryFilnal"]="";
-        $bindArray["firstValueAdded"]=false;
-        $this->id=$_POST["id"];
-
-        if(isset($_POST["first_name"]) && !empty($_POST["first_name"])){
-            $this->firstName = $_POST["first_name"];
-            $bindArray=$this->prepareBindParameters($bindArray,"first_name",$this->firstName,"s");
-        }
-        if(isset($_POST["last_name"]) && !empty($_POST["last_name"])){
-            $this->lastName = $_POST["last_name"];
-            $bindArray=$this->prepareBindParameters($bindArray,"last_name",$this->lastName,"s");
-        }
-        if(isset($_POST["email"]) && !empty($_POST["email"])){
-            $this->email = $_POST["email"];
-            $bindArray=$this->prepareBindParameters($bindArray,"email",$this->email,"s");
-        }
-        if(isset($_POST["username"]) && !empty($_POST["username"])){
-            $this->username = $_POST["username"];
-            $bindArray=$this->prepareBindParameters($bindArray,"username",$this->username,"s");
-        }
-        if(isset($_POST["password"]) && !empty($_POST["password"])){
-            $this->password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-            $bindArray=$this->prepareBindParameters($bindArray,"password",$this->password,"s");
-        }
-        $bindArray["queryFilnal"]=$bindArray["queryStart"].$bindArray["queryMiddle"].$bindArray["queryEnd"];
-        array_push($bindArray["bindValuesArray"],$this->id);
-        return $bindArray;
-
-    }
-    public function prepareBindParameters($arr,$name,$value,$type){
-        if($arr["firstValueAdded"]){
-            $arr["queryMiddle"].=" ,".$name."=? "; //comma
-            array_push($arr["bindValuesArray"],$value);
-            $arr["bindType"]=$type.$arr["bindType"];
-        }else{
-            $arr["queryMiddle"].=" ".$name."=? "; //first column updated in a row doesn't need comma before its column name
-            array_push($arr["bindValuesArray"],$value);
-            $arr["bindType"]=$type.$arr["bindType"];
-            $arr["firstValueAdded"]=true;
-        }
-        return $arr;
-    }
-    public function updateUser(){
-        $bindArray=$this->prepareUpdateValues();
-        $stmt = $this->db->prepare($bindArray["queryFilnal"]);
-        $stmt->bind_param($bindArray["bindType"],...$bindArray["bindValuesArray"]);//...argument unpacking
+    
+    public function updateUser()
+    {
+        $stmt = $this->db->prepare("UPDATE user SET first_name=? , last_name=?, modified_at=NOW(),password=? where id =?");
+        $stmt->bind_param("sssi",$this->firstName,$this->lastName,$this->password,$this->id);
         $stmt->execute();
 
         if ($stmt->affected_rows === 1)

@@ -6,8 +6,9 @@ require_once "../../config/database.php";
 require_once "../../model/User.php";
 require_once "../../controller/UserController.php";
 
-if (isset($_POST["update"]) && !empty($_POST["update"]))
+if ( isset($_POST["login"]) && !empty($_POST["login"]) )
 {
+
     //database connection
     $db = connect();
 
@@ -16,7 +17,7 @@ if (isset($_POST["update"]) && !empty($_POST["update"]))
     $userController = new UserController($user);
 
     //controller function to push the right data
-    print $userController->updateUser();
+    print $userController->login();
 }
 
 ?>

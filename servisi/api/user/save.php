@@ -6,8 +6,8 @@ require_once "../../config/database.php";
 require_once "../../model/User.php";
 require_once "../../controller/UserController.php";
 
-if (isset($_GET["id"]) && !empty($_GET["id"])){
-
+if (isset($_POST["save"]) && !empty($_POST["save"]))
+{
     //database connection
     $db = connect();
 
@@ -16,7 +16,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])){
     $userController = new UserController($user);
 
     //controller function to push the right data
-    print $userController->findOne($_GET["id"]);
+    print $userController->save();
 }
 
 ?>
