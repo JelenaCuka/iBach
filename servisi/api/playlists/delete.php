@@ -16,7 +16,7 @@ if (isset($_POST["delete"]) && !empty($_POST["delete"]))
     $playlistController = new PlaylistController($playlist);
 
     //controller function to push the right data
-    print $playlistController->deletePlaylist();
+    print $playlistController->delete();
 }
 
 ?>

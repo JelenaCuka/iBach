@@ -6,7 +6,7 @@ require_once "../../config/database.php";
 require_once "../../model/Playlist.php";
 require_once "../../controller/PlaylistController.php";
 
-if (isset($_POST["findname"]) && !empty($_POST["findname"]))
+if (isset($_POST["save"]) && !empty($_POST["save"]))
 {
     //database connection
     $db = connect();
@@ -16,7 +16,7 @@ if (isset($_POST["findname"]) && !empty($_POST["findname"]))
     $playlistController = new PlaylistController($playlist);
 
     //controller function to push the right data
-    print $playlistController->findPlaylistByName();
+    print $playlistController->save();
 }
 
 ?>
