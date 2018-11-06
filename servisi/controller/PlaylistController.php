@@ -103,11 +103,20 @@ class PlaylistController
         }
     }
 
-    public function updatePlaylist()
+    public function update()
     {
-        if ($_POST["update"] === "1")
+        if ($_POST["update"] === "1" )
         {
-            //TODO
+            if( isset($_POST["id"]) && !empty($_POST["id"])&& is_numeric($_POST["id"]) &&
+                isset($_POST["name"]) && !empty($_POST["name"]) ){
+                return $this->playlist->update($_POST["id"],$_POST["name"]);
+            }else{
+                http_response_code(400);
+                $row = array();
+                $row["status"]= "400";
+                $row["description"] = "Bad request. Missing parameters";
+                return json_encode($row);
+            }
         }
         else
         {
@@ -119,7 +128,7 @@ class PlaylistController
             return json_encode($row);
         }
 
-    }
+        }
     
 }
 

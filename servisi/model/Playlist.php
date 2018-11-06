@@ -40,15 +40,9 @@ class Playlist
     public function findOne($id)
     {
         $this->id = $id;
-        $stmt = $this->db->prepare("SELECT id, name, user_id, modified_at FROM playlist where id=?");
-
-        $stmt->bind_param("i", $this->id);
-        $stmt->execute();
-            
-        $result = $stmt->get_result();
-        $r = $result->fetch_assoc();
-        if(!empty($r)){
-            return json_encode( array("status"=>"200","playlist"=>$r ) );
+        $playlist=$this->findPlaylistById();
+        if($playlist!=null){
+            return json_encode( array("status"=>"200","playlist"=>$playlist ) );
         }else{
             return json_encode( array("status"=>"404","description"=>"Playlist not found."));
         }
@@ -89,8 +83,24 @@ class Playlist
             return json_encode( array("status"=>"404","description"=>"Not found."));
         }
     }
+    public function update($id,$name)
+    {
+        $this->id = $id;
+        $this->name=$name;
+        if ($this->playlistExistsId() ){
+            if( $this->updateName() ){
+                return json_encode( array("status"=>"200","description"=>"Playlist updated.","playlist"=>$this->findPlaylistById()));
+            }else{
+                return json_encode( array("status"=>"404","description"=>"Not found."));
+            }
+
+        }else{
+            return json_encode( array("status"=>"400","description"=>"Bad request."));
+        }
+    }
     
-    public function savePlaylistToDatabase(){
+    public function savePlaylistToDatabase()
+    {
         $stmt = $this->db->prepare("INSERT INTO playlist (name, user_id, modified_at, deleted_at) VALUES (?,?,NOW(),NULL)");
         $stmt->bind_param("si", $this->name, $this->user_id );
         $stmt->execute();
@@ -105,7 +115,26 @@ class Playlist
             return false;
         }
     }
-    public function playlistExists(){
+    public function updateName()
+    {
+        $stmt = $this->db->prepare("UPDATE playlist SET name=? , modified_at=NOW() where id =?");
+        $stmt->bind_param("si",$this->name,$this->id);
+        $stmt->execute();
+
+        if ($stmt->affected_rows === 1)
+        {
+            $stmt->close();
+            return true;
+        }
+        else
+        {
+            $stmt->close();
+            return false;
+        }
+
+    }
+    public function playlistExists()
+    {
         $stmt = $this->db->prepare("SELECT COUNT(id) FROM playlist WHERE name=? and user_id=? and deleted_at IS NULL");
         $stmt->bind_param("si", $this->name, $this->user_id );
         $stmt->execute();
@@ -120,7 +149,24 @@ class Playlist
             return false;
         }
     }
-    public function userExists(){
+    public function playlistExistsId()
+    {
+        $stmt = $this->db->prepare("SELECT COUNT(id) FROM playlist WHERE id=? and deleted_at IS NULL");
+        $stmt->bind_param("i", $this->id );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $stmt->close();
+        if($row["COUNT(id)"]>=1){
+            return true;
+
+        }else{
+            return false;
+        }
+    }
+    public function userExists()
+    {
         $stmt = $this->db->prepare("SELECT COUNT(id) FROM user WHERE id=? and deleted_at is null");
         $stmt->bind_param("i",$this->user_id );
         $stmt->execute();
@@ -135,9 +181,25 @@ class Playlist
             return false;
         }
     }
-    public function findPlaylistByNameAndUser(){
+    public function findPlaylistByNameAndUser()
+    {
         $stmt = $this->db->prepare("SELECT id,name,user_id,modified_at,deleted_at FROM playlist WHERE name=? and user_id=? and deleted_at is null");
         $stmt->bind_param("si", $this->name, $this->user_id );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $r = $result->fetch_assoc();
+        $stmt->close();
+        if(!empty($r)){
+            return $r;
+        }else{
+            return null;
+        }
+    }
+    public function findPlaylistById()
+    {
+        $stmt = $this->db->prepare("SELECT id,name,user_id,modified_at,deleted_at FROM playlist WHERE id=? and deleted_at is null");
+        $stmt->bind_param("i", $this->id);
         $stmt->execute();
 
         $result = $stmt->get_result();

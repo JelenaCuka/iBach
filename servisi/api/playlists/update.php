@@ -16,7 +16,7 @@ if (isset($_POST["update"]) && !empty($_POST["update"]))
     $playlistController = new PlaylistController($playlist);
 
     //controller function to push the right data
-    print $playlistController->updatePlaylist();
+    print $playlistController->update();
 }
 
 ?>
