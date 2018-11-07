@@ -149,6 +149,15 @@ class PlaylistSong
             }
         }
 
+        if ($this->favoriteSongStatus == 1)
+        {
+                $row = array();
+                $row["status"]= "400";
+                $row["description"] = "Song is already on playlist.";
+
+                return json_encode($row);            
+        }
+
 
     }
 
@@ -185,6 +194,14 @@ class PlaylistSong
 
                 return $row;
             }
+        }
+        else
+        {
+            $row = array();
+            $row["status"]= "404";
+            $row["description"] = "Song is not on playlist.";
+
+            return json_encode($row);  
         }
     }
 
