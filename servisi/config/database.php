@@ -3,9 +3,9 @@
 function connect()
 {
     $host = "localhost";
-    $username = "ibachuser";
-    $password = "1airDB1";
-    $database = "mydb";
+    $username = "root";
+    $password = "";
+    $database = "ibach";
 
     return new MySqli($host, $username, $password, $database);
 }
