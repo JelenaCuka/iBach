@@ -85,54 +85,25 @@ class PlaylistSong
         $stmt->close();
     }
 
-    //DOVRŠITI
     public function save()
     {
-        $this->userId = $_POST["userId"];
+        $this->playlistId = $_POST["playlistId"];
         $this->songId = $_POST["songId"];
 
-        $this->favoriteSongStatus = $this->checkIfExists($this->userId, $this->songId);
-
-        if ($this->favoriteSongStatus == 1)
-        {
-            $stmt = $this->db->prepare("UPDATE favorite
-                                        SET deleted_at = CURRENT_TIME(), modified_at = CURRENT_TIME()
-                                        WHERE user_id = $this->userId AND song_id = $this->songId");
-            $stmt->execute();
-
-            if ($stmt->affected_rows === 1)
-            {
-                $row = array();
-                $row["status"]= "200";
-                $row["description"] = "OK. Favorite song removed";
-                
-                return json_encode($row);
-                $stmt->close();
-            }
-            else
-            {
-                http_response_code(500);
-                $row = array();
-                $row["status"] = "500";
-                $row["description"] = "Internal server error. 0 rows affected";
-                $stmt->close();
-
-                return $row;
-            }
-        }
+        $this->favoriteSongStatus = $this->checkIfExists($this->playlistId, $this->songId);
 
         if ($this->favoriteSongStatus == 2)
         {
-            $stmt = $this->db->prepare("UPDATE favorite
+            $stmt = $this->db->prepare("UPDATE playlist_song
                                         SET deleted_at = null, modified_at = CURRENT_TIME()
-                                        WHERE user_id = $this->userId AND song_id = $this->songId");
+                                        WHERE playlist_id = $this->playlistId AND song_id = $this->songId");
             $stmt->execute();
 
             if ($stmt->affected_rows === 1)
             {
                 $row = array();
                 $row["status"]= "200";
-                $row["description"] = "OK. Favorite song added.";
+                $row["description"] = "OK. Song added to playlist.";
 
                 return json_encode($row);
                 $stmt->close();
@@ -152,8 +123,8 @@ class PlaylistSong
 
         if ($this->favoriteSongStatus == 3)
         {
-            $stmt = $this->db->prepare("INSERT INTO favorite (user_id, song_id)
-                                        VALUES ($this->userId, $this->songId)");
+            $stmt = $this->db->prepare("INSERT INTO playlist_song (playlist_id, song_id)
+                                        VALUES ($this->playlistId, $this->songId)");
             $stmt->execute();
 
 
@@ -161,8 +132,46 @@ class PlaylistSong
             {
                 $row = array();
                 $row["status"]= "200";
-                $row["description"] = "OK. Favorite song added.";
+                $row["description"] = "OK. Song added to playlist.";
 
+                return json_encode($row);
+                $stmt->close();
+            }
+            else
+            {
+                http_response_code(500);
+                $row = array();
+                $row["status"] = "500";
+                $row["description"] = "Internal server error. 0 rows affected";
+                $stmt->close();
+
+                return $row;
+            }
+        }
+
+
+    }
+
+    public function delete()
+    {
+        $this->playlistId = $_POST["playlistId"];
+        $this->songId = $_POST["songId"];
+
+        $this->favoriteSongStatus = $this->checkIfExists($this->playlistId, $this->songId);
+
+        if ($this->favoriteSongStatus == 1)
+        {
+            $stmt = $this->db->prepare("UPDATE playlist_song
+                                        SET deleted_at = CURRENT_TIME(), modified_at = CURRENT_TIME()
+                                        WHERE playlist_id = $this->playlistId AND song_id = $this->songId");
+            $stmt->execute();
+
+            if ($stmt->affected_rows === 1)
+            {
+                $row = array();
+                $row["status"]= "200";
+                $row["description"] = "OK. Song deleted from playlist";
+                
                 return json_encode($row);
                 $stmt->close();
             }

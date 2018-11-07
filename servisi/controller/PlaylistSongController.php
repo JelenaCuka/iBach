@@ -59,6 +59,23 @@ class PlaylistSongController
             return json_encode($row);
         }
     }
+
+    public function deleteSongFromPlaylist()
+    {
+        if ($_POST["delete"] == 1)
+        {
+            return $this->playlistSong->delete();
+        }
+        else
+        {
+            http_response_code(400);
+            $row = array();
+            $row["status"] = "400";
+            $row["description"] = "Bad request.";
+
+            return json_encode($row);
+        }
+    }
 }
 
 ?>
