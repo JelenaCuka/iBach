@@ -14,7 +14,7 @@ if (isset($_POST["delete"]) && !empty($_POST["delete"]))
 
     //model and controller calls
     $user = new User($db);
-    $userController = new UserController($user);
+    $userController = new UserController($user,$db);
 
     //controller function to push the right data
     print $userController->delete();

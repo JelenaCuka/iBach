@@ -13,7 +13,7 @@ if (isset($_POST["update"]) && !empty($_POST["update"]))
 
     //model and controller calls
     $user = new User($db);
-    $userController = new UserController($user);
+    $userController = new UserController($user,$db);
 
     //controller function to push the right data
     print $userController->update();

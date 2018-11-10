@@ -25,9 +25,9 @@ class User
         $stmt->execute();
 
         $result = $stmt->get_result();
-        $r = $result->fetch_assoc();
-        if(!empty($r)){
-            return json_encode( array("status"=>"200","data"=>$r));
+        $fetchUser = $result->fetch_assoc();
+        if(!empty($fetchUser)){
+            return json_encode( array("status"=>"200","data"=>$fetchUser));
         }else{
             return json_encode( array("status"=>"404","description"=>"Not found. There is no user with that id."));
         }
@@ -41,9 +41,9 @@ class User
         $result = $stmt->get_result();
         $userList = array();
 
-        while ($r = $result->fetch_object())
+        while ($fetchUser = $result->fetch_object())
         {
-            array_push($userList, $r);
+            array_push($userList, $fetchUser);
         }
         if(!empty($userList))
         {
@@ -51,31 +51,6 @@ class User
         }else
         {
             return json_encode( array("status"=>"200","description"=>"Table users has no entries."));
-        }
-    }
-
-    public function login($username,$password)
-    {
-        $this->username = $username;
-        $this->password = $password; 
-        $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE username = ? and deleted_at is null");
-        $stmt->bind_param("s", $this->username);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $r = $result->fetch_assoc();
-        if(!empty($r))
-        {
-            if( password_verify($this->password,$r["password"]) )
-            {
-                return json_encode( array("status"=>"200","description"=>"Login successful.","user"=>$r));
-            }else
-            {
-                return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));
-            }//WRONG PASSWORD
-        }else
-        {
-            return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));
         }
     }
     
@@ -137,9 +112,9 @@ class User
             $stmt->execute();
 
             $result = $stmt->get_result();
-            $r = $result->fetch_assoc();
-            if(!empty($r)){
-                return json_encode( array("status"=>"200","description"=>"User successfully updated.","user"=>$r));
+            $fetchUser = $result->fetch_assoc();
+            if(!empty($fetchUser)){
+                return json_encode( array("status"=>"200","description"=>"User successfully updated.","user"=>$fetchUser));
             }else{
                 return json_encode( array("status"=>"404","description"=>"Not found. Unknown update error."));
             }
