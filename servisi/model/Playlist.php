@@ -25,16 +25,16 @@ class Playlist
             $stmt->execute();
             
             $result = $stmt->get_result();
-            $playList = array();
+            $playLists = array();
 
-            while ($r = $result->fetch_assoc())
+            while ($playlist = $result->fetch_assoc())
             {
-                $this->id=$r["id"];
+                $this->id=$playlist["id"];
                 $this->findSongs();
-                $r["songs"]=$this->songs;
-                array_push($playList, $r);
+                $playlist["songs"]=$this->songs;
+                array_push($playLists, $playlist);
             }
-            return json_encode( array("status"=>"200","playlists"=>$playList) );
+            return json_encode( array("status"=>"200","playlists"=>$playLists) );
            
         }else{
             return json_encode( array("status"=>"404","description"=>"Can't get playlists for nonexistent user"));
@@ -87,24 +87,16 @@ class Playlist
             return json_encode( array("status"=>"404","description"=>"Not found."));
         }
     }
-    public function update($id,$newValue,$mod)
+    public function update($id,$newName)
     {
         $this->id = $id;
         if ($this->playlistExistsId() ){
-            switch ($mod) {
-                case 1: //mod1-update playlist name
-                $this->name=$newValue;
-                if( $this->updateName() ){
-                    return json_encode( array("status"=>"200","description"=>"Playlist updated.Name changed.","playlist"=>$this->findPlaylistById()));
-                }
-                case 2: //mod2-addSong to playlist
-                if( $this->playlistSongAppend($newValue) ){
-                    return json_encode( array("status"=>"200","description"=>"Playlist updated.Song added","playlist"=>$this->findPlaylistById()));
-                }
-                case 3: //mod3-removeSong from playlist
-                if( $this->playlistSongRemove($newValue) ){
-                    return json_encode( array("status"=>"200","description"=>"Playlist updated.Song removed","playlist"=>$this->findPlaylistById()));
-                }
+            $this->name=$newName;
+            if( $this->updateName() ){
+                return json_encode( array("status"=>"200","description"=>"Playlist updated.Name changed.","playlist"=>$this->findPlaylistById()));
+            }
+            else{
+                return json_encode( array("status"=>"404","description"=>"Not found. Error update."));
             }
         }else{
             return json_encode( array("status"=>"400","description"=>"Bad request."));
@@ -145,54 +137,6 @@ class Playlist
             return false;
         }
 
-    }
-    public function playlistSongAppend($addSong)
-    {
-        $stmt = $this->db->prepare("INSERT INTO playlist_song (playlist_id,song_id,modified_at) VALUES (?,?,NOW() );");
-        $stmt->bind_param("ii",$this->id,$addSong);
-        $stmt->execute();
-
-        if ($stmt->affected_rows === 1)
-        {
-            $stmt->close();
-            return true;
-        }
-        else
-        {
-            //this is because deleting is setting deleted_at
-            $stmt = $this->db->prepare("UPDATE playlist_song SET modified_at=NOW(), deleted_at=null WHERE playlist_id=? AND song_id=?");
-            $stmt->bind_param("ii",$this->id,$addSong);
-            $stmt->execute();
-
-            if ($stmt->affected_rows === 1)
-            {
-                $stmt->close();
-                return true;
-            }
-            else
-            {
-                $stmt->close();
-                return false;
-            }
-        }
-    }
-
-    public function playlistSongRemove($removeSong)
-    {
-        $stmt = $this->db->prepare("UPDATE playlist_song SET deleted_at=NOW() WHERE playlist_id=? AND song_id=?");
-        $stmt->bind_param("ii",$this->id,$removeSong);
-        $stmt->execute();
-
-        if ($stmt->affected_rows === 1)
-        {
-            $stmt->close();
-            return true;
-        }
-        else
-        {
-            $stmt->close();
-            return false;
-        }
     }
 
     public function playlistExists()
@@ -250,13 +194,13 @@ class Playlist
         $stmt->execute();
 
         $result = $stmt->get_result();
-        $r = $result->fetch_assoc();
+        $playlist = $result->fetch_assoc();
         
         $stmt->close();
-        if(!empty($r)){
+        if(!empty($playlist)){
             $this->findSongs();
-            $r["songs"]=$this->songs;
-            return $r;
+            $playlist["songs"]=$this->songs;
+            return $playlist;
         }else{
             return null;
         }

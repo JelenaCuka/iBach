@@ -109,15 +109,7 @@ class PlaylistController
         {
             if( isset($_POST["id"]) && !empty($_POST["id"])&& is_numeric($_POST["id"]) &&
                 isset($_POST["name"]) && !empty($_POST["name"]) ){
-                return $this->playlist->update($_POST["id"],$_POST["name"],1);
-            }
-            elseif( isset($_POST["id"]) && !empty($_POST["id"])&& is_numeric($_POST["id"]) &&
-                isset($_POST["addSong"]) && !empty($_POST["addSong"]) ){
-                return $this->playlist->update($_POST["id"],$_POST["addSong"],2);
-            }
-            elseif( isset($_POST["id"]) && !empty($_POST["id"])&& is_numeric($_POST["id"]) &&
-                isset($_POST["removeSong"]) && !empty($_POST["removeSong"]) ){
-                return $this->playlist->update($_POST["id"],$_POST["removeSong"],3);
+                return $this->playlist->update($_POST["id"],$_POST["name"]);
             }else{
                 http_response_code(400);
                 $row = array();
