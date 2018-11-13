@@ -154,6 +154,24 @@ class User
             return json_encode($row);
         }
     }
+    public function findUserByUsername($username)
+    {
+        $this->username = $username;
+
+        $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE username = ? and deleted_at is null");
+        $stmt->bind_param("s", $this->username );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $fetchUser = $result->fetch_assoc();
+        
+        if(!empty($fetchUser))
+        {
+            return $fetchUser;
+        }else{
+            return null;
+        }
+    }
     
     public function usernameIsNotDuplicate()
     {

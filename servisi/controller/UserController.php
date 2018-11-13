@@ -3,12 +3,10 @@
 class UserController
 {
     private $user;
-    private $db;
 
-    public function __construct($user,$db)
+    public function __construct($user)
     {
         $this->user = $user;
-        $this->db = $db;
     }
 
     public function findOne($id)
@@ -45,12 +43,7 @@ class UserController
     {
         if ($_POST["login"] === "1"&& isset($_POST["username"]) && !empty($_POST["username"])&& isset($_POST["password"]) && !empty($_POST["password"]) )
         { 
-            $stmt = $this->db->prepare("SELECT id, first_name, last_name, email, deleted_at, modified_at, username, password FROM user WHERE username = ? and deleted_at is null");
-            $stmt->bind_param("s", $_POST["username"] );
-            $stmt->execute();
-
-            $result = $stmt->get_result();
-            $fetchUser = $result->fetch_assoc();
+            $fetchUser = $this->user->findUserByUsername($_POST["username"]);
             if(!empty($fetchUser))
             {
                 if( password_verify( $_POST["password"], $fetchUser["password"]) )
@@ -59,7 +52,7 @@ class UserController
                 }else
                 {
                     return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));
-                }//WRONG PASSWORD
+                }
             }else
             {
                 return json_encode( array("status"=>"404","description"=>"Not found. Login Unsuccessful."));

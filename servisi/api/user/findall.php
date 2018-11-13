@@ -13,7 +13,7 @@ if (isset($_GET["findall"]) && !empty($_GET["findall"]))
 
     //model and controller calls
     $user = new User($db);
-    $userController = new UserController($user,$db);
+    $userController = new UserController($user);
 
     //controller function to push the right data
     print $userController->findAll();
