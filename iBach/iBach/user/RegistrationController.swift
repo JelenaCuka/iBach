@@ -110,7 +110,50 @@ class RegistrationController: UIViewController, UITextFieldDelegate {
     }
     
     func register() {
+        let username = textFieldUsername.text!
+        let password = textFieldPassword.text!.hash
+        let firstName = textFieldFirstName.text!
+        let lastName = textFieldLastName.text!
+        let email = textFieldEmail.text!
         
+        let url = URL(string: "http://botticelliproject.com/air/api/user/save.php");
+        var request = URLRequest(url: url!)
+        
+        request.httpMethod = "POST"
+        let postString = "save=1&first_name=\(firstName)&last_name=\(lastName)&email=\(email)&username=\(username)&password=\(password)"
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            
+            if error != nil {
+                print("Error: \(String(describing: error))")
+                return
+            }
+            
+            print("Response: \(String(describing: response))")
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let parseJSON = json {
+                    
+                    let logged = parseJSON["description"] as? String
+                    
+                    if (logged == "User successfully created.") {
+                        UserDefaults.standard.set(true, forKey: "status")
+                        Switcher.updateRootViewController()
+                    }
+                        
+                    else {
+                        //greška
+                        return
+                    }
+                    
+                }
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
     }
-    
 }
