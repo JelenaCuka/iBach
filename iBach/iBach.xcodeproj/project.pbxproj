@@ -11,6 +11,7 @@
 		9C50EEC82191D20200AE9969 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C50EEC72191D20200AE9969 /* User.swift */; };
 		9C50EECB2191DA1000AE9969 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EEC92191DA1000AE9969 /* Login.storyboard */; };
 		9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C50EECC2191DDAF00AE9969 /* LoginController.swift */; };
+		9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7D7FCF21A36F1100934787 /* RegistrationController.swift */; };
 		9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC91CB32195B76700FE8582 /* Switcher.swift */; };
 		9CF12FAC219050F300871893 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF12FAB219050F300871893 /* AppDelegate.swift */; };
 		9CF12FAE219050F300871893 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF12FAD219050F300871893 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 		9C50EEC72191D20200AE9969 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C50EECA2191DA1000AE9969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iBach/Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		9C50EECC2191DDAF00AE9969 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		9C7D7FCF21A36F1100934787 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		9CC91CB32195B76700FE8582 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		9CF12FA8219050F300871893 /* iBach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF12FAB219050F300871893 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				9C50EEC92191DA1000AE9969 /* Login.storyboard */,
 				9C085D6E2192DD36009DB56C /* UserSessionDefaults.swift */,
 				9CC91CB32195B76700FE8582 /* Switcher.swift */,
+				9C7D7FCF21A36F1100934787 /* RegistrationController.swift */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */,
 				9C085D6F2192DD36009DB56C /* UserSessionDefaults.swift in Sources */,
 				9C50EEC82191D20200AE9969 /* User.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,

@@ -44,7 +44,7 @@ class LoginController: UIViewController {
                     let logged = parseJSON["description"] as? String
                     print(logged)
                     
-                    if (logged == "Login successful.") {
+                    if (logged == "Login successful") {
 
                             UserDefaults.standard.set(true, forKey: "status")
                             Switcher.updateRootViewController()
