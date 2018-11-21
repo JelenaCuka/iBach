@@ -52,6 +52,7 @@ class RegistrationController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+
     
     @IBAction func registerNewUser(_ sender: Any) {
         
@@ -59,6 +60,13 @@ class RegistrationController: UIViewController, UITextFieldDelegate {
         
         if (!userDataEntered) {
             DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Did you bring your towel?", message: "It's recommended you bring your towel before continuing.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true)
+                
                 self.labelStatusMessage.isHidden = false
                 self.labelStatusMessage.text = "User data not enetered..."
             }
@@ -112,9 +120,23 @@ class RegistrationController: UIViewController, UITextFieldDelegate {
     func register() {
         let username = textFieldUsername.text!
         let password = textFieldPassword.text!.hash
-        let firstName = textFieldFirstName.text!
-        let lastName = textFieldLastName.text!
-        let email = textFieldEmail.text!
+        var firstName = textFieldFirstName.text!
+        var lastName = textFieldLastName.text!
+        var email = textFieldEmail.text!
+        
+        if (textFieldFirstName.text!.isEmpty) {
+            firstName = ""
+        }
+        
+        if (textFieldLastName.text!.isEmpty) {
+            lastName = ""
+        }
+        
+        if (textFieldEmail.text!.isEmpty) {
+            email = ""
+        }
+        
+        
         
         let url = URL(string: "http://botticelliproject.com/air/api/user/save.php");
         var request = URLRequest(url: url!)
@@ -145,7 +167,19 @@ class RegistrationController: UIViewController, UITextFieldDelegate {
                     }
                         
                     else {
-                        //greška
+                        if (logged == "Username and email already exist.") {
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: "Did you bring your towel?", message: "It's recommended you bring your towel before continuing.", preferredStyle: .alert)
+                                
+                                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+                                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                                
+                                self.present(alert, animated: true)
+                                
+                                self.labelStatusMessage.isHidden = false
+                                self.labelStatusMessage.text = "User data not enetered..."
+                            }
+                        }
                         return
                     }
                     

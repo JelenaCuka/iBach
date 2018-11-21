@@ -18,7 +18,9 @@ class Switcher {
         print(status)
         
         if (status == true) {
-            rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabViewController") as! ViewController
+            rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            
+        
         }
         else {
             rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as! LoginController

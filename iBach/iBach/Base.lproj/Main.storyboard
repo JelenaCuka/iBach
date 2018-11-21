@@ -13,7 +13,7 @@
         <!--Music-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="tabViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="iBach" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,12 +148,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OF6-1O-f00" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="-504"/>
+            <point key="canvasLocation" x="893.60000000000002" y="-504.19790104947532"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="goo-HI-pEe">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Ffw-8C-kn4" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabViewController" automaticallyAdjustsScrollViewInsets="NO" id="Ffw-8C-kn4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wkc-HG-BTc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
