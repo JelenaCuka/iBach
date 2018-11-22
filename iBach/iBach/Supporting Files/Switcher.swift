@@ -23,7 +23,9 @@ class Switcher {
         
         }
         else {
-            rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as! LoginController
+            rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
+            
+            //rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         }
         
         DispatchQueue.main.async {

@@ -15,9 +15,9 @@ class ViewController: UIViewController {
     }
 
 
-    @IBAction func btn(_ sender: Any) {
+   /* @IBAction func btn(_ sender: Any) {
         let loginView: UIViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginController") as UIViewController
         self.present(loginView, animated: true, completion: nil)
-    }
+    }*/
 }
 

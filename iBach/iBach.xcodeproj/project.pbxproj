@@ -11,10 +11,8 @@
 		376D67662836F202ED134424 /* Pods_iBach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF1E8AE6D0B501D0529BD7 /* Pods_iBach.framework */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFDF21A5EA9A00B9798A /* Login.storyboard */; };
-		9C00EFE521A5F5B100B9798A /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFE421A5F5B100B9798A /* Account.storyboard */; };
-		9C085D6F2192DD36009DB56C /* UserSessionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C085D6E2192DD36009DB56C /* UserSessionDefaults.swift */; };
-		9C50EEC82191D20200AE9969 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C50EEC72191D20200AE9969 /* User.swift */; };
-		9C50EECB2191DA1000AE9969 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EEC92191DA1000AE9969 /* Login.storyboard */; };
+		9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00EFE921A6C50300B9798A /* LoginViewController.swift */; };
+		9C50EECB2191DA1000AE9969 /* LoginTEST.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EEC92191DA1000AE9969 /* LoginTEST.storyboard */; };
 		9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C50EECC2191DDAF00AE9969 /* LoginController.swift */; };
 		9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7D7FCF21A36F1100934787 /* RegistrationController.swift */; };
 		9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC91CB32195B76700FE8582 /* Switcher.swift */; };
@@ -51,10 +49,8 @@
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		984B9AAF6BA00B7FA15F9645 /* Pods-iBach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.debug.xcconfig"; sourceTree = "<group>"; };
 		9C00EFDF21A5EA9A00B9798A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		9C00EFE421A5F5B100B9798A /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
-		9C085D6E2192DD36009DB56C /* UserSessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionDefaults.swift; sourceTree = "<group>"; };
-		9C50EEC72191D20200AE9969 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9C50EECA2191DA1000AE9969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iBach/Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		9C00EFE921A6C50300B9798A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9C50EECA2191DA1000AE9969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iBach/Base.lproj/LoginTEST.storyboard; sourceTree = "<group>"; };
 		9C50EECC2191DDAF00AE9969 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		9C7D7FCF21A36F1100934787 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		9CC91CB32195B76700FE8582 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
@@ -128,6 +124,7 @@
 		9C00EFD821A5BB3500B9798A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9C00EFE621A6C45100B9798A /* Music */,
 				9C00EFE321A5F59E00B9798A /* Account */,
 				9C00EFE221A5F58400B9798A /* Registration */,
 				9C00EFDB21A5BB6800B9798A /* Login */,
@@ -154,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				9C00EFDF21A5EA9A00B9798A /* Login.storyboard */,
+				9C00EFE921A6C50300B9798A /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -169,7 +167,11 @@
 			isa = PBXGroup;
 			children = (
 				9CF12FAB219050F300871893 /* AppDelegate.swift */,
+				9CF12FAD219050F300871893 /* ViewController.swift */,
+				9CF12FAF219050F300871893 /* Main.storyboard */,
+				9CF12FB4219050F500871893 /* LaunchScreen.storyboard */,
 				9CF12FB7219050F500871893 /* Info.plist */,
+				9CC91CB32195B76700FE8582 /* Switcher.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -192,26 +194,22 @@
 		9C00EFE321A5F59E00B9798A /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				9C00EFE421A5F5B100B9798A /* Account.storyboard */,
 			);
 			path = Account;
 			sourceTree = "<group>";
 		};
-		9C50EEBE2191C7EA00AE9969 /* database */ = {
+		9C00EFE621A6C45100B9798A /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				9C50EEC72191D20200AE9969 /* User.swift */,
 			);
-			path = database;
+			path = Music;
 			sourceTree = "<group>";
 		};
 		9C50EEC52191D0D700AE9969 /* user */ = {
 			isa = PBXGroup;
 			children = (
 				9C50EECC2191DDAF00AE9969 /* LoginController.swift */,
-				9C50EEC92191DA1000AE9969 /* Login.storyboard */,
-				9C085D6E2192DD36009DB56C /* UserSessionDefaults.swift */,
-				9CC91CB32195B76700FE8582 /* Switcher.swift */,
+				9C50EEC92191DA1000AE9969 /* LoginTEST.storyboard */,
 				9C7D7FCF21A36F1100934787 /* RegistrationController.swift */,
 			);
 			path = user;
@@ -246,10 +244,6 @@
 				9C00EFDD21A5BB7A00B9798A /* Supporting Files */,
 				9C00EFD721A5BB2F00B9798A /* Classes */,
 				9C50EEC52191D0D700AE9969 /* user */,
-				9C50EEBE2191C7EA00AE9969 /* database */,
-				9CF12FAD219050F300871893 /* ViewController.swift */,
-				9CF12FAF219050F300871893 /* Main.storyboard */,
-				9CF12FB4219050F500871893 /* LaunchScreen.storyboard */,
 			);
 			path = iBach;
 			sourceTree = "<group>";
@@ -393,11 +387,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C50EECB2191DA1000AE9969 /* Login.storyboard in Resources */,
+				9C50EECB2191DA1000AE9969 /* LoginTEST.storyboard in Resources */,
 				9CF12FB6219050F500871893 /* LaunchScreen.storyboard in Resources */,
 				9CF12FB3219050F500871893 /* Assets.xcassets in Resources */,
 				9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */,
-				9C00EFE521A5F5B100B9798A /* Account.storyboard in Resources */,
 				9CF12FB1219050F300871893 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,9 +509,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */,
-				9C085D6F2192DD36009DB56C /* UserSessionDefaults.swift in Sources */,
-				9C50EEC82191D20200AE9969 /* User.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
 				9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
@@ -558,12 +550,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9C50EEC92191DA1000AE9969 /* Login.storyboard */ = {
+		9C50EEC92191DA1000AE9969 /* LoginTEST.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9C50EECA2191DA1000AE9969 /* Base */,
 			);
-			name = Login.storyboard;
+			name = LoginTEST.storyboard;
 			sourceTree = "<group>";
 		};
 		9CF12FAF219050F300871893 /* Main.storyboard */ = {
