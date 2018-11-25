@@ -6,7 +6,10 @@
 //  Copyright © 2018 Petar Jedek. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import Alamofire
+import Unbox
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -35,7 +38,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         scrollViewInsets.bottom += 1
         
         scrollView.contentInset = scrollViewInsets
-        
     }
     
     @IBAction func loginUser(_ sender: Any) {
@@ -43,21 +45,54 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if (textFieldUsername.text!.isEmpty || textFieldPassword.text!.isEmpty) {
             
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Information required", message: "Please submit all input fields before submitting the form.", preferredStyle: .alert)
-                
-                alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-                
-                self.present(alert, animated: true)
+                self.printAlert(title: "Information required", message: "Please submit all input fields before submitting the form.")
             }
             
         } else {
             let username = textFieldUsername.text!
             let password = textFieldPassword.text!.hash
             
-            print("Params: \(username) and \(password)")
+            let parameters: Parameters = [
+                "username": username,
+                "password": String(password)
+                ] 
+            
+            HTTPRequest().sendPostRequest(urlString: "https://botticelliproject.com/air/api/user/login.php", parameters: parameters, completionHandler: {(response, error) in
+                let serverResponse: String = response!["description"]! as! String
+                
+                if (serverResponse == "Login successful") {
+                    let dictionary = response!
+                    self.processUserData(dictionary)
+                } else if (serverResponse == "Wrong password.") {
+                    DispatchQueue.main.async {
+                        self.printAlert(title: "Login Information", message: "Password is incorrect.")
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.printAlert(title: "Login Information", message: "User with this username does not exists.")
+                    }
+                }
+            })
         }
         
     }
     
-
+    private func processUserData(_ data: [String: Any]) {
+        do {
+            let userData: User = try unbox(dictionary: data)
+            UserDefaults.standard.set(userData.id, forKey: "user_id")
+            UserDefaults.standard.set(true, forKey: "status")
+            Switcher.updateRootViewController()
+            
+        } catch {
+            print("Unable to unbox")
+        }
+    }
+    
+    private func printAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
 }

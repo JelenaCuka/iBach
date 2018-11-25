@@ -12,9 +12,15 @@
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFDF21A5EA9A00B9798A /* Login.storyboard */; };
 		9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00EFE921A6C50300B9798A /* LoginViewController.swift */; };
+		9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */; };
+		9C42E2FD21A8169800ED8A63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FC21A8169800ED8A63 /* User.swift */; };
 		9C50EECB2191DA1000AE9969 /* LoginTEST.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EEC92191DA1000AE9969 /* LoginTEST.storyboard */; };
 		9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C50EECC2191DDAF00AE9969 /* LoginController.swift */; };
 		9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7D7FCF21A36F1100934787 /* RegistrationController.swift */; };
+		9CB9F62D21A9565100177DC7 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9F62C21A9565100177DC7 /* Account.storyboard */; };
+		9CB9F62F21A9568500177DC7 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB9F62E21A9568500177DC7 /* AccountViewController.swift */; };
+		9CB9F63121A957B300177DC7 /* Music.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9F63021A957B300177DC7 /* Music.storyboard */; };
+		9CB9F63321A9580700177DC7 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB9F63221A9580700177DC7 /* MusicViewController.swift */; };
 		9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC91CB32195B76700FE8582 /* Switcher.swift */; };
 		9CF12FAC219050F300871893 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF12FAB219050F300871893 /* AppDelegate.swift */; };
 		9CF12FAE219050F300871893 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF12FAD219050F300871893 /* ViewController.swift */; };
@@ -50,9 +56,15 @@
 		984B9AAF6BA00B7FA15F9645 /* Pods-iBach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.debug.xcconfig"; sourceTree = "<group>"; };
 		9C00EFDF21A5EA9A00B9798A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9C00EFE921A6C50300B9798A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		9C42E2FC21A8169800ED8A63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C50EECA2191DA1000AE9969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iBach/Base.lproj/LoginTEST.storyboard; sourceTree = "<group>"; };
 		9C50EECC2191DDAF00AE9969 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		9C7D7FCF21A36F1100934787 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		9CB9F62C21A9565100177DC7 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
+		9CB9F62E21A9568500177DC7 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		9CB9F63021A957B300177DC7 /* Music.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Music.storyboard; sourceTree = "<group>"; };
+		9CB9F63221A9580700177DC7 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		9CC91CB32195B76700FE8582 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		9CF12FA8219050F300871893 /* iBach.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBach.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF12FAB219050F300871893 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +155,7 @@
 		9C00EFDA21A5BB5300B9798A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -159,6 +172,7 @@
 		9C00EFDC21A5BB7200B9798A /* Uitites */ = {
 			isa = PBXGroup;
 			children = (
+				9C42E2FC21A8169800ED8A63 /* User.swift */,
 			);
 			path = Uitites;
 			sourceTree = "<group>";
@@ -194,6 +208,8 @@
 		9C00EFE321A5F59E00B9798A /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				9CB9F62C21A9565100177DC7 /* Account.storyboard */,
+				9CB9F62E21A9568500177DC7 /* AccountViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -201,6 +217,8 @@
 		9C00EFE621A6C45100B9798A /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				9CB9F63021A957B300177DC7 /* Music.storyboard */,
+				9CB9F63221A9580700177DC7 /* MusicViewController.swift */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -389,8 +407,10 @@
 			files = (
 				9C50EECB2191DA1000AE9969 /* LoginTEST.storyboard in Resources */,
 				9CF12FB6219050F500871893 /* LaunchScreen.storyboard in Resources */,
+				9CB9F63121A957B300177DC7 /* Music.storyboard in Resources */,
 				9CF12FB3219050F500871893 /* Assets.xcassets in Resources */,
 				9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */,
+				9CB9F62D21A9565100177DC7 /* Account.storyboard in Resources */,
 				9CF12FB1219050F300871893 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,8 +533,12 @@
 				9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
 				9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */,
+				9C42E2FD21A8169800ED8A63 /* User.swift in Sources */,
+				9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */,
+				9CB9F63321A9580700177DC7 /* MusicViewController.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
 				9CF12FAC219050F300871893 /* AppDelegate.swift in Sources */,
+				9CB9F62F21A9568500177DC7 /* AccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
