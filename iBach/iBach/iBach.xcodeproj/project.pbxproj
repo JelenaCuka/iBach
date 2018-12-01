@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		10FBFE547810C7254FD4EA70 /* Pods_iBachUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD42BC63A36BD04D8C6F6AB4 /* Pods_iBachUITests.framework */; };
+		3433DC1A21B2D15E008EA2AE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3433DC1921B2D15E008EA2AE /* Settings.storyboard */; };
+		3433DC1C21B2D609008EA2AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */; };
+		3433DC1F21B2DDA1008EA2AE /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC1E21B2DDA1008EA2AE /* Themes.swift */; };
+		3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC2A21B2E8B8008EA2AE /* DarkTheme.swift */; };
+		3433DC2D21B2EBA3008EA2AE /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC2C21B2EBA3008EA2AE /* UITableView.swift */; };
+		3433DC2F21B2EBDC008EA2AE /* With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC2E21B2EBDC008EA2AE /* With.swift */; };
+		3433DC3121B2EC3B008EA2AE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3021B2EC3B008EA2AE /* UIView.swift */; };
+		3433DC3321B2EC5C008EA2AE /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3221B2EC5C008EA2AE /* UIWindow.swift */; };
+		3433DC3521B2ECB3008EA2AE /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3421B2ECB3008EA2AE /* AppButton.swift */; };
+		3433DC3721B2ECCD008EA2AE /* AppLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3621B2ECCD008EA2AE /* AppLable.swift */; };
+		3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3821B2ECE1008EA2AE /* AppSegmentControll.swift */; };
+		3433DC3B21B2ED2D008EA2AE /* AppSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3A21B2ED2D008EA2AE /* AppSwitch.swift */; };
+		3433DC3D21B2ED3F008EA2AE /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3C21B2ED3F008EA2AE /* AppView.swift */; };
+		3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC4021B2F405008EA2AE /* LightTheme.swift */; };
 		376D67662836F202ED134424 /* Pods_iBach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF1E8AE6D0B501D0529BD7 /* Pods_iBach.framework */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFDF21A5EA9A00B9798A /* Login.storyboard */; };
@@ -54,6 +68,20 @@
 /* Begin PBXFileReference section */
 		16C4C6196766FE384F966BE4 /* Pods-iBachTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.release.xcconfig"; sourceTree = "<group>"; };
 		258327AC3A2BA3E12996669F /* Pods-iBachUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBachUITests/Pods-iBachUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3433DC1921B2D15E008EA2AE /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3433DC1E21B2DDA1008EA2AE /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
+		3433DC2A21B2E8B8008EA2AE /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
+		3433DC2C21B2EBA3008EA2AE /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		3433DC2E21B2EBDC008EA2AE /* With.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = With.swift; sourceTree = "<group>"; };
+		3433DC3021B2EC3B008EA2AE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		3433DC3221B2EC5C008EA2AE /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
+		3433DC3421B2ECB3008EA2AE /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
+		3433DC3621B2ECCD008EA2AE /* AppLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLable.swift; sourceTree = "<group>"; };
+		3433DC3821B2ECE1008EA2AE /* AppSegmentControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSegmentControll.swift; sourceTree = "<group>"; };
+		3433DC3A21B2ED2D008EA2AE /* AppSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitch.swift; sourceTree = "<group>"; };
+		3433DC3C21B2ED3F008EA2AE /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		3433DC4021B2F405008EA2AE /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		917766B6C3AF7B5ED1697F56 /* Pods-iBach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.release.xcconfig"; sourceTree = "<group>"; };
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		984B9AAF6BA00B7FA15F9645 /* Pods-iBach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +147,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3433DC1821B2D125008EA2AE /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				3433DC1921B2D15E008EA2AE /* Settings.storyboard */,
+				3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		3433DC1D21B2DD79008EA2AE /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				3433DC3F21B2EE0D008EA2AE /* Extensions */,
+				3433DC3E21B2EDB5008EA2AE /* Controls */,
+				3433DC1E21B2DDA1008EA2AE /* Themes.swift */,
+				3433DC2A21B2E8B8008EA2AE /* DarkTheme.swift */,
+				3433DC4021B2F405008EA2AE /* LightTheme.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		3433DC3E21B2EDB5008EA2AE /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				3433DC3421B2ECB3008EA2AE /* AppButton.swift */,
+				3433DC3621B2ECCD008EA2AE /* AppLable.swift */,
+				3433DC3821B2ECE1008EA2AE /* AppSegmentControll.swift */,
+				3433DC3A21B2ED2D008EA2AE /* AppSwitch.swift */,
+				3433DC3C21B2ED3F008EA2AE /* AppView.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		3433DC3F21B2EE0D008EA2AE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3433DC2C21B2EBA3008EA2AE /* UITableView.swift */,
+				3433DC2E21B2EBDC008EA2AE /* With.swift */,
+				3433DC3021B2EC3B008EA2AE /* UIView.swift */,
+				3433DC3221B2EC5C008EA2AE /* UIWindow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		6BA965E1279B7354AA56C0AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +214,8 @@
 		9C00EFD821A5BB3500B9798A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				3433DC1D21B2DD79008EA2AE /* Themes */,
+				3433DC1821B2D125008EA2AE /* Setting */,
 				9CCCC76B21AB2DAA005BCB01 /* Registration */,
 				9C00EFE621A6C45100B9798A /* Music */,
 				9C00EFE321A5F59E00B9798A /* Account */,
@@ -420,6 +494,7 @@
 				9CB9F63121A957B300177DC7 /* Music.storyboard in Resources */,
 				9CF12FB3219050F500871893 /* Assets.xcassets in Resources */,
 				9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */,
+				3433DC1A21B2D15E008EA2AE /* Settings.storyboard in Resources */,
 				9CB9F62D21A9565100177DC7 /* Account.storyboard in Resources */,
 				9CF12FB1219050F300871893 /* Main.storyboard in Resources */,
 			);
@@ -539,18 +614,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistraionViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
+				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,
+				3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */,
+				3433DC3721B2ECCD008EA2AE /* AppLable.swift in Sources */,
+				3433DC3321B2EC5C008EA2AE /* UIWindow.swift in Sources */,
 				9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */,
+				3433DC3B21B2ED2D008EA2AE /* AppSwitch.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
 				9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */,
 				9C42E2FD21A8169800ED8A63 /* User.swift in Sources */,
 				9CCCC77321AB3C7D005BCB01 /* RegistrationViewController.swift in Sources */,
+				3433DC1F21B2DDA1008EA2AE /* Themes.swift in Sources */,
 				9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */,
 				9CB9F63321A9580700177DC7 /* MusicViewController.swift in Sources */,
+				3433DC2F21B2EBDC008EA2AE /* With.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
+				3433DC1C21B2D609008EA2AE /* SettingsViewController.swift in Sources */,
+				3433DC2D21B2EBA3008EA2AE /* UITableView.swift in Sources */,
 				9CF12FAC219050F300871893 /* AppDelegate.swift in Sources */,
+				3433DC3D21B2ED3F008EA2AE /* AppView.swift in Sources */,
+				3433DC3121B2EC3B008EA2AE /* UIView.swift in Sources */,
 				9CB9F62F21A9568500177DC7 /* AccountViewController.swift in Sources */,
+				3433DC3521B2ECB3008EA2AE /* AppButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
