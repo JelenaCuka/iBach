@@ -23,7 +23,7 @@ class HTTPRequest {
             }
     }
     
-    public func sendGetRequest(urlString: String, completionHandler: @escaping ([String: Any]?, NSError?) -> ()) {
+    public func sendGetRequest(urlString: String, completionHandler: @escaping (Any, NSError?) -> ()) {
         
         let url = URL(string: urlString)
         
@@ -32,7 +32,12 @@ class HTTPRequest {
                 return .success
             }
             .responseJSON { response in
-                completionHandler(response.result.value as? [String: Any], response.result.error as? NSError)
+
+                if let serverData = response.result.value! as? NSArray{
+                    completionHandler(response.result.value! as! NSArray, response.result.error as? NSError)
+                } else {
+                    completionHandler(response.result.value! as! NSDictionary, response.result.error as? NSError)
+                }
         }
     }
     

@@ -57,8 +57,10 @@ class AccountViewController: UIViewController, UITextFieldDelegate {
         print("retriving data... from id:\(id)")
         
         HTTPRequest().sendGetRequest(urlString: "http://botticelliproject.com/air/api/user/findone.php?id=\(id)", completionHandler: {(response, error) in
-            let serverResponse: [String: Any] = response!["data"]! as! [String: Any]
-            self.processAndDisplayUserData(serverResponse)
+
+            if let serverResponse = response as? [String : Any]  {
+                self.processAndDisplayUserData(serverResponse["data"] as! [String : Any])
+            }
         })
     }
     
