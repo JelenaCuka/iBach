@@ -48,7 +48,7 @@ class AccountTableViewController: UITableViewController {
         else{
             usernameIsEdited = true
         }
-        showOrHideSaveButton()
+        showOrHideSaveAndResetButton()
     }
     @IBAction func firstnameEdited(_ sender: Any) {
         if(firstname == textFieldFirstname.text)
@@ -59,7 +59,7 @@ class AccountTableViewController: UITableViewController {
         {
             firstnameIsEdited = true
         }
-        showOrHideSaveButton()
+        showOrHideSaveAndResetButton()
     }
     @IBAction func emailEdited(_ sender: Any) {
         if(email == textFieldEmail.text)
@@ -69,7 +69,7 @@ class AccountTableViewController: UITableViewController {
         {
             emailIsEdited = true
         }
-        showOrHideSaveButton()
+        showOrHideSaveAndResetButton()
     }
     @IBAction func lastnameEdited(_ sender: Any) {
         if(lastname == textFieldLastname.text)
@@ -79,10 +79,10 @@ class AccountTableViewController: UITableViewController {
         {
             lastnameIsEdited = true
         }
-        showOrHideSaveButton()
+        showOrHideSaveAndResetButton()
     }
     
-    private func showOrHideSaveButton()
+    private func showOrHideSaveAndResetButton()
     {
         if (usernameIsEdited || emailIsEdited || firstnameIsEdited || lastnameIsEdited)
         {
@@ -100,6 +100,20 @@ class AccountTableViewController: UITableViewController {
                 self.buttonResetChanges.isHidden = true
             }
         }
+    }
+    
+    @IBAction func resetChanges(_ sender: Any) {
+        DispatchQueue.main.async {
+            self.textFieldUsername.text = self.username
+            self.textFieldEmail.text = self.email
+            self.textFieldFirstname.text = self.firstname
+            self.textFieldLastname.text = self.lastname
+        }
+        usernameIsEdited = false
+        emailIsEdited = false
+        firstnameIsEdited = false
+        lastnameIsEdited = false
+        showOrHideSaveAndResetButton()
     }
     
     private func getUserData(id: Int) {

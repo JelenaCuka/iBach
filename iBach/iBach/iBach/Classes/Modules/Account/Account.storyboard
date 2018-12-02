@@ -156,6 +156,9 @@
                                                     <state key="normal" title="Reset">
                                                         <color key="titleColor" red="1" green="0.23495931889999999" blue="0.052492207290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="resetChanges:" destination="eQq-df-QGg" eventType="touchUpInside" id="NVO-rm-GSd"/>
+                                                    </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ain-wL-LMe">
                                                     <rect key="frame" x="18" y="7" width="34" height="30"/>
