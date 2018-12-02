@@ -12,16 +12,36 @@ import Unbox
 
 class AccountTableViewController: UITableViewController {
     
-    @IBOutlet weak var labelUserName: UILabel!
-    @IBOutlet weak var labelEmail: UILabel!
-    @IBOutlet weak var labelFirstName: UILabel!
-    @IBOutlet weak var labelLastName: UILabel!
+    @IBOutlet weak var textFieldUsername: UITextField!
+    @IBOutlet weak var textFieldEmail: UITextField!
+    @IBOutlet weak var textFieldFirstname: UITextField!
+    @IBOutlet weak var textFieldLastname: UITextField!
+    @IBOutlet weak var labelModifyDataDescription: UILabel!
+    @IBOutlet weak var buttonSaveChanges: UIButton!
+    var username: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if (UserDefaults.standard.integer(forKey: "user_id") > 0) {
             getUserData(id: UserDefaults.standard.integer(forKey: "user_id"))
+        }
+        labelModifyDataDescription.isHidden = false
+        buttonSaveChanges.isHidden = true
+    }
+    
+    @IBAction func usernameEdited(_ sender: Any) {
+        if (username == textFieldUsername.text) {
+            DispatchQueue.main.async{
+                self.labelModifyDataDescription.isHidden = false
+                self.buttonSaveChanges.isHidden = true
+            }
+        }
+        else{
+            DispatchQueue.main.async{
+                self.labelModifyDataDescription.isHidden = true
+                self.buttonSaveChanges.isHidden = false
+            }
         }
     }
     
@@ -39,43 +59,41 @@ class AccountTableViewController: UITableViewController {
     private func processAndDisplayUserData(_ data: [String: Any]) {
         do {
             let userData: User = try unbox(dictionary: data)
-            
+
             var accountName: Bool = false
             if (!userData.firstName!.isEmpty && !userData.lastName!.isEmpty) {
                 accountName = true
             }
-            
+
             if(accountName){
                 DispatchQueue.main.async {
-                    self.labelUserName.text = userData.username
-                    self.labelEmail.text = userData.email
-                    self.labelFirstName.text = userData.firstName
-                    self.labelLastName.text = userData.lastName
+                    self.textFieldUsername.text = userData.username
+                    self.textFieldEmail.text = userData.email
+                    self.textFieldFirstname.text = userData.firstName
+                    self.textFieldLastname.text = userData.lastName
                 }
+                username = userData.username
             }
             else{
                 DispatchQueue.main.async {
-                    self.labelUserName.text = userData.username
-                    self.labelEmail.text = userData.email
+                    self.textFieldUsername.text = userData.username
+                    self.textFieldEmail.text = userData.email
                     if(userData.firstName!.isEmpty && !userData.lastName!.isEmpty){
-                        self.labelFirstName.text = "bez podataka"
-                        self.labelFirstName.isEnabled = false
-                        self.labelLastName.text = userData.lastName
+                        self.textFieldFirstname.text = ""
+                        self.textFieldLastname.text = userData.lastName
                     }
                     else if(!userData.firstName!.isEmpty && userData.lastName!.isEmpty){
-                        self.labelFirstName.text = userData.firstName
-                        self.labelLastName.text = "bez podataka"
-                        self.labelLastName.isEnabled = false
+                        self.textFieldFirstname.text = userData.firstName
+                        self.textFieldLastname.text = ""
                     }
                     else{
-                        self.labelFirstName.text = "bez podataka"
-                        self.labelFirstName.isEnabled = false
-                        self.labelLastName.text = "bez podataka"
-                        self.labelLastName.isEnabled = false
+                        self.textFieldFirstname.text = ""
+                        self.textFieldLastname.text = ""
                     }
                 }
+                username = userData.username
             }
-            
+
         } catch {
             print("Unable to unbox")
         }
