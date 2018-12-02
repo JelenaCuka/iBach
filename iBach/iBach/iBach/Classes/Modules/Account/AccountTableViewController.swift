@@ -19,6 +19,13 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var labelModifyDataDescription: UILabel!
     @IBOutlet weak var buttonSaveChanges: UIButton!
     var username: String = ""
+    var email: String = ""
+    var firstname: String = ""
+    var lastname: String = ""
+    var usernameIsEdited: Bool = false
+    var emailIsEdited: Bool = false
+    var firstnameIsEdited: Bool = false
+    var lastnameIsEdited: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,16 +38,61 @@ class AccountTableViewController: UITableViewController {
     }
     
     @IBAction func usernameEdited(_ sender: Any) {
-        if (username == textFieldUsername.text) {
-            DispatchQueue.main.async{
-                self.labelModifyDataDescription.isHidden = false
-                self.buttonSaveChanges.isHidden = true
+        if (username == textFieldUsername.text)
+        {
+            usernameIsEdited = false
+        }
+        else{
+            usernameIsEdited = true
+        }
+        showOrHideSaveButton()
+    }
+    @IBAction func firstnameEdited(_ sender: Any) {
+        if(firstname == textFieldFirstname.text)
+        {
+            firstnameIsEdited = false
+        }
+        else
+        {
+            firstnameIsEdited = true
+        }
+        showOrHideSaveButton()
+    }
+    @IBAction func emailEdited(_ sender: Any) {
+        if(email == textFieldEmail.text)
+        {
+            emailIsEdited = false        }
+        else
+        {
+            emailIsEdited = true
+        }
+        showOrHideSaveButton()
+    }
+    @IBAction func lastnameEdited(_ sender: Any) {
+        if(lastname == textFieldLastname.text)
+        {
+            lastnameIsEdited = false        }
+        else
+        {
+            lastnameIsEdited = true
+        }
+        showOrHideSaveButton()
+    }
+    
+    private func showOrHideSaveButton()
+    {
+        if (usernameIsEdited || emailIsEdited || firstnameIsEdited || lastnameIsEdited)
+        {
+            DispatchQueue.main.async
+            {
+                self.labelModifyDataDescription.isHidden = true
+                self.buttonSaveChanges.isHidden = false
             }
         }
         else{
             DispatchQueue.main.async{
-                self.labelModifyDataDescription.isHidden = true
-                self.buttonSaveChanges.isHidden = false
+                self.labelModifyDataDescription.isHidden = false
+                self.buttonSaveChanges.isHidden = true
             }
         }
     }
@@ -73,6 +125,9 @@ class AccountTableViewController: UITableViewController {
                     self.textFieldLastname.text = userData.lastName
                 }
                 username = userData.username
+                email = userData.email!
+                firstname = userData.firstName!
+                lastname = userData.lastName!
             }
             else{
                 DispatchQueue.main.async {
@@ -92,6 +147,9 @@ class AccountTableViewController: UITableViewController {
                     }
                 }
                 username = userData.username
+                email = userData.email!
+                firstname = userData.firstName!
+                lastname = userData.lastName!
             }
 
         } catch {
