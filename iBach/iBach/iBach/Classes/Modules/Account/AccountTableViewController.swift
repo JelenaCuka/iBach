@@ -18,6 +18,8 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var textFieldLastname: UITextField!
     @IBOutlet weak var labelModifyDataDescription: UILabel!
     @IBOutlet weak var buttonSaveChanges: UIButton!
+    @IBOutlet weak var buttonResetChanges: UIButton!
+    
     var username: String = ""
     var email: String = ""
     var firstname: String = ""
@@ -35,6 +37,7 @@ class AccountTableViewController: UITableViewController {
         }
         labelModifyDataDescription.isHidden = false
         buttonSaveChanges.isHidden = true
+        buttonResetChanges.isHidden = true
     }
     
     @IBAction func usernameEdited(_ sender: Any) {
@@ -87,12 +90,14 @@ class AccountTableViewController: UITableViewController {
             {
                 self.labelModifyDataDescription.isHidden = true
                 self.buttonSaveChanges.isHidden = false
+                self.buttonResetChanges.isHidden = false
             }
         }
         else{
             DispatchQueue.main.async{
                 self.labelModifyDataDescription.isHidden = false
                 self.buttonSaveChanges.isHidden = true
+                self.buttonResetChanges.isHidden = true
             }
         }
     }
