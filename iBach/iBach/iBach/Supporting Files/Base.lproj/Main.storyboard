@@ -17,9 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="hca-FV-2dh" kind="relationship" relationship="viewControllers" id="r1X-Ap-iJI"/>
+                        <segue destination="73G-Ux-m7o" kind="relationship" relationship="viewControllers" id="EHJ-bc-C9e"/>
+                        <segue destination="8rL-KN-5qw" kind="relationship" relationship="viewControllers" id="786-SW-nxc"/>
                         <segue destination="b9n-aa-tGS" kind="relationship" relationship="viewControllers" id="QIr-Wo-Y00"/>
                     </connections>
                 </tabBarController>
@@ -35,7 +39,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dEh-ME-wfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="817" y="-449"/>
+            <point key="canvasLocation" x="816" y="-264"/>
         </scene>
         <!--MusicNav-->
         <scene sceneID="g4r-26-JBP">
@@ -45,7 +49,28 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNT-Ki-kR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="906" y="-235"/>
+            <point key="canvasLocation" x="804" y="-453"/>
+        </scene>
+        <!--FavoritesNav-->
+        <scene sceneID="EIm-QX-6cH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favorites" referencedIdentifier="FavoritesNav" id="73G-Ux-m7o" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="j0F-UT-tfL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h8z-tq-em8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="820" y="-370"/>
+        </scene>
+        <!--PlaylistsNav-->
+        <scene sceneID="eZe-no-Zcl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Playlists" referencedIdentifier="PlaylistsNav" id="8rL-KN-5qw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="S0R-aU-328"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zYK-sj-YPQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="-318"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -9,15 +9,29 @@
 import UIKit
 import Unbox
 import AlamofireImage
+import AVKit
+import AVFoundation
 
 class MusicTableViewController: UIViewController {
-    
+      
     var songData: [Song] = []
+    var player = AVPlayer()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let shuffleImage = UIImage(named: "Shuffle Navigation Icon")
+        
+        let buttonPlay = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: "someAction")
+        let buttonShuffle = UIBarButtonItem(image: shuffleImage, style: .plain, target: self, action: "action")
+        
+        navigationItem.rightBarButtonItems = [buttonPlay, buttonShuffle]
+        
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        self.navigationItem.searchController = search
         
         loadTracks()
         
@@ -65,8 +79,12 @@ extension MusicTableViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         if let imageURL = URL(string: self.songData[indexPath.row].coverArtUrl) {
-            cell.imageViewCoverArt.layer.cornerRadius = 10
+            let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
+            
+            cell.imageViewCoverArt.layer.cornerRadius = 5
             cell.imageViewCoverArt.clipsToBounds = true
+            cell.imageViewCoverArt.layer.borderWidth = 0.5
+            cell.imageViewCoverArt.layer.borderColor = color.cgColor
             cell.imageViewCoverArt.af_setImage(withURL: imageURL)
         }
         
@@ -76,4 +94,21 @@ extension MusicTableViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let playerItem = AVPlayerItem(url: URL(string: self.songData[indexPath.row].fileUrl)!)
+        player = AVPlayer(playerItem: playerItem)
+        player.play()
+     
+        
+    }
+    
 }
+
+extension MusicTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+    
+    }
+    
+}
+

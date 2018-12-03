@@ -15,9 +15,8 @@
 		9C0CC19521B2F98F005DEFB0 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0CC19421B2F98F005DEFB0 /* Song.swift */; };
 		9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */; };
 		9C42E2FD21A8169800ED8A63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FC21A8169800ED8A63 /* User.swift */; };
-		9C50EECB2191DA1000AE9969 /* LoginTEST.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C50EEC92191DA1000AE9969 /* LoginTEST.storyboard */; };
-		9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C50EECC2191DDAF00AE9969 /* LoginController.swift */; };
-		9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7D7FCF21A36F1100934787 /* RegistrationController.swift */; };
+		9C9C511321B583200002ADE2 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511221B583200002ADE2 /* Favorites.storyboard */; };
+		9C9C511621B584420002ADE2 /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511521B584420002ADE2 /* Playlists.storyboard */; };
 		9CA8AE4C21B2DF0500E62A5A /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8AE4B21B2DF0500E62A5A /* TrackTableViewCell.swift */; };
 		9CA8AE4E21B2E11F00E62A5A /* MusicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8AE4D21B2E11F00E62A5A /* MusicTableViewController.swift */; };
 		9CB9F62D21A9565100177DC7 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9F62C21A9565100177DC7 /* Account.storyboard */; };
@@ -64,9 +63,8 @@
 		9C0CC19421B2F98F005DEFB0 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		9C42E2FC21A8169800ED8A63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9C50EECA2191DA1000AE9969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = iBach/Base.lproj/LoginTEST.storyboard; sourceTree = "<group>"; };
-		9C50EECC2191DDAF00AE9969 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		9C7D7FCF21A36F1100934787 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		9C9C511221B583200002ADE2 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
+		9C9C511521B584420002ADE2 /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		9CA8AE4B21B2DF0500E62A5A /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		9CA8AE4D21B2E11F00E62A5A /* MusicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewController.swift; sourceTree = "<group>"; };
 		9CB9F62C21A9565100177DC7 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
@@ -146,6 +144,8 @@
 		9C00EFD821A5BB3500B9798A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9C9C511421B584330002ADE2 /* Playlists */,
+				9C9C511121B582FE0002ADE2 /* Favorites */,
 				9CCCC76B21AB2DAA005BCB01 /* Registration */,
 				9C00EFE621A6C45100B9798A /* Music */,
 				9C00EFE321A5F59E00B9798A /* Account */,
@@ -228,14 +228,20 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
-		9C50EEC52191D0D700AE9969 /* user */ = {
+		9C9C511121B582FE0002ADE2 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				9C50EECC2191DDAF00AE9969 /* LoginController.swift */,
-				9C50EEC92191DA1000AE9969 /* LoginTEST.storyboard */,
-				9C7D7FCF21A36F1100934787 /* RegistrationController.swift */,
+				9C9C511221B583200002ADE2 /* Favorites.storyboard */,
 			);
-			path = user;
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		9C9C511421B584330002ADE2 /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				9C9C511521B584420002ADE2 /* Playlists.storyboard */,
+			);
+			path = Playlists;
 			sourceTree = "<group>";
 		};
 		9CCCC76B21AB2DAA005BCB01 /* Registration */ = {
@@ -276,7 +282,6 @@
 				9C00EFDE21A5BB8700B9798A /* Resources */,
 				9C00EFDD21A5BB7A00B9798A /* Supporting Files */,
 				9C00EFD721A5BB2F00B9798A /* Classes */,
-				9C50EEC52191D0D700AE9969 /* user */,
 			);
 			path = iBach;
 			sourceTree = "<group>";
@@ -420,11 +425,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C50EECB2191DA1000AE9969 /* LoginTEST.storyboard in Resources */,
 				9CCCC76D21AB2DFE005BCB01 /* Registration.storyboard in Resources */,
+				9C9C511321B583200002ADE2 /* Favorites.storyboard in Resources */,
 				9CF12FB6219050F500871893 /* LaunchScreen.storyboard in Resources */,
 				9CB9F63121A957B300177DC7 /* Music.storyboard in Resources */,
 				9CF12FB3219050F500871893 /* Assets.xcassets in Resources */,
+				9C9C511621B584420002ADE2 /* Playlists.storyboard in Resources */,
 				9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */,
 				9CB9F62D21A9565100177DC7 /* Account.storyboard in Resources */,
 				9CF12FB1219050F300871893 /* Main.storyboard in Resources */,
@@ -550,9 +556,7 @@
 				9C0CC19521B2F98F005DEFB0 /* Song.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistraionViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
-				9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
-				9C50EECD2191DDAF00AE9969 /* LoginController.swift in Sources */,
 				9C42E2FD21A8169800ED8A63 /* User.swift in Sources */,
 				9CA8AE4E21B2E11F00E62A5A /* MusicTableViewController.swift in Sources */,
 				9CCCC77321AB3C7D005BCB01 /* RegistrationViewController.swift in Sources */,
@@ -596,14 +600,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9C50EEC92191DA1000AE9969 /* LoginTEST.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C50EECA2191DA1000AE9969 /* Base */,
-			);
-			name = LoginTEST.storyboard;
-			sourceTree = "<group>";
-		};
 		9CF12FAF219050F300871893 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
