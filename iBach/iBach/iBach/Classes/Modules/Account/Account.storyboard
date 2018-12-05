@@ -164,6 +164,9 @@
                                                     <rect key="frame" x="18" y="7" width="34" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Save"/>
+                                                    <connections>
+                                                        <action selector="updateAccountData:" destination="eQq-df-QGg" eventType="touchUpInside" id="rem-X0-RCX"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

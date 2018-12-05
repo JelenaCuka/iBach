@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Unbox
+import Alamofire
 
 class AccountTableViewController: UITableViewController {
     
@@ -174,5 +175,79 @@ class AccountTableViewController: UITableViewController {
         } catch {
             print("Unable to unbox")
         }
+    }
+    
+    @IBAction func updateAccountData(_ sender: Any)
+    {
+        if (textFieldUsername.text!.isEmpty || textFieldEmail.text!.isEmpty) {
+            
+            DispatchQueue.main.async {
+                self.printAlert(title: "Required fields", message: "Username and email are required fields.")
+            }
+            
+        } else {
+            
+            let parameters: Parameters = [
+                "id": UserDefaults.standard.integer(forKey: "user_id"),
+                "username": textFieldUsername.text!,
+                "email": textFieldEmail.text!,
+                "first_name": textFieldFirstname.text!,
+                "last_name": textFieldLastname.text!
+            ]
+            
+            Alamofire.request("https://botticelliproject.com/air/api/user/update.php", method: .post, parameters: parameters).responseJSON(completionHandler: { (response) in
+                
+                guard response.result.error == nil else {
+                    
+                    print("error calling POST")
+                    print(response.result.error!)
+                    return
+                }
+                
+                guard let json = response.result.value as? [String: Any] else {
+                    print("didn't get object as JSON from API")
+                    if let error = response.result.error {
+                        print("Error: \(error)")
+                    }
+                    return
+                }
+                
+                guard let message = json["message"] as? String else {
+                    print("Could not get message from JSON")
+                    return
+                }
+                print(message)
+                
+                switch message {
+                case "Data inserted":
+                    print(message)
+                    Switcher.updateRootViewController()
+                case "User updated":
+                    print(message)
+                case "User failed to update":
+                    print(message)
+                case "Data is not inserted":
+                    print(message)
+                case "Username, id or email of user is not set or is empty":
+                    print(message)
+                case "That username is already taken":
+                    print(message)
+                    DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "Update Failed", message: "Username \(self.textFieldUsername.text!) is already taken.")
+                    }
+                case "Unexpected error":
+                    print(message)
+                default:
+                    print(message)
+                }
+            })
+        }
+    }
+    
+    private func printAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }
