@@ -41,7 +41,7 @@ class AccountTableViewController: UITableViewController {
         buttonResetChanges.isHidden = true
     }
     
-    @IBAction func usernameEdited(_ sender: Any) {
+    @IBAction func usernameEdited(_ sender: Any?) {
         if (username == textFieldUsername.text)
         {
             usernameIsEdited = false
@@ -51,7 +51,7 @@ class AccountTableViewController: UITableViewController {
         }
         showOrHideSaveAndResetButton()
     }
-    @IBAction func firstnameEdited(_ sender: Any) {
+    @IBAction func firstnameEdited(_ sender: Any?) {
         if(firstname == textFieldFirstname.text)
         {
             firstnameIsEdited = false
@@ -62,7 +62,7 @@ class AccountTableViewController: UITableViewController {
         }
         showOrHideSaveAndResetButton()
     }
-    @IBAction func emailEdited(_ sender: Any) {
+    @IBAction func emailEdited(_ sender: Any?) {
         if(email == textFieldEmail.text)
         {
             emailIsEdited = false        }
@@ -72,7 +72,7 @@ class AccountTableViewController: UITableViewController {
         }
         showOrHideSaveAndResetButton()
     }
-    @IBAction func lastnameEdited(_ sender: Any) {
+    @IBAction func lastnameEdited(_ sender: Any?) {
         if(lastname == textFieldLastname.text)
         {
             lastnameIsEdited = false        }
@@ -103,7 +103,7 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func resetChanges(_ sender: Any) {
+    @IBAction func resetChanges(_ sender: Any?) {
         DispatchQueue.main.async {
             self.textFieldUsername.text = self.username
             self.textFieldEmail.text = self.email
@@ -221,7 +221,12 @@ class AccountTableViewController: UITableViewController {
                 switch message {
                 case "Data inserted":
                     print(message)
-                    Switcher.updateRootViewController()
+                    self.getUserData(id: UserDefaults.standard.integer(forKey: "user_id"))
+                    DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "Account information updated", message: "You have successfully updated account information.")
+                    }
+                    self.resetChanges(nil)
                 case "User updated":
                     print(message)
                 case "User failed to update":
