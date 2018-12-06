@@ -330,8 +330,8 @@ class AccountTableViewController: UITableViewController {
             {
                 DispatchQueue.main.async
                     {
-                        self.printAlert(title: "Passwords match", message: "")
-                }
+                        self.changePasswordInDb(passwordPar: inPassword, repeatedPasswordPar: inRepeatedPassword)
+                    }
                 
             }
             else
@@ -339,7 +339,7 @@ class AccountTableViewController: UITableViewController {
                 DispatchQueue.main.async
                     {
                         self.printAlert(title: "Error", message: "Inserted passwords are not equal.")
-                }
+                    }
             }
         }
         
@@ -351,6 +351,68 @@ class AccountTableViewController: UITableViewController {
         ac.addAction(cancelAction)
         
         present(ac, animated: true)
+    }
+    
+    private func changePasswordInDb(passwordPar:String, repeatedPasswordPar:String)
+    {
+        let parameters: Parameters = [
+            "id": UserDefaults.standard.integer(forKey: "user_id"),
+            "password": passwordPar,
+            "repeatedPassword": repeatedPasswordPar
+        ]
+        
+        Alamofire.request("https://botticelliproject.com/air/api/user/updatepw.php", method: .post, parameters: parameters).responseJSON(completionHandler: { (response) in
+            
+            guard response.result.error == nil else {
+                
+                print("error calling POST")
+                print(response.result.error!)
+                return
+            }
+            
+            guard let json = response.result.value as? [String: Any] else {
+                print("didn't get object as JSON from API")
+                if let error = response.result.error {
+                    print("Error: \(error)")
+                }
+                return
+            }
+            
+            guard let message = json["message"] as? String else {
+                print("Could not get message from JSON")
+                return
+            }
+            print(message)
+            
+            switch message {
+            case "Data inserted":
+                print(message)
+                self.getUserData(id: UserDefaults.standard.integer(forKey: "user_id"))
+                DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "Password changed", message: "You have successfully changed your password.")
+                }
+                self.resetChanges(nil)
+            case "User password updated":
+                print(message)
+            case "User password failed to update":
+                print(message)
+            case "Data is not inserted":
+                print(message)
+            case "Id, password or repeated password is not set or is empty":
+                print(message)
+            case "Password and repeated password are not equal.":
+                print(message)
+                DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "Password change Failed", message: "Password and repeated password are not equal.")
+                }
+            case "Unexpected error":
+                print(message)
+            default:
+                print(message)
+            }
+        })
     }
     
 }
