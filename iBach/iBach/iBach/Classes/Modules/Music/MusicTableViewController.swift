@@ -9,34 +9,22 @@
 import UIKit
 import Unbox
 import AlamofireImage
-import AVKit
-import AVFoundation
+import NotificationCenter
 
 class MusicTableViewController: UIViewController {
-      
+    
     var songData: [Song] = []
-    var player = AVPlayer()
+    var player = MusicPlayer()
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let shuffleImage = UIImage(named: "Shuffle Navigation Icon")
-        
-        let buttonPlay = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: "someAction")
-        let buttonShuffle = UIBarButtonItem(image: shuffleImage, style: .plain, target: self, action: "action")
-        
-        navigationItem.rightBarButtonItems = [buttonPlay, buttonShuffle]
-        
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        self.navigationItem.searchController = search
         
         loadTracks()
-        
     }
-
+    
     
     private func loadTracks() {
         DispatchQueue.main.async {
@@ -44,7 +32,7 @@ class MusicTableViewController: UIViewController {
                 if let data: NSArray = response as? NSArray {
                     for song in data {
                         do {
-                        
+                            
                             let singleSong: Song = try unbox(dictionary: (song as! NSDictionary) as! UnboxableDictionary)
                             self.songData.append(singleSong)
                             
@@ -59,7 +47,6 @@ class MusicTableViewController: UIViewController {
         }
     }
     
-
 }
 
 extension MusicTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -77,7 +64,7 @@ extension MusicTableViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? TrackTableViewCell else {
             fatalError("Error")
         }
-
+        
         if let imageURL = URL(string: self.songData[indexPath.row].coverArtUrl) {
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
             
@@ -95,20 +82,34 @@ extension MusicTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let playerItem = AVPlayerItem(url: URL(string: self.songData[indexPath.row].fileUrl)!)
+        /*let playerItem = AVPlayerItem(url: URL(string: self.songData[indexPath.row].fileUrl)!)
         player = AVPlayer(playerItem: playerItem)
-        player.play()
-     
         
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error)
+        }
+        
+        player.play() */
+        
+        player.playMusicFromUrl(url: URL(string: self.songData[indexPath.row].fileUrl)!)
+        
+        
+        let songInfo = ["title": self.songData[indexPath.row].title,
+                        "author": self.songData[indexPath.row].author,
+                        "cover_art": self.songData[indexPath.row].coverArtUrl,
+                        "year": self.songData[indexPath.row].year,
+                        "id": self.songData[indexPath.row].id,
+                        /*"album": self.songData[indexPath.row].album*/] as [String : Any]
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil, userInfo: songInfo)
+        
+        let songsToPlay = ["id": self.songData[indexPath.row].id, "others": songData] as [String: Any]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendSongList"), object: nil, userInfo: songsToPlay)
     }
     
 }
 
-extension MusicTableViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-    
-    }
-    
-}
 

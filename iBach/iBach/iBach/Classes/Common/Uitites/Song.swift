@@ -12,7 +12,7 @@ class Song: Unboxable {
     var id: Int
     var title: String
     var author: String
-    var year: Int
+    var year: String
     var fileUrl: String
     var coverArtUrl: String
     

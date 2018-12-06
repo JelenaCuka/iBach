@@ -13,10 +13,13 @@
 		9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFDF21A5EA9A00B9798A /* Login.storyboard */; };
 		9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00EFE921A6C50300B9798A /* LoginViewController.swift */; };
 		9C0CC19521B2F98F005DEFB0 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0CC19421B2F98F005DEFB0 /* Song.swift */; };
+		9C23D17B21B94D010047D958 /* LargePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C23D17A21B94D010047D958 /* LargePlayerViewController.swift */; };
+		9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C23D17D21B984E80047D958 /* MusicPlayer.swift */; };
 		9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */; };
 		9C42E2FD21A8169800ED8A63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FC21A8169800ED8A63 /* User.swift */; };
 		9C9C511321B583200002ADE2 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511221B583200002ADE2 /* Favorites.storyboard */; };
 		9C9C511621B584420002ADE2 /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511521B584420002ADE2 /* Playlists.storyboard */; };
+		9C9C511821B5C0FD0002ADE2 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */; };
 		9CA8AE4C21B2DF0500E62A5A /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8AE4B21B2DF0500E62A5A /* TrackTableViewCell.swift */; };
 		9CA8AE4E21B2E11F00E62A5A /* MusicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA8AE4D21B2E11F00E62A5A /* MusicTableViewController.swift */; };
 		9CB9F62D21A9565100177DC7 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9F62C21A9565100177DC7 /* Account.storyboard */; };
@@ -61,10 +64,13 @@
 		9C00EFDF21A5EA9A00B9798A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9C00EFE921A6C50300B9798A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9C0CC19421B2F98F005DEFB0 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		9C23D17A21B94D010047D958 /* LargePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePlayerViewController.swift; sourceTree = "<group>"; };
+		9C23D17D21B984E80047D958 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		9C42E2FC21A8169800ED8A63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C9C511221B583200002ADE2 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		9C9C511521B584420002ADE2 /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
+		9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		9CA8AE4B21B2DF0500E62A5A /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		9CA8AE4D21B2E11F00E62A5A /* MusicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewController.swift; sourceTree = "<group>"; };
 		9CB9F62C21A9565100177DC7 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 		9C00EFD821A5BB3500B9798A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9C23D17C21B984BA0047D958 /* Player */,
 				9C9C511421B584330002ADE2 /* Playlists */,
 				9C9C511121B582FE0002ADE2 /* Favorites */,
 				9CCCC76B21AB2DAA005BCB01 /* Registration */,
@@ -224,8 +231,18 @@
 				9CB9F63021A957B300177DC7 /* Music.storyboard */,
 				9CA8AE4B21B2DF0500E62A5A /* TrackTableViewCell.swift */,
 				9CA8AE4D21B2E11F00E62A5A /* MusicTableViewController.swift */,
+				9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */,
+				9C23D17A21B94D010047D958 /* LargePlayerViewController.swift */,
 			);
 			path = Music;
+			sourceTree = "<group>";
+		};
+		9C23D17C21B984BA0047D958 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				9C23D17D21B984E80047D958 /* MusicPlayer.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 		9C9C511121B582FE0002ADE2 /* Favorites */ = {
@@ -389,6 +406,11 @@
 				TargetAttributes = {
 					9CF12FA7219050F300871893 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					9CF12FBB219050F500871893 = {
 						CreatedOnToolsVersion = 10.1;
@@ -561,7 +583,10 @@
 				9CA8AE4E21B2E11F00E62A5A /* MusicTableViewController.swift in Sources */,
 				9CCCC77321AB3C7D005BCB01 /* RegistrationViewController.swift in Sources */,
 				9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */,
+				9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
+				9C9C511821B5C0FD0002ADE2 /* MusicViewController.swift in Sources */,
+				9C23D17B21B94D010047D958 /* LargePlayerViewController.swift in Sources */,
 				9CF12FAC219050F300871893 /* AppDelegate.swift in Sources */,
 				9CB9F62F21A9568500177DC7 /* AccountViewController.swift in Sources */,
 				9CA8AE4C21B2DF0500E62A5A /* TrackTableViewCell.swift in Sources */,
