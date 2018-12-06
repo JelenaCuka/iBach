@@ -25,6 +25,7 @@ class AccountTableViewController: UITableViewController {
     var email: String = ""
     var firstname: String = ""
     var lastname: String = ""
+    var password: String = ""
     var usernameIsEdited: Bool = false
     var emailIsEdited: Bool = false
     var firstnameIsEdited: Bool = false
@@ -148,6 +149,7 @@ class AccountTableViewController: UITableViewController {
                 email = userData.email!
                 firstname = userData.firstName!
                 lastname = userData.lastName!
+                password = userData.password
             }
             else{
                 DispatchQueue.main.async {
@@ -170,6 +172,7 @@ class AccountTableViewController: UITableViewController {
                 email = userData.email!
                 firstname = userData.firstName!
                 lastname = userData.lastName!
+                password = userData.password
             }
 
         } catch {
@@ -255,4 +258,99 @@ class AccountTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
+    
+    func promptForPassword() {
+        let ac = UIAlertController(title: "Please enter your old password:", message: nil, preferredStyle: .alert)
+        ac.addTextField
+        {
+            textField in
+            textField.placeholder = "Enter password"
+            textField.isSecureTextEntry = true
+            textField.textAlignment = .center
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
+            let answer = ac.textFields![0]
+            let answerText = String(answer.text!.hash)
+            //print(answer.text!)
+            //print(answer.text!.hash)
+            //print(self.password)
+            //print(answerText)
+            if(answerText == (self.password))
+            {
+                DispatchQueue.main.async
+                {
+                    self.enterNewPassword()
+                }
+            }
+            else
+            {
+                DispatchQueue.main.async
+                {
+                    self.printAlert(title: "Incorrect password", message: "Password you entered is not correct.")
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Canelled")
+        }
+        ac.addAction(submitAction)
+        ac.addAction(cancelAction)
+        present(ac, animated: true, completion: nil)
+    }
+    
+    @IBAction func changePassword(_ sender: Any)
+    {
+        promptForPassword()
+    }
+    
+    func enterNewPassword() {
+        let ac = UIAlertController(title: "Enter new password", message: nil, preferredStyle: .alert)
+        
+        ac.addTextField {
+            textField in
+            textField.placeholder = "Enter new password"
+            textField.isSecureTextEntry = true
+            textField.textAlignment = .center
+        }
+        ac.addTextField {
+            textField in
+            textField.placeholder = "Repeat new password"
+            textField.isSecureTextEntry = true
+            textField.textAlignment = .center
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
+            let inputPassword = ac.textFields![0]
+            let inputRepeatedPassword = ac.textFields![1]
+            let inPassword = String(inputPassword.text!.hash)
+            let inRepeatedPassword = String(inputRepeatedPassword.text!.hash)
+            
+            if(inPassword == inRepeatedPassword)
+            {
+                DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "Passwords match", message: "")
+                }
+                
+            }
+            else
+            {
+                DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "Error", message: "Inserted passwords are not equal.")
+                }
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Canelled")
+        }
+        
+        ac.addAction(submitAction)
+        ac.addAction(cancelAction)
+        
+        present(ac, animated: true)
+    }
+    
 }
