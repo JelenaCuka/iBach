@@ -415,4 +415,10 @@ class AccountTableViewController: UITableViewController {
         })
     }
     
+    @IBAction func logout(_ sender: Any)
+    {
+        UserDefaults.standard.set(false, forKey: "status")
+        Switcher.updateRootViewController()
+    }
+    
 }

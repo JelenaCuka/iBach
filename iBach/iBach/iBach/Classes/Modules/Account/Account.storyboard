@@ -206,6 +206,9 @@
                                                     <rect key="frame" x="16" y="6" width="48" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Logout"/>
+                                                    <connections>
+                                                        <action selector="logout:" destination="eQq-df-QGg" eventType="touchUpInside" id="1bH-3W-wgn"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
