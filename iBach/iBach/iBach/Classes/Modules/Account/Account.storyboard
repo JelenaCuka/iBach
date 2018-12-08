@@ -227,6 +227,9 @@
                                                     <state key="normal" title="Delete account">
                                                         <color key="titleColor" red="1" green="0.23495931889999999" blue="0.052492207290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="deleteAccount:" destination="eQq-df-QGg" eventType="touchUpInside" id="LrS-iL-bgo"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

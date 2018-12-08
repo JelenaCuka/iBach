@@ -417,8 +417,96 @@ class AccountTableViewController: UITableViewController {
     
     @IBAction func logout(_ sender: Any)
     {
+        self.logoutUser()
+    }
+    
+    private func logoutUser()
+    {
         UserDefaults.standard.set(false, forKey: "status")
         Switcher.updateRootViewController()
+    }
+    
+    
+    @IBAction func deleteAccount(_ sender: Any)
+    {
+        // Declare Alert message
+        let dialogMessage = UIAlertController(title: "Warning", message: "Are you sure you want to delete your account? All data will be lost.", preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+            self.deleteUserAccount()
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: "No", style: .cancel) { (action) -> Void in
+            print("Cancel button tapped")
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)    }
+    
+    private func deleteUserAccount()
+    {
+        let parameters: Parameters = [
+            "id": UserDefaults.standard.integer(forKey: "user_id")
+        ]
+        
+        Alamofire.request("https://botticelliproject.com/air/api/user/delete.php", method: .post, parameters: parameters).responseJSON(completionHandler: { (response) in
+            
+            guard response.result.error == nil else {
+                
+                print("error calling POST")
+                print(response.result.error!)
+                return
+            }
+            
+            guard let json = response.result.value as? [String: Any] else {
+                print("didn't get object as JSON from API")
+                if let error = response.result.error {
+                    print("Error: \(error)")
+                }
+                return
+            }
+            
+            guard let message = json["message"] as? String else {
+                print("Could not get message from JSON")
+                return
+            }
+            print(message)
+            
+            switch message {
+            case "User deleted":
+                print(message)
+                self.getUserData(id: UserDefaults.standard.integer(forKey: "user_id"))
+                DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "User deleted", message: "You have successfully deleted your account.")
+                }
+                self.resetChanges(nil)
+                self.logoutUser()
+            case "User successfully deleted":
+                print(message)
+            case "User failed to delete":
+                print(message)
+                self.getUserData(id: UserDefaults.standard.integer(forKey: "user_id"))
+                DispatchQueue.main.async
+                    {
+                        self.printAlert(title: "User is not deleted", message: "There was some unexpected error. User is not deleted.")
+                }
+                self.resetChanges(nil)
+            case "User failed to delete. Unexpected error.":
+                print(message)
+            case "Id is not set or is empty":
+                print(message)
+            default:
+                print(message)
+            }
+        })
     }
     
 }
