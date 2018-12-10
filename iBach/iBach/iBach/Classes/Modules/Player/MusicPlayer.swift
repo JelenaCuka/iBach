@@ -15,6 +15,7 @@ class MusicPlayer {
     
     static var player = AVPlayer()
     
+    @discardableResult
     public func playMusicFromUrl(url: URL) -> Bool {
         let playerItem = AVPlayerItem(url: url)
         MusicPlayer.player = AVPlayer(playerItem: playerItem)

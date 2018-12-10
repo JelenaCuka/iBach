@@ -33,8 +33,8 @@ class HTTPRequest {
             }
             .responseJSON { response in
                 
-                if let serverData = response.result.value! as? NSArray{
-                    completionHandler(response.result.value! as! NSArray, response.result.error as? NSError)
+                if let serverData = response.result.value as? NSArray {
+                    completionHandler(serverData, nil)
                 } else {
                     completionHandler(response.result.value! as! NSDictionary, response.result.error as? NSError)
                 }

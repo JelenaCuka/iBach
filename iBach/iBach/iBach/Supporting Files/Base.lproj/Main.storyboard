@@ -25,6 +25,7 @@
                         <segue destination="73G-Ux-m7o" kind="relationship" relationship="viewControllers" id="EHJ-bc-C9e"/>
                         <segue destination="8rL-KN-5qw" kind="relationship" relationship="viewControllers" id="786-SW-nxc"/>
                         <segue destination="b9n-aa-tGS" kind="relationship" relationship="viewControllers" id="QIr-Wo-Y00"/>
+                        <segue destination="N39-yz-7oG" kind="relationship" relationship="viewControllers" id="ife-b5-laT"/>
                         <segue destination="YCi-aC-pvJ" kind="relationship" relationship="viewControllers" id="cvp-tQ-rFh"/>
                     </connections>
                 </tabBarController>
@@ -40,7 +41,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3y-ey-EEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="816" y="-264"/>
+            <point key="canvasLocation" x="883" y="-199"/>
         </scene>
         <!--MusicNav-->
         <scene sceneID="g4r-26-JBP">
@@ -70,7 +71,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYK-sj-YPQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="863" y="-318"/>
+            <point key="canvasLocation" x="860" y="-304"/>
+        </scene>
+        <!--SettingsNav-->
+        <scene sceneID="tds-Ya-rxR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="SettingsNav" id="N39-yz-7oG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="9X9-LF-IhQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CeW-MN-kVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="-106"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>

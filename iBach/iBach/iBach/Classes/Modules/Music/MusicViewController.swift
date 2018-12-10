@@ -20,7 +20,7 @@ class MusicViewController: UIViewController {
     @IBOutlet var labelSongTitle: UILabel!
     @IBOutlet var labelAuthor: UILabel!
     
-    fileprivate var largePlayerViewController: LargePlayerViewController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +38,6 @@ class MusicViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         
-        let storyoard = UIStoryboard(name: "Music", bundle: nil)
-        self.largePlayerViewController = storyoard.instantiateViewController(withIdentifier: "Large Player") as? LargePlayerViewController
-        self.largePlayerViewController.modalPresentationStyle = .fullScreen
     }
     
     @objc func displayMiniPlayer(notification: NSNotification) {
@@ -65,6 +62,13 @@ class MusicViewController: UIViewController {
     }
     
     @objc func openLargePlayer(_ sender: UITapGestureRecognizer) {
+        //largePlayerViewController.labelSongTitle.text
+        let storyoard = UIStoryboard(name: "Music", bundle: nil)
+        guard let largePlayerViewController = storyoard.instantiateViewController(withIdentifier: "Large Player") as? LargePlayerViewController else {
+            return
+        }
+        largePlayerViewController.modalPresentationStyle = .fullScreen
+        
         self.present(largePlayerViewController, animated: true, completion: nil)
     }
     
