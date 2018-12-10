@@ -26,7 +26,7 @@
                                 </connections>
                             </containerView>
                             <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HuQ-g1-RnG">
-                                <rect key="frame" x="0.0" y="692" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="609" width="414" height="64"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0p8-Rt-YGI">
@@ -137,23 +137,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sogng Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-hl-gUS">
-                                <rect key="frame" x="22" y="397" width="330" height="28"/>
+                                <rect key="frame" x="22" y="559" width="330" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Artist - Album - Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEK-2b-mxv">
-                                <rect key="frame" x="22" y="433" width="330" height="28"/>
+                                <rect key="frame" x="22" y="612" width="330" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PMN-iQ-GRW">
-                                <rect key="frame" x="47" y="94" width="319" height="509"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bn0-mC-JGM">
                                 <rect key="frame" x="169" y="37" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -162,29 +158,34 @@
                                     <action selector="closeLargePlayer:" destination="lUM-lY-ji0" eventType="touchUpInside" id="hPP-cc-6gH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCj-pH-ugj">
+                                <rect key="frame" x="58" y="660" width="36" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Backward"/>
+                                <connections>
+                                    <action selector="buttonPreviousClick:" destination="lUM-lY-ji0" eventType="touchUpInside" id="rRs-SC-6Ih"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOp-cK-Tjq">
+                                <rect key="frame" x="292" y="660" width="36" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Forward"/>
+                                <connections>
+                                    <action selector="buttonNextClick:" destination="lUM-lY-ji0" eventType="touchUpInside" id="G6F-M2-iUc"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zol-oZ-SfW">
-                                <rect key="frame" x="169" y="481" width="36" height="36"/>
+                                <rect key="frame" x="169" y="660" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Pause"/>
                                 <connections>
                                     <action selector="pauseSong:" destination="lUM-lY-ji0" eventType="touchUpInside" id="tjy-sD-I7s"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCj-pH-ugj">
-                                <rect key="frame" x="47" y="481" width="36" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Backward"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOp-cK-Tjq">
-                                <rect key="frame" x="291" y="481" width="36" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Forward"/>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiU-Ja-TJE">
-                                <rect key="frame" x="169" y="481" width="36" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Pause"/>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PMN-iQ-GRW">
+                                <rect key="frame" x="59" y="93" width="269" height="430"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -194,19 +195,18 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="butonPlay" destination="zol-oZ-SfW" id="Kkz-32-eXh"/>
-                        <outlet property="buttonNext" destination="nOp-cK-Tjq" id="jKG-VL-hpA"/>
-                        <outlet property="buttonPause" destination="OiU-Ja-TJE" id="C82-wF-XyA"/>
-                        <outlet property="buttonPrevious" destination="DCj-pH-ugj" id="1Em-6A-oMf"/>
-                        <outlet property="imageCoverArt" destination="PMN-iQ-GRW" id="9uM-kN-X2b"/>
-                        <outlet property="labelArtistAlbumYear" destination="pEK-2b-mxv" id="9JX-rq-n37"/>
-                        <outlet property="labelSongTitle" destination="3bh-hl-gUS" id="m1x-sH-E6U"/>
+                        <outlet property="buttonNext" destination="nOp-cK-Tjq" id="lpe-nn-B0S"/>
+                        <outlet property="buttonPlay" destination="zol-oZ-SfW" id="pFv-R3-NNU"/>
+                        <outlet property="buttonPrevious" destination="DCj-pH-ugj" id="rsy-8i-MzD"/>
+                        <outlet property="imageCoverArt" destination="PMN-iQ-GRW" id="uF3-QH-hPY"/>
+                        <outlet property="labelArtistAlbumYear" destination="pEK-2b-mxv" id="hHE-BX-xUX"/>
+                        <outlet property="labelSongTitle" destination="3bh-hl-gUS" id="XDK-Hm-pCh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q35-Ib-hgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="PLJ-1p-HOV"/>
             </objects>
-            <point key="canvasLocation" x="2280.8000000000002" y="-233.43328335832086"/>
+            <point key="canvasLocation" x="2279.7101449275365" y="-233.70535714285714"/>
         </scene>
         <!--Music-->
         <scene sceneID="vqm-k5-f2K">

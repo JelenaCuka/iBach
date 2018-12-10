@@ -14,38 +14,50 @@ import AVKit
 import MediaPlayer
 
 class LargePlayerViewController: UIViewController {
-
-    var player = MusicPlayer()
-    var currentSong: Int = -1
-    var index: Int = -1
-    var songData: [Song] = []
-    
+    /*
     @IBOutlet var labelSongTitle: UILabel!
     @IBOutlet var imageCoverArt: UIImageView!
     @IBOutlet var labelArtistAlbumYear: UILabel!
     
     @IBOutlet var butonPlay: UIButton!
-    @IBOutlet var buttonPause: UIButton!
     @IBOutlet var buttonPrevious: UIButton!
-    @IBOutlet var buttonNext: UIButton!
+    @IBOutlet var buttonNext: UIButton!*/
+    
+    //@IBOutlet weak var labelSongTitle: UIImageView!
+    
+    @IBOutlet weak var labelSongTitle: UILabel!
+    @IBOutlet weak var imageCoverArt: UIImageView!
+    @IBOutlet weak var labelArtistAlbumYear: UILabel!
+    
+    @IBOutlet weak var buttonPlay: UIButton!
+    @IBOutlet weak var buttonNext: UIButton!
+    @IBOutlet weak var buttonPrevious: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("load")
         let effect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: effect)
         blurView.frame = self.view.bounds
         self.view.addSubview(blurView)
         self.view.sendSubviewToBack(blurView)
         
+        
         let screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.dismissLargePlayer(_:)))
         screenEdgeRecognizer.edges = .top
         view.addGestureRecognizer(screenEdgeRecognizer)
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: NSNotification.Name(rawValue: "displayLargePlayer"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(recieveSongList(notification:)), name: NSNotification.Name(rawValue: "sendSongList"), object: nil)
-    
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPlaying"), object: nil)//
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPaused"), object: nil)//
+        
+        
     }
     
     
@@ -54,41 +66,7 @@ class LargePlayerViewController: UIViewController {
     }
     
     @objc func displayLargePlayer(notification: NSNotification) {
-        self.labelSongTitle.text = notification.userInfo!["title"]! as? String
-        
-        if let imageURL = URL(string: (notification.userInfo!["cover_art"]! as? String)!) {
-            self.imageCoverArt.layer.cornerRadius = 20
-            self.imageCoverArt.clipsToBounds = true
-            
-            imageCoverArt.layer.shadowColor = UIColor.black.cgColor
-            imageCoverArt.layer.shadowOpacity = 1
-            imageCoverArt.layer.shadowOffset = CGSize.zero
-            imageCoverArt.layer.shadowRadius = 50
-
-            self.imageCoverArt.af_setImage(withURL: imageURL)
-        }
-        
-        let artist: String = (notification.userInfo!["author"]! as? String)!
-        //let album: String = (notification.userInfo!["album"]! as? String)!
-        let year: String = (notification.userInfo!["year"]! as? String)!
-        
-        self.labelArtistAlbumYear.text = "\(artist) - \(year)"
-    }
-    
-    @objc func recieveSongList(notification: NSNotification) {
-        print(type(of: notification.userInfo!["others"]!))
-        
-        currentSong = notification.userInfo!["id"] as! Int
-        songData = notification.userInfo!["others"] as! [Song]
-        
-        var i: Int = 0
-        for s in songData {
-            if (s.id == currentSong) {
-                index = i;
-            } else {
-                i += 1
-            }
-        }
+        loadData()
     }
     
     @IBAction func closeLargePlayer(_ sender: Any) {
@@ -96,15 +74,67 @@ class LargePlayerViewController: UIViewController {
     }
     
     @IBAction func pauseSong(_ sender: Any) {
-        print("click")
-        if (!player.pauseMusic()) {
-            butonPlay.setImage(UIImage(named: "Play"), for: .normal)
-        } else {
-            player.playMusic()
-            butonPlay.setImage(UIImage(named: "Pause"), for: .normal)
+        if ( MusicPlayer.sharedInstance.playSong() ){
+            NotificationCenter.default.post(name: .songIsPlaying, object: nil)
+        }else if ( MusicPlayer.sharedInstance.pauseSong() ){
+            NotificationCenter.default.post(name: .songIsPaused, object: nil)
         }
     }
     
+    @IBAction func buttonNextClick(_ sender: Any) {
+        if ( MusicPlayer.sharedInstance.nextSong() ) {
+            loadData()
+            NotificationCenter.default.post(name: .changedSong, object: nil)
+        }
+    }
     
+    @IBAction func buttonPreviousClick(_ sender: Any) {
+        if ( MusicPlayer.sharedInstance.previousSong() ) {
+            NotificationCenter.default.post(name: .changedSong, object: nil)
+            loadData()
+        }
+    }
+    
+    @objc func changePlayPauseIcon(notification: NSNotification) {
+        changePlayPauseIcon()
+    }
+    
+    func loadData(){
+        self.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
+        
+        if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl) {
+            self.imageCoverArt.layer.cornerRadius = 20
+            self.imageCoverArt.clipsToBounds = true
+            
+            imageCoverArt.layer.shadowColor = UIColor.black.cgColor
+            imageCoverArt.layer.shadowOpacity = 1
+            imageCoverArt.layer.shadowOffset = CGSize.zero
+            imageCoverArt.layer.shadowRadius = 50
+            
+            self.imageCoverArt.af_setImage(withURL: imageURL)
+        }
+        
+        let artist: String = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
+        //let album: String = (notification.userInfo!["album"]! as? String)!
+        let year: String = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].year
+        
+        self.labelArtistAlbumYear.text = "\(artist) - \(year)"
+        
+        //
+        NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: MusicPlayer.sharedInstance.player?.currentItem)
+    }
+    
+    func changePlayPauseIcon() {
+        if ( MusicPlayer.sharedInstance.isPlaying() ){
+            buttonPlay.setImage(UIImage(named: "Pause"), for: .normal)
+        } else {
+            buttonPlay.setImage(UIImage(named: "Play"), for: .normal)
+        }
+    }
+}
 
+extension Notification.Name{
+    static let songIsPlaying = Notification.Name ("songIsPlaying")//icons
+    static let songIsPaused = Notification.Name ("songIsPaused")//icons
+    static let changedSong = Notification.Name ("changedSong")//updateInfo
 }

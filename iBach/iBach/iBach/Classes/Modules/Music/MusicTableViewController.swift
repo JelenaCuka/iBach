@@ -14,7 +14,6 @@ import NotificationCenter
 class MusicTableViewController: UIViewController {
     
     var songData: [Song] = []
-    var player = MusicPlayer()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -82,32 +81,11 @@ extension MusicTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*let playerItem = AVPlayerItem(url: URL(string: self.songData[indexPath.row].fileUrl)!)
-        player = AVPlayer(playerItem: playerItem)
+        MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print(error)
+        if(MusicPlayer.sharedInstance.playSong(song: indexPath.row )){
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         }
-        
-        player.play() */
-        
-        player.playMusicFromUrl(url: URL(string: self.songData[indexPath.row].fileUrl)!)
-        
-        
-        let songInfo = ["title": self.songData[indexPath.row].title,
-                        "author": self.songData[indexPath.row].author,
-                        "cover_art": self.songData[indexPath.row].coverArtUrl,
-                        "year": self.songData[indexPath.row].year,
-                        "id": self.songData[indexPath.row].id,
-                        /*"album": self.songData[indexPath.row].album*/] as [String : Any]
-
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil, userInfo: songInfo)
-        
-        let songsToPlay = ["id": self.songData[indexPath.row].id, "others": songData] as [String: Any]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendSongList"), object: nil, userInfo: songsToPlay)
     }
     
 }

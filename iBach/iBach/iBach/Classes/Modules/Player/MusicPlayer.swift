@@ -10,35 +10,181 @@ import AVKit
 import Foundation
 import MediaPlayer
 import AVFoundation
+import NotificationCenter
+import Unbox
 
 class MusicPlayer {
     
-    static var player = AVPlayer()
+    var player: AVPlayer!
+    var songData: [Song] = [] //all,playlist,favourites
+    var shuffle: Bool = false
+    var currentSongIndex: Int = -1
     
-    @discardableResult
-    public func playMusicFromUrl(url: URL) -> Bool {
-        let playerItem = AVPlayerItem(url: url)
-        MusicPlayer.player = AVPlayer(playerItem: playerItem)
+    static let sharedInstance = MusicPlayer()
+    
+    //let changeSong = Notification.Name("changeSong")
+    
+    /*var currentSong: Song? {
+     get {
+     return (currentSongIndex < 0 || currentSongIndex >= songData.count) ? nil : songData[currentSongIndex]
+     }
+     }*/
+    
+    private init() {
+        //playback
+        setSession()
+        UIApplication.shared.beginReceivingRemoteControlEvents()//bg playing controls
         
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print(error)
-        }
+        //interruptions ex headphones,call...
+        NotificationCenter.default.addObserver(self, selector: "handleInterruption", name: AVAudioSession.interruptionNotification, object: nil )
         
-        MusicPlayer.player.play()
-        return true;
     }
     
-    public func pauseMusic() -> Bool {
-        MusicPlayer.player.pause()
+    @discardableResult
+    func playSong( song: Int ) -> Bool {
+        if ( songIsInSongList(song: song) ) {
+            currentSongIndex = song
+            player = AVPlayer(playerItem: AVPlayerItem(url: URL(string: songData[currentSongIndex].fileUrl)!) )
+            
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main ){ [weak self] _ in self?.player?.seek(to: CMTime.zero)
+                self?.nextSong()
+            }
+            
+            setPlayingScreen()
+        }
+        return playSong()
+    }
+    
+    @discardableResult
+    func playSong() -> Bool {
+        if( !isPlaying() && songIsInSongList(song: currentSongIndex) ){
+            player.play()
+            NotificationCenter.default.post(name: .songIsPlaying, object: nil)
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func pauseSong() -> Bool {
+        if( isPlaying() && songIsInSongList(song: currentSongIndex) ){
+            player.pause()
+            NotificationCenter.default.post(name: .songIsPaused, object: nil)
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    @discardableResult
+    func previousSong() -> Bool {
+        if shuffle {
+            shuffleSong()
+        }else{
+            if( firstSongInTheList() ) {
+                currentSongIndex = (songData.count - 1)
+            }else{
+                currentSongIndex = currentSongIndex - 1
+            }
+        }
+        return playSong(song: currentSongIndex )
+    }
+    
+    @discardableResult
+    func nextSong()  -> Bool {
+        if shuffle {
+            shuffleSong()
+        } else {
+            if( lastSongInTheList() ) {
+                currentSongIndex = 0
+            }else{
+                currentSongIndex = currentSongIndex + 1
+            }
+        }
+        return playSong( song: currentSongIndex )
+    }
+    
+    
+    func setSession(){
+        do{
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: [])
+        }catch{
+            print(error)
+        }
+    }
+    
+    //interruptions
+    func handleInterruption(notification: NSNotification){
+        pauseSong()
+        let interruptionTypeAsObject = notification.userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
+        let interruptionType = AVAudioSession.InterruptionType(rawValue: interruptionTypeAsObject.uintValue)
+        if let type = interruptionType {
+            if type == .ended {
+                playSong()
+            }
+        }
+    }
+    
+    func updateSongData(songsList: [Song] = [] ){
+        self.songData = songsList
+    }
+    
+    func isPlaying () -> Bool {
+        if (player != nil) {
+            if( player.rate > 0 && player.error == nil ){
+                return true
+            } else {
+                return false
+            }
+        }
         return false
     }
     
-    public func playMusic() -> Bool {
-        MusicPlayer.player.play()
-        return true
+    func songIsInSongList( song: Int) -> Bool {
+        if ((song >= 0 && song < songData.count ) && song != -1  ){
+            return true
+        }else{
+            return false
+        }
     }
     
+    func firstSongInTheList() -> Bool {
+        if(currentSongIndex == 0 ) {
+            return true
+        }
+        return false
+    }
+    
+    func lastSongInTheList() -> Bool {
+        if(currentSongIndex == (songData.count - 1) ) {
+            return true
+        }
+        return false
+    }
+    
+    func shuffleSong() {
+        currentSongIndex = Int.random(in: 0 ..< (songData.count - 1) )
+    }
+    
+    func shuffleOnOff() {
+        if shuffle {
+            shuffle = false
+        } else {
+            shuffle = true
+        }
+    }
+    
+    func setPlayingScreen() {
+        if (songIsInSongList(song: currentSongIndex)) {
+            let songInfo = [
+                MPMediaItemPropertyTitle : songData[currentSongIndex].title,
+                MPMediaItemPropertyArtist : songData[currentSongIndex].author
+            ]
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
+        }
+    }
+    
+    
 }
+
