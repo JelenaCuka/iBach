@@ -31,6 +31,9 @@
 		9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C23D17D21B984E80047D958 /* MusicPlayer.swift */; };
 		9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */; };
 		9C42E2FD21A8169800ED8A63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C42E2FC21A8169800ED8A63 /* User.swift */; };
+		9C5734F921BB149B002797EB /* PlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */; };
+		9C5734FB21BB14AD002797EB /* PlaylistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */; };
+		9C5734FD21BB1535002797EB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5734FC21BB1535002797EB /* Playlist.swift */; };
 		9C9C511321B583200002ADE2 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511221B583200002ADE2 /* Favorites.storyboard */; };
 		9C9C511621B584420002ADE2 /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511521B584420002ADE2 /* Playlists.storyboard */; };
 		9C9C511821B5C0FD0002ADE2 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */; };
@@ -98,6 +101,9 @@
 		9C23D17D21B984E80047D958 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		9C42E2FA21A7327900ED8A63 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		9C42E2FC21A8169800ED8A63 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewController.swift; sourceTree = "<group>"; };
+		9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewCell.swift; sourceTree = "<group>"; };
+		9C5734FC21BB1535002797EB /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		9C9C511221B583200002ADE2 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		9C9C511521B584420002ADE2 /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
@@ -159,13 +165,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3433DC1821B2D125008EA2AE /* Setting */ = {
+		3433DC1821B2D125008EA2AE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				3433DC1921B2D15E008EA2AE /* Settings.storyboard */,
 				3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */,
 			);
-			path = Setting;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		3433DC1D21B2DD79008EA2AE /* Themes */ = {
@@ -226,14 +232,11 @@
 		9C00EFD821A5BB3500B9798A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				3433DC1D21B2DD79008EA2AE /* Themes */,
-				3433DC1821B2D125008EA2AE /* Setting */,
-=======
+				3433DC1821B2D125008EA2AE /* Settings */,
 				9C23D17C21B984BA0047D958 /* Player */,
 				9C9C511421B584330002ADE2 /* Playlists */,
 				9C9C511121B582FE0002ADE2 /* Favorites */,
->>>>>>> origin/Favorites-List
 				9CCCC76B21AB2DAA005BCB01 /* Registration */,
 				9C00EFE621A6C45100B9798A /* Music */,
 				9C00EFE321A5F59E00B9798A /* Account */,
@@ -272,6 +275,7 @@
 			children = (
 				9C42E2FC21A8169800ED8A63 /* User.swift */,
 				9C0CC19421B2F98F005DEFB0 /* Song.swift */,
+				9C5734FC21BB1535002797EB /* Playlist.swift */,
 			);
 			path = Uitites;
 			sourceTree = "<group>";
@@ -340,6 +344,8 @@
 			isa = PBXGroup;
 			children = (
 				9C9C511521B584420002ADE2 /* Playlists.storyboard */,
+				9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */,
+				9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -659,7 +665,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistraionViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
@@ -667,14 +672,12 @@
 				3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */,
 				3433DC3721B2ECCD008EA2AE /* AppLable.swift in Sources */,
 				3433DC3321B2EC5C008EA2AE /* UIWindow.swift in Sources */,
-				9C7D7FD021A36F1100934787 /* RegistrationController.swift in Sources */,
 				3433DC3B21B2ED2D008EA2AE /* AppSwitch.swift in Sources */,
-=======
 				9C0CC19521B2F98F005DEFB0 /* Song.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistraionViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
->>>>>>> origin/Favorites-List
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
+				9C5734FB21BB14AD002797EB /* PlaylistsTableViewCell.swift in Sources */,
 				9CA6972D21B9AC32003BF5A3 /* FavoritesTableViewController.swift in Sources */,
 				9CA6972B21B9AB71003BF5A3 /* FavoriteSongTableViewCell.swift in Sources */,
 				9C42E2FD21A8169800ED8A63 /* User.swift in Sources */,
@@ -682,27 +685,22 @@
 				9CCCC77321AB3C7D005BCB01 /* RegistrationViewController.swift in Sources */,
 				3433DC1F21B2DDA1008EA2AE /* Themes.swift in Sources */,
 				9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */,
-<<<<<<< HEAD
-				9CB9F63321A9580700177DC7 /* MusicViewController.swift in Sources */,
 				3433DC2F21B2EBDC008EA2AE /* With.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
 				3433DC1C21B2D609008EA2AE /* SettingsViewController.swift in Sources */,
 				3433DC2D21B2EBA3008EA2AE /* UITableView.swift in Sources */,
-=======
 				9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */,
+				9C5734FD21BB1535002797EB /* Playlist.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
 				9C9C511821B5C0FD0002ADE2 /* MusicViewController.swift in Sources */,
 				9C23D17B21B94D010047D958 /* LargePlayerViewController.swift in Sources */,
->>>>>>> origin/Favorites-List
 				9CF12FAC219050F300871893 /* AppDelegate.swift in Sources */,
 				3433DC3D21B2ED3F008EA2AE /* AppView.swift in Sources */,
+				9C5734F921BB149B002797EB /* PlaylistsTableViewController.swift in Sources */,
 				3433DC3121B2EC3B008EA2AE /* UIView.swift in Sources */,
 				9CB9F62F21A9568500177DC7 /* AccountViewController.swift in Sources */,
-<<<<<<< HEAD
 				3433DC3521B2ECB3008EA2AE /* AppButton.swift in Sources */,
-=======
 				9CA8AE4C21B2DF0500E62A5A /* TrackTableViewCell.swift in Sources */,
->>>>>>> origin/Favorites-List
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,6 +879,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92YL697L7G;
 				INFOPLIST_FILE = "$(SRCROOT)/iBach/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -900,6 +899,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92YL697L7G;
 				INFOPLIST_FILE = "$(SRCROOT)/iBach/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

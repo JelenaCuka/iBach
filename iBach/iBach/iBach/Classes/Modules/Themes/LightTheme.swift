@@ -9,8 +9,7 @@
 import UIKit
 
 struct LightTheme: Theme {
-    let tint: UIColor = .blue
-    let secondaryTint: UIColor = .orange
+    let tint: UIColor = UIColor(red: 83/255, green: 47/255, blue: 189/255, alpha: 1)
     
     let backgroundColor: UIColor = .white
     let separatorColor: UIColor = .lightGray
@@ -23,16 +22,3 @@ struct LightTheme: Theme {
     let barStyle: UIBarStyle = .default
 }
 
-extension LightTheme {
-    
-    func extend() {
-        UIImageView.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).with {
-            $0.borderColor = separatorColor
-            $0.borderWidth = 1
-        }
-        
-        UIImageView.appearance(whenContainedInInstancesOf: [UIButton.self, UITableViewCell.self]).with {
-            $0.borderWidth = 0
-        }
-    }
-}

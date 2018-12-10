@@ -8,11 +8,8 @@
 
 import UIKit
 
-import UIKit
-
 protocol Theme {
     var tint: UIColor { get }
-    var secondaryTint: UIColor { get }
     
     var backgroundColor: UIColor { get }
     var separatorColor: UIColor { get }
@@ -52,6 +49,9 @@ extension Theme {
             }
         }
         
+        UILabel.appearance().textColor = labelColor
+        
+        
         UICollectionView.appearance().backgroundColor = backgroundColor
         
         UITableView.appearance().with {
@@ -67,11 +67,12 @@ extension Theme {
         UIView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
             .backgroundColor = selectionColor
         
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-            .textColor = secondaryLabelColor
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
+            .textColor = labelColor
+        
+        
         
         AppLabel.appearance().textColor = labelColor
-        AppHeadline.appearance().textColor = secondaryTint
         AppSubhead.appearance().textColor = secondaryLabelColor
         AppFootnote.appearance().textColor = subtleLabelColor
         
@@ -113,7 +114,6 @@ extension Theme {
         
         AppLabel.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = subtleLabelColor
         AppHeadline.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = secondaryLabelColor
-        AppSubhead.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = secondaryTint
         AppFootnote.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = labelColor
         
         AppButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
@@ -124,11 +124,6 @@ extension Theme {
         AppDangerButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
             $0.setTitleColor(subtleLabelColor, for: .normal)
             $0.backgroundColor = labelColor
-        }
-        
-        AppSwitch.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
-            $0.tintColor = secondaryTint
-            $0.onTintColor = secondaryTint
         }
         
         extend()
