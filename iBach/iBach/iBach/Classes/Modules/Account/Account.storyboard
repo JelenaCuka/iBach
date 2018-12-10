@@ -262,6 +262,8 @@
         <scene sceneID="Sy3-01-euK">
             <objects>
                 <navigationController storyboardIdentifier="AccountNav" title="Account" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZlU-vt-9iF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Account" image="Account Icon" id="tRm-NI-an2"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="kq9-9h-MQn">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -275,4 +277,7 @@
             <point key="canvasLocation" x="-1242" y="-415"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Account Icon" width="36" height="36"/>
+    </resources>
 </document>
