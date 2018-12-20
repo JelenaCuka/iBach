@@ -40,10 +40,10 @@ class MusicPlayer {
         
     }
     
-    func setSession(){
-        do{
+    func setSession() {
+        do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: [])
-        }catch{
+        } catch {
             print(error)
         }
     }
@@ -54,7 +54,7 @@ class MusicPlayer {
             currentSongIndex = song
             player = AVPlayer(playerItem: AVPlayerItem(url: URL(string: songData[currentSongIndex].fileUrl)!) )
             
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main ){ [weak self] _ in self?.player?.seek(to: CMTime.zero)
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main ) { [weak self] _ in self?.player?.seek(to: CMTime.zero)
                 self?.nextSong()
             }
             setPlayingScreen()
@@ -131,7 +131,7 @@ class MusicPlayer {
     }
     
     //interruptions
-    func handleInterruption(notification: NSNotification){
+    func handleInterruption(notification: NSNotification) {
         pauseSong()
         let interruptionTypeAsObject = notification.userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
         let interruptionType = AVAudioSession.InterruptionType(rawValue: interruptionTypeAsObject.uintValue)
@@ -142,7 +142,7 @@ class MusicPlayer {
         }
     }
     
-    func updateSongData(songsList: [Song] = [] ){
+    func updateSongData(songsList: [Song] = [] ) {
         self.songData = songsList
     }
     

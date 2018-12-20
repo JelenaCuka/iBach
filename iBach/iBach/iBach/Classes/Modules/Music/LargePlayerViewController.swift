@@ -53,11 +53,18 @@ class LargePlayerViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPaused"), object: nil)//
         
+        progressVolume.value = 1.0
+        
         progressSongTime.maximumValue = 1.0
         //progressSongTime.setThumbImage("thumbImage.png", for:.normal)
         self.progressSongTime.setThumbImage(UIImage(named: "thumbImage")!, for: .normal)
         self.progressSongTime.setThumbImage(UIImage(named: "thumbImage")!, for: .highlighted)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sliderTapped(gestureRecognizer:)))
+        self.progressSongTime.addGestureRecognizer(tapGestureRecognizer)
+        
     }
+    
     
     
     @objc func dismissLargePlayer(_ sender: UIScreenEdgePanGestureRecognizer) {
@@ -146,7 +153,9 @@ class LargePlayerViewController: UIViewController {
     }
     
     func stopProgressBar() {
-        updater.invalidate()
+        if updater != nil {
+            updater.invalidate()
+        }
     }
     
     @objc func trackAudio() {
@@ -183,9 +192,23 @@ class LargePlayerViewController: UIViewController {
         MusicPlayer.sharedInstance.player.volume = newVolume
     }
     
+    //change song time on slide
     @IBAction func changeSongTime(_ sender: Any) {
         let newTime = Double (progressSongTime.value )
         MusicPlayer.sharedInstance.player?.seek(to: CMTimeMakeWithSeconds ( newTime , preferredTimescale: (MusicPlayer.sharedInstance.player?.currentItem?.currentTime().timescale)! ) )
+    }
+    
+    //change song time on tap
+    @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
+        
+        let pointTapped: CGPoint = gestureRecognizer.location(in: self.view)
+        let positionOfSlider: CGPoint = progressSongTime.frame.origin
+        let widthOfSlider: CGFloat = progressSongTime.frame.size.width
+        
+        let newTime: CGFloat = ((pointTapped.x - positionOfSlider.x) * CGFloat(progressSongTime.maximumValue) / widthOfSlider)
+        
+        progressSongTime.setValue(Float(newTime), animated: true)
+        MusicPlayer.sharedInstance.player?.seek(to: CMTimeMakeWithSeconds ( Float64 (newTime) , preferredTimescale: (MusicPlayer.sharedInstance.player?.currentItem?.currentTime().timescale)! ) )
     }
     
 }
