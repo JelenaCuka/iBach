@@ -40,6 +40,14 @@ class MusicPlayer {
         
     }
     
+    func setSession(){
+        do{
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: [])
+        }catch{
+            print(error)
+        }
+    }
+    
     @discardableResult
     func playSong( song: Int ) -> Bool {
         if ( songIsInSongList(song: song) ) {
@@ -49,7 +57,6 @@ class MusicPlayer {
             NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main ){ [weak self] _ in self?.player?.seek(to: CMTime.zero)
                 self?.nextSong()
             }
-            
             setPlayingScreen()
         }
         return playSong()
@@ -60,6 +67,7 @@ class MusicPlayer {
         if( !isPlaying() && songIsInSongList(song: currentSongIndex) ){
             player.play()
             NotificationCenter.default.post(name: .songIsPlaying, object: nil)
+
             return true
         }
         else {
@@ -67,6 +75,7 @@ class MusicPlayer {
         }
     }
     
+    @discardableResult
     func pauseSong() -> Bool {
         if( isPlaying() && songIsInSongList(song: currentSongIndex) ){
             player.pause()
@@ -105,13 +114,20 @@ class MusicPlayer {
         return playSong( song: currentSongIndex )
     }
     
-    
-    func setSession(){
-        do{
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: [])
-        }catch{
-            print(error)
+    func currentSongDuration() -> Int {
+        if ( self.player.currentItem != nil ) {
+            let duration = Int ( CMTimeGetSeconds( self.player.currentItem!.asset.duration ) )
+            return duration
         }
+        return 0
+    }
+    
+    func currentSongTime() -> Int {
+        if ( self.player.currentItem != nil ) {
+            let currentTime = Int ( CMTimeGetSeconds( self.player.currentItem!.currentTime() )  )
+            return currentTime
+        }
+        return 0
     }
     
     //interruptions
@@ -184,6 +200,8 @@ class MusicPlayer {
             MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
         }
     }
+    
+    
     
     
 }

@@ -77,22 +77,16 @@ class MusicViewController: UIViewController {
     }
     
     func playpause() {
-        if (MusicPlayer.sharedInstance.playSong() ) {
-            //NotificationCenter.default.post(name: .songIsPlaying, object: nil)
-        } else {
-            if (MusicPlayer.sharedInstance.pauseSong() ) {
-                //NotificationCenter.default.post(name: .songIsPaused, object: nil)
-            }
+        if ( !MusicPlayer.sharedInstance.playSong() ) {
+            MusicPlayer.sharedInstance.pauseSong()
         }
     }
     
     func setPlayingIcons() {
         if(MusicPlayer.sharedInstance.isPlaying() ){
             self.buttonPlay = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(playSongClick) )
-            print("Mali-playing-pauseIcon")
         }else{
             self.buttonPlay = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(playSongClick ))
-            print("Mali-paused-playIcon")
         }
         self.buttonShuffle = UIBarButtonItem(image: UIImage(named: "Shuffle Navigation Icon"), style: .plain, target: self, action: #selector(shuffleClick))
         if let addButtonPlay = buttonPlay,let addButtonShuffle = buttonShuffle {
@@ -119,14 +113,6 @@ class MusicViewController: UIViewController {
     @objc func openLargePlayer(_ sender: UITapGestureRecognizer) {
        NotificationCenter.default.post(name: .displayLargePlayer, object: nil)
         self.present(largePlayerViewController, animated: true, completion: nil)
-        
-        /*let storyoard = UIStoryboard(name: "Music", bundle: nil)
-        guard let largePlayerViewController = storyoard.instantiateViewController(withIdentifier: "Large Player") as? LargePlayerViewController else {
-            return
-        }
-        largePlayerViewController.modalPresentationStyle = .fullScreen
-        
-        self.present(largePlayerViewController, animated: true, completion: nil)*/
         
     }
     

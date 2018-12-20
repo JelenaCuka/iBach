@@ -14,17 +14,7 @@ import AVKit
 import MediaPlayer
 
 class LargePlayerViewController: UIViewController {
-    /*
-    @IBOutlet var labelSongTitle: UILabel!
-    @IBOutlet var imageCoverArt: UIImageView!
-    @IBOutlet var labelArtistAlbumYear: UILabel!
-    
-    @IBOutlet var butonPlay: UIButton!
-    @IBOutlet var buttonPrevious: UIButton!
-    @IBOutlet var buttonNext: UIButton!*/
-    
-    //@IBOutlet weak var labelSongTitle: UIImageView!
-    
+   
     @IBOutlet weak var labelSongTitle: UILabel!
     @IBOutlet weak var imageCoverArt: UIImageView!
     @IBOutlet weak var labelArtistAlbumYear: UILabel!
@@ -33,11 +23,17 @@ class LargePlayerViewController: UIViewController {
     @IBOutlet weak var buttonNext: UIButton!
     @IBOutlet weak var buttonPrevious: UIButton!
     
+    var updater : CADisplayLink! = nil
+    @IBOutlet weak var progressSongTime: UISlider!
+    @IBOutlet weak var CurrentTime: UILabel!
+    @IBOutlet weak var EndTime: UILabel!
     
+    
+    @IBOutlet weak var progressVolume: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("load")
+        
         let effect = UIBlurEffect(style: .light)
         let blurView = UIVisualEffectView(effect: effect)
         blurView.frame = self.view.bounds
@@ -57,7 +53,10 @@ class LargePlayerViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPaused"), object: nil)//
         
-        
+        progressSongTime.maximumValue = 1.0
+        //progressSongTime.setThumbImage("thumbImage.png", for:.normal)
+        self.progressSongTime.setThumbImage(UIImage(named: "thumbImage")!, for: .normal)
+        self.progressSongTime.setThumbImage(UIImage(named: "thumbImage")!, for: .highlighted)
     }
     
     
@@ -86,6 +85,7 @@ class LargePlayerViewController: UIViewController {
             loadData()
             NotificationCenter.default.post(name: .changedSong, object: nil)
         }
+        
     }
     
     @IBAction func buttonPreviousClick(_ sender: Any) {
@@ -99,7 +99,7 @@ class LargePlayerViewController: UIViewController {
         changePlayPauseIcon()
     }
     
-    func loadData(){
+    func loadData() {
         self.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
         
         if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl) {
@@ -122,18 +122,75 @@ class LargePlayerViewController: UIViewController {
         
         //
         NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: MusicPlayer.sharedInstance.player?.currentItem)
+        
+        self.EndTime.text = formatSongDuration( duration: MusicPlayer.sharedInstance.currentSongDuration() )
+        
     }
     
     func changePlayPauseIcon() {
         if ( MusicPlayer.sharedInstance.isPlaying() ){
             buttonPlay.setImage(UIImage(named: "Pause"), for: .normal)
+            startProgressBar()
         } else {
             buttonPlay.setImage(UIImage(named: "Play"), for: .normal)
+            stopProgressBar()
         }
+        
     }
+    
+    func startProgressBar() {
+        progressSongTime.maximumValue = Float ( MusicPlayer.sharedInstance.currentSongDuration() )
+        updater = CADisplayLink(target: self, selector: #selector(trackAudio) )
+        updater.preferredFramesPerSecond = 1
+        updater.add(to: RunLoop.current, forMode: RunLoop.Mode.common )
+    }
+    
+    func stopProgressBar() {
+        updater.invalidate()
+    }
+    
+    @objc func trackAudio() {
+        let currentTime = MusicPlayer.sharedInstance.currentSongTime()
+        progressSongTime.value = Float ( currentTime )
+        
+        self.CurrentTime.text = formatSongDuration( duration: currentTime )
+    }
+    
+    func formatSongDuration( duration: Int ) -> String {
+        let seconds = duration % 60
+        let minutes = ( duration - seconds ) / 60
+        var newSeconds = "00"
+        var newMinutes = "00"
+        if seconds == 0 {
+            newSeconds = "00"
+        } else if seconds < 10 {
+            newSeconds = "0\(seconds)"
+        } else {
+            newSeconds = "\(seconds)"
+        }
+        if minutes == 0 {
+            newMinutes = "00"
+        } else if minutes < 10 {
+            newMinutes = "0\(minutes)"
+        } else {
+            newMinutes = "\(minutes)"
+        }
+        return "\(newMinutes):\(newSeconds)"
+    }
+    
+    @IBAction func changeVolume(_ sender: Any) {
+        let newVolume = progressVolume.value
+        MusicPlayer.sharedInstance.player.volume = newVolume
+    }
+    
+    @IBAction func changeSongTime(_ sender: Any) {
+        let newTime = Double (progressSongTime.value )
+        MusicPlayer.sharedInstance.player?.seek(to: CMTimeMakeWithSeconds ( newTime , preferredTimescale: (MusicPlayer.sharedInstance.player?.currentItem?.currentTime().timescale)! ) )
+    }
+    
 }
 
-extension Notification.Name{
+extension Notification.Name {
     static let songIsPlaying = Notification.Name ("songIsPlaying")//icons
     static let songIsPaused = Notification.Name ("songIsPaused")//icons
     static let changedSong = Notification.Name ("changedSong")//updateInfo
