@@ -144,9 +144,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXy-tQ-So6">
-                                                    <rect key="frame" x="16" y="6" width="123" height="30"/>
+                                                    <rect key="frame" x="126" y="6" width="123" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Change password"/>
+                                                    <state key="normal" title="Change Password"/>
                                                     <connections>
                                                         <action selector="changePassword:" destination="eQq-df-QGg" eventType="touchUpInside" id="Wb5-fd-j7O"/>
                                                     </connections>
@@ -163,7 +163,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogS-nO-pWT">
-                                                    <rect key="frame" x="16" y="6" width="48" height="30"/>
+                                                    <rect key="frame" x="163" y="6" width="48" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Logout"/>
                                                     <connections>
@@ -182,9 +182,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UYA-8g-EHA">
-                                                    <rect key="frame" x="16" y="6" width="104" height="30"/>
+                                                    <rect key="frame" x="135" y="6" width="105" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Delete account">
+                                                    <state key="normal" title="Delete Account">
                                                         <color key="titleColor" red="1" green="0.23495931889999999" blue="0.052492207290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
