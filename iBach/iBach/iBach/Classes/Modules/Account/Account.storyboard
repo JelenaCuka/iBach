@@ -207,7 +207,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="plain" id="yZM-T3-2nR">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ain-wL-LMe">
-                                    <rect key="frame" x="278" y="7" width="34" height="30"/>
+                                    <rect key="frame" x="325" y="7" width="34" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Save"/>
                                     <connections>
@@ -216,10 +216,10 @@
                                 </button>
                             </barButtonItem>
                             <barButtonItem style="plain" id="szk-Z3-vFs">
-                                <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uz0-w1-Rbg" userLabel="Button Reset">
-                                    <rect key="frame" x="320" y="7" width="39" height="30"/>
+                                <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uz0-w1-Rbg" userLabel="Button Reset">
+                                    <rect key="frame" x="278" y="7" width="39" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Undo">
+                                    <state key="normal" title="Dismiss">
                                         <color key="titleColor" red="1" green="0.23495931889999999" blue="0.052492207290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
