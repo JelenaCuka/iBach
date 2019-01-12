@@ -79,6 +79,14 @@ class PlaylistsTableViewController: UITableViewController {
             let blurView = UIVisualEffectView(effect: blur)
             blurView.frame = cell.imageViewCoverArt.bounds
             
+            let vibrancyEffect = UIVibrancyEffect(blurEffect: blur)
+            let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
+            
+            vibrancyView.frame = blurView.contentView.bounds
+            vibrancyView.contentView.addSubview(cell.imageViewLogo)
+            cell.imageViewLogo.center = vibrancyView.center
+            blurView.contentView.addSubview(vibrancyView)
+            
             cell.imageViewCoverArt.addSubview(blurView)
         }
         
