@@ -37,8 +37,6 @@ class PlaylistsTableViewController: UITableViewController {
                             
                             let playlist: Playlist = try unbox(dictionary: (playlist as! NSDictionary) as! UnboxableDictionary)
                             self.playlistData.append(playlist)
-                            print(playlist.name)
-                            
                         }
                         catch {
                             print("Unable to unbox")
