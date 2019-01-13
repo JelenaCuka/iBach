@@ -41,6 +41,10 @@ class MusicViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPlaying"), object: nil)//
         
         NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPaused"), object: nil)//
+        
+        let storyoard = UIStoryboard(name: "Music", bundle: nil)
+        self.largePlayerViewController = storyoard.instantiateViewController(withIdentifier: "Large Player") as? LargePlayerViewController
+        self.largePlayerViewController.modalPresentationStyle = .fullScreen
     }
     
     @objc func playSongClick(_ sender: Any){
@@ -107,15 +111,8 @@ class MusicViewController: UIViewController {
     }
     
     @objc func openLargePlayer(_ sender: UITapGestureRecognizer) {
-        let storyboard = UIStoryboard(name: "Music", bundle: nil)
-        let largePleyer = storyboard.instantiateViewController(withIdentifier: "Large Player") as! LargePlayerViewController
-
-        //largePleyer.labelSongTitle.text = "test"
-        
-        DispatchQueue.main.async {
-            self.present(largePleyer, animated: true, completion: nil)
-        }
-
+       NotificationCenter.default.post(name: .displayLargePlayer, object: nil)
+        self.present(largePlayerViewController, animated: true, completion: nil)
         
     }
     
