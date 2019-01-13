@@ -146,7 +146,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXy-tQ-So6">
                                                     <rect key="frame" x="126" y="6" width="123" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Change Password"/>
+                                                    <state key="normal" title="Change Password">
+                                                        <color key="titleColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="changePassword:" destination="eQq-df-QGg" eventType="touchUpInside" id="Wb5-fd-j7O"/>
                                                     </connections>
@@ -165,7 +167,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogS-nO-pWT">
                                                     <rect key="frame" x="163" y="6" width="48" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Logout"/>
+                                                    <state key="normal" title="Logout">
+                                                        <color key="titleColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="logout:" destination="eQq-df-QGg" eventType="touchUpInside" id="1bH-3W-wgn"/>
                                                     </connections>
@@ -185,7 +189,7 @@
                                                     <rect key="frame" x="135" y="6" width="105" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Delete Account">
-                                                        <color key="titleColor" red="1" green="0.23495931889999999" blue="0.052492207290000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleColor" red="1" green="0.67762476879347311" blue="0.24289218026344894" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="deleteAccount:" destination="eQq-df-QGg" eventType="touchUpInside" id="LrS-iL-bgo"/>
@@ -214,9 +218,10 @@
                                         <action selector="updateAccountData:" destination="eQq-df-QGg" eventType="touchUpInside" id="rem-X0-RCX"/>
                                     </connections>
                                 </button>
+                                <color key="tintColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
                             </barButtonItem>
                             <barButtonItem style="plain" id="szk-Z3-vFs">
-                                <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uz0-w1-Rbg" userLabel="Button Reset">
+                                <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uz0-w1-Rbg" userLabel="Button Reset">
                                     <rect key="frame" x="263" y="7" width="54" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Dismiss">
@@ -226,6 +231,7 @@
                                         <action selector="resetChanges:" destination="eQq-df-QGg" eventType="touchUpInside" id="NVO-rm-GSd"/>
                                     </connections>
                                 </button>
+                                <color key="tintColor" red="1" green="0.6776247688" blue="0.24289218030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
