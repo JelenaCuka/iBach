@@ -14,22 +14,22 @@
         <scene sceneID="Sja-A9-Lin">
             <objects>
                 <viewController storyboardIdentifier="Music" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gsz-6o-f6h" customClass="MusicViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qht-2s-pCc">
+                    <view key="view" contentMode="scaleToFill" id="qht-2s-pCc" customClass="AppView" customModule="iBach" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="47D-yn-zEG">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="47D-yn-zEG" customClass="AppView" customModule="iBach" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <segue destination="lmo-8y-lDx" kind="embed" id="dBM-G2-5LN"/>
                                 </connections>
                             </containerView>
-                            <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HuQ-g1-RnG">
+                            <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HuQ-g1-RnG" customClass="AppView" customModule="iBach" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="609" width="414" height="64"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0p8-Rt-YGI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0p8-Rt-YGI" customClass="AppLabel" customModule="iBach" customModuleProvider="target">
                                         <rect key="frame" x="69" y="9" width="298" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -40,7 +40,7 @@
                                         <rect key="frame" x="8" y="9" width="46" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBJ-WL-wRX">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBJ-WL-wRX" customClass="AppSubhead" customModule="iBach" customModuleProvider="target">
                                         <rect key="frame" x="69" y="35" width="298" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -76,14 +76,14 @@
             <objects>
                 <tableViewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="lmo-8y-lDx" customClass="MusicTableViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="emT-oa-vQ6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="trackCell" rowHeight="70" id="bTb-ts-4uM" customClass="TrackTableViewCell" customModule="iBach" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bTb-ts-4uM" id="FdD-Ba-LGf">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bTb-ts-4uM" id="FdD-Ba-LGf" customClass="AppView" customModule="iBach" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -91,14 +91,14 @@
                                             <rect key="frame" x="16" y="9" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Track Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnh-9g-mo2">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Track Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jnh-9g-mo2" customClass="AppLabel" customModule="iBach" customModuleProvider="target">
                                             <rect key="frame" x="74" y="12" width="285" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bW6-sN-ZTb">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bW6-sN-ZTb" customClass="AppSubhead" customModule="iBach" customModuleProvider="target">
                                             <rect key="frame" x="74" y="36" width="285" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -140,40 +140,40 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bn0-mC-JGM">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="36.5"/>
                                         <state key="normal" image="Down Arrow"/>
                                         <connections>
                                             <action selector="closeLargePlayer:" destination="lUM-lY-ji0" eventType="touchUpInside" id="hPP-cc-6gH"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PMN-iQ-GRW">
-                                        <rect key="frame" x="0.0" y="58.5" width="414" height="391.5"/>
+                                        <rect key="frame" x="0.0" y="57.5" width="414" height="401.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sogng Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-hl-gUS">
-                                        <rect key="frame" x="0.0" y="471" width="414" height="27.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sogng Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-hl-gUS" customClass="AppLabel" customModule="iBach" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="480" width="414" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Artist - Album - Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEK-2b-mxv">
-                                        <rect key="frame" x="0.0" y="519.5" width="414" height="21"/>
+                                        <rect key="frame" x="0.0" y="527.5" width="414" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="QDo-zP-csn">
-                                        <rect key="frame" x="0.0" y="561.5" width="414" height="21.5"/>
+                                        <rect key="frame" x="0.0" y="569.5" width="414" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtF-F4-G4v">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="21.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="20.5"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afp-0w-Kyq">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="21.5"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="20.5"/>
                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -182,7 +182,7 @@
                                         </subviews>
                                     </stackView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="t3k-W3-xUc">
-                                        <rect key="frame" x="-2" y="604" width="418" height="32"/>
+                                        <rect key="frame" x="-2" y="611" width="418" height="31"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -198,24 +198,24 @@
                                         </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="1zt-C3-UDc">
-                                        <rect key="frame" x="0.0" y="656" width="414" height="56"/>
+                                        <rect key="frame" x="0.0" y="662" width="414" height="54.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCj-pH-ugj">
-                                                <rect key="frame" x="0.0" y="0.0" width="134" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="134" height="54.5"/>
                                                 <state key="normal" image="Backward"/>
                                                 <connections>
                                                     <action selector="buttonPreviousClick:" destination="lUM-lY-ji0" eventType="touchUpInside" id="rRs-SC-6Ih"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zol-oZ-SfW">
-                                                <rect key="frame" x="140" y="0.0" width="134" height="56"/>
+                                                <rect key="frame" x="140" y="0.0" width="134" height="54.5"/>
                                                 <state key="normal" image="Pause"/>
                                                 <connections>
                                                     <action selector="pauseSong:" destination="lUM-lY-ji0" eventType="touchUpInside" id="tjy-sD-I7s"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOp-cK-Tjq">
-                                                <rect key="frame" x="280" y="0.0" width="134" height="56"/>
+                                                <rect key="frame" x="280" y="0.0" width="134" height="54.5"/>
                                                 <state key="normal" image="Forward"/>
                                                 <connections>
                                                     <action selector="buttonNextClick:" destination="lUM-lY-ji0" eventType="touchUpInside" id="G6F-M2-iUc"/>
@@ -224,7 +224,7 @@
                                         </subviews>
                                     </stackView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iUB-L5-HK2">
-                                        <rect key="frame" x="-2" y="733" width="418" height="37"/>
+                                        <rect key="frame" x="-2" y="737.5" width="418" height="32.5"/>
                                         <connections>
                                             <action selector="changeVolume:" destination="lUM-lY-ji0" eventType="valueChanged" id="pBY-bi-SA4"/>
                                         </connections>

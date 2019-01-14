@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		10FBFE547810C7254FD4EA70 /* Pods_iBachUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD42BC63A36BD04D8C6F6AB4 /* Pods_iBachUITests.framework */; };
 		34250FFE21ED218A008CB7FD /* SongDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34250FFD21ED218A008CB7FD /* SongDetail.swift */; };
+		3425100021ED2B31008CB7FD /* BlueTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34250FFF21ED2B31008CB7FD /* BlueTheme.swift */; };
 		3433DC1A21B2D15E008EA2AE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3433DC1921B2D15E008EA2AE /* Settings.storyboard */; };
 		3433DC1C21B2D609008EA2AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */; };
 		3433DC1F21B2DDA1008EA2AE /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC1E21B2DDA1008EA2AE /* Themes.swift */; };
@@ -79,6 +80,7 @@
 		16C4C6196766FE384F966BE4 /* Pods-iBachTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.release.xcconfig"; sourceTree = "<group>"; };
 		258327AC3A2BA3E12996669F /* Pods-iBachUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBachUITests/Pods-iBachUITests.release.xcconfig"; sourceTree = "<group>"; };
 		34250FFD21ED218A008CB7FD /* SongDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetail.swift; sourceTree = "<group>"; };
+		34250FFF21ED2B31008CB7FD /* BlueTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTheme.swift; sourceTree = "<group>"; };
 		3433DC1921B2D15E008EA2AE /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3433DC1E21B2DDA1008EA2AE /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				3433DC1E21B2DDA1008EA2AE /* Themes.swift */,
 				3433DC2A21B2E8B8008EA2AE /* DarkTheme.swift */,
 				3433DC4021B2F405008EA2AE /* LightTheme.swift */,
+				34250FFF21ED2B31008CB7FD /* BlueTheme.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
 				3433DC1C21B2D609008EA2AE /* SettingsViewController.swift in Sources */,
 				3433DC2D21B2EBA3008EA2AE /* UITableView.swift in Sources */,
+				3425100021ED2B31008CB7FD /* BlueTheme.swift in Sources */,
 				9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */,
 				9C5734FD21BB1535002797EB /* Playlist.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
