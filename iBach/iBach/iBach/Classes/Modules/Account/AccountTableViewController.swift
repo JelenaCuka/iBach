@@ -17,7 +17,6 @@ class AccountTableViewController: UITableViewController {
     @IBOutlet weak var textFieldEmail: UITextField!
     @IBOutlet weak var textFieldFirstname: UITextField!
     @IBOutlet weak var textFieldLastname: UITextField!
-    @IBOutlet weak var labelModifyDataDescription: UILabel!
     @IBOutlet weak var buttonSaveChanges: UIButton!
     @IBOutlet weak var buttonResetChanges: UIButton!
     
@@ -37,8 +36,7 @@ class AccountTableViewController: UITableViewController {
         if (UserDefaults.standard.integer(forKey: "user_id") > 0) {
             getUserData(id: UserDefaults.standard.integer(forKey: "user_id"))
         }
-        labelModifyDataDescription.isHidden = false
-        buttonSaveChanges.isHidden = true
+        buttonSaveChanges.isEnabled = false
         buttonResetChanges.isHidden = true
     }
     
@@ -90,15 +88,13 @@ class AccountTableViewController: UITableViewController {
         {
             DispatchQueue.main.async
             {
-                self.labelModifyDataDescription.isHidden = true
-                self.buttonSaveChanges.isHidden = false
+                self.buttonSaveChanges.isEnabled = true
                 self.buttonResetChanges.isHidden = false
             }
         }
         else{
             DispatchQueue.main.async{
-                self.labelModifyDataDescription.isHidden = false
-                self.buttonSaveChanges.isHidden = true
+                self.buttonSaveChanges.isEnabled = false
                 self.buttonResetChanges.isHidden = true
             }
         }

@@ -12,6 +12,7 @@ class PlaylistsTableViewCell: UITableViewCell {
 
     @IBOutlet var imageViewCoverArt: UIImageView!
     @IBOutlet var labelName: UILabel!
+    @IBOutlet weak var imageViewLogo: UIImageView!
     
     
     override func awakeFromNib() {

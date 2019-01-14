@@ -77,7 +77,7 @@ class MusicViewController: UIViewController {
     }
     
     func playpause() {
-        if ( !MusicPlayer.sharedInstance.playSong() ) {
+        if (!MusicPlayer.sharedInstance.playSong()) {
             MusicPlayer.sharedInstance.pauseSong()
         }
     }
