@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10FBFE547810C7254FD4EA70 /* Pods_iBachUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD42BC63A36BD04D8C6F6AB4 /* Pods_iBachUITests.framework */; };
+		34250FFE21ED218A008CB7FD /* SongDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34250FFD21ED218A008CB7FD /* SongDetail.swift */; };
 		3433DC1A21B2D15E008EA2AE /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3433DC1921B2D15E008EA2AE /* Settings.storyboard */; };
 		3433DC1C21B2D609008EA2AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */; };
 		3433DC1F21B2DDA1008EA2AE /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC1E21B2DDA1008EA2AE /* Themes.swift */; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		16C4C6196766FE384F966BE4 /* Pods-iBachTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.release.xcconfig"; sourceTree = "<group>"; };
 		258327AC3A2BA3E12996669F /* Pods-iBachUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBachUITests/Pods-iBachUITests.release.xcconfig"; sourceTree = "<group>"; };
+		34250FFD21ED218A008CB7FD /* SongDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetail.swift; sourceTree = "<group>"; };
 		3433DC1921B2D15E008EA2AE /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		3433DC1B21B2D609008EA2AE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3433DC1E21B2DDA1008EA2AE /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -165,6 +167,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34250FFC21ED1F40008CB7FD /* Song Detail */ = {
+			isa = PBXGroup;
+			children = (
+				34250FFD21ED218A008CB7FD /* SongDetail.swift */,
+			);
+			path = "Song Detail";
+			sourceTree = "<group>";
+		};
 		3433DC1821B2D125008EA2AE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +242,7 @@
 		9C00EFD821A5BB3500B9798A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				34250FFC21ED1F40008CB7FD /* Song Detail */,
 				3433DC1D21B2DD79008EA2AE /* Themes */,
 				3433DC1821B2D125008EA2AE /* Settings */,
 				9C23D17C21B984BA0047D958 /* Player */,
@@ -666,7 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */,
-				9CCCC76F21AB2E15005BCB01 /* RegistraionViewController.swift in Sources */,
+				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,
 				3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */,
@@ -675,11 +686,12 @@
 				3433DC3B21B2ED2D008EA2AE /* AppSwitch.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C0CC19521B2F98F005DEFB0 /* Song.swift in Sources */,
-				9CCCC76F21AB2E15005BCB01 /* RegistraionViewController.swift in Sources */,
+				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
 				9C5734FB21BB14AD002797EB /* PlaylistsTableViewCell.swift in Sources */,
 				9CA6972D21B9AC32003BF5A3 /* FavoritesTableViewController.swift in Sources */,
+				34250FFE21ED218A008CB7FD /* SongDetail.swift in Sources */,
 				9CA6972B21B9AB71003BF5A3 /* FavoriteSongTableViewCell.swift in Sources */,
 				9C42E2FD21A8169800ED8A63 /* User.swift in Sources */,
 				9CA8AE4E21B2E11F00E62A5A /* MusicTableViewController.swift in Sources */,
@@ -700,7 +712,6 @@
 				3433DC3D21B2ED3F008EA2AE /* AppView.swift in Sources */,
 				9C5734F921BB149B002797EB /* PlaylistsTableViewController.swift in Sources */,
 				3433DC3121B2EC3B008EA2AE /* UIView.swift in Sources */,
-				9CB9F62F21A9568500177DC7 /* AccountViewController.swift in Sources */,
 				3433DC3521B2ECB3008EA2AE /* AppButton.swift in Sources */,
 				9CA8AE4C21B2DF0500E62A5A /* TrackTableViewCell.swift in Sources */,
 			);
