@@ -8,77 +8,29 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController,UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+class SettingsViewController: UITableViewController{
     
-    let myPickerData = ["Light Theme","Dark Theme","Blue Theme"]
-    let songDetailData = ["musicmix"]
-    
-    @IBOutlet weak var themeTextField: UITextField!
-    @IBOutlet weak var songDetailTextField: AppTextField!
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == 1{
-            return songDetailData.count
-        }
-        return myPickerData.count
+   
         
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == 1 {
-            return songDetailData[row]
-        }
-        return myPickerData[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
-        
-        if pickerView.tag == 1 {
-            print("works")
-            songDetailTextField.text = songDetailData[row]
-        }
-        
+    @IBAction func themeSegmentedControllChanged(_ sender: UISegmentedControl) {
         
         let theme: Theme
         
-        switch row {
+        switch sender.selectedSegmentIndex {
         case 1: theme = DarkTheme()
-        case 2: theme = BlueTheme()
+        //case 2: theme = OceanTheme()
         default: theme = LightTheme()
         }
         
         theme.apply(for: UIApplication.shared)
-        themeTextField.text = myPickerData[row]
     }
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let themePicker = UIPickerView()
-        let songDetailPicker = UIPickerView()
-        themeTextField.inputView = themePicker
-        songDetailTextField.inputView = songDetailPicker
-        songDetailTextField.inputView?.tag = 1
-        themePicker.delegate = self
-        songDetailPicker.delegate = self
-        
-    }
-    
-    
-    
-    
-    
-    
 }
-
-
-
-
+    
+    
+        
+       
 
 
