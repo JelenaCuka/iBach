@@ -96,7 +96,6 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="Pad-Sx-7cr"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="songDetailTextField" destination="fxr-EW-yEz" id="8Yc-tk-UiO"/>
                         <outlet property="themeTextField" destination="FMo-Lp-KvQ" id="1Ql-Av-Noa"/>

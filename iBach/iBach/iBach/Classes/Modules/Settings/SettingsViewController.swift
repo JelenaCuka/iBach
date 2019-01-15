@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController,UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+class SettingsViewController: UITableViewController, UITextFieldDelegate{
     
     let myPickerData = ["Light Theme","Dark Theme","Blue Theme"]
     let songDetailData = ["musicmix"]
@@ -16,6 +16,22 @@ class SettingsViewController: UITableViewController,UIPickerViewDelegate, UIPick
     @IBOutlet weak var themeTextField: UITextField!
     @IBOutlet weak var songDetailTextField: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let themePicker = UIPickerView()
+        let songDetailPicker = UIPickerView()
+        themeTextField.inputView = themePicker
+        songDetailTextField.inputView = songDetailPicker
+        songDetailTextField.inputView?.tag = 1
+        themePicker.delegate = self
+        songDetailPicker.delegate = self
+        
+    }
+    
+}
+
+extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -50,31 +66,13 @@ class SettingsViewController: UITableViewController,UIPickerViewDelegate, UIPick
         case 2: theme = BlueTheme()
         default: theme = LightTheme()
         }
-        
-        theme.apply(for: UIApplication.shared)
         themeTextField.text = myPickerData[row]
-    }
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        self.view.endEditing(true)
         
-        let themePicker = UIPickerView()
-        let songDetailPicker = UIPickerView()
-        themeTextField.inputView = themePicker
-        songDetailTextField.inputView = songDetailPicker
-        songDetailTextField.inputView?.tag = 1
-        themePicker.delegate = self
-        songDetailPicker.delegate = self
-        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
+            theme.apply(for: UIApplication.shared)
+        }
     }
-    
-    
-    
-    
-    
-    
 }
 
 

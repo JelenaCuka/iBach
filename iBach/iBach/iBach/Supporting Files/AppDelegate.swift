@@ -11,7 +11,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let theme = LightTheme()
+    //private let theme = LightTheme()
     var window: UIWindow?
     
 
