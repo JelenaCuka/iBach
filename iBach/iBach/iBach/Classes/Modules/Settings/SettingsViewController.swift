@@ -19,6 +19,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let themePicker = UIPickerView()
         let songDetailPicker = UIPickerView()
         themeTextField.inputView = themePicker
@@ -27,8 +28,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate{
         themePicker.delegate = self
         songDetailPicker.delegate = self
         
+        let themeRow = UserDefaults.standard.integer(forKey: "theme")
+        themeTextField.text = myPickerData[themeRow]
     }
-    
 }
 
 extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -68,6 +70,8 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         themeTextField.text = myPickerData[row]
         self.view.endEditing(true)
+        
+        UserDefaults.standard.set(Int(row), forKey: "theme")
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
             theme.apply(for: UIApplication.shared)
