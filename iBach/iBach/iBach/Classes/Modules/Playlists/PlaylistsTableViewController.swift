@@ -12,6 +12,7 @@ import Unbox
 class PlaylistsTableViewController: UITableViewController {
     
     var playlistData: [Playlist] = []
+    var filteredPlaylist: [Playlist] = []
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -43,6 +44,7 @@ class PlaylistsTableViewController: UITableViewController {
                         }
                     }
                 }
+                self.filteredPlaylist = self.playlistData
                 self.tableView.reloadData()
             })
         }
@@ -54,7 +56,7 @@ class PlaylistsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.playlistData.count
+        return self.filteredPlaylist.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,7 +65,7 @@ class PlaylistsTableViewController: UITableViewController {
             fatalError("Error")
         }
         
-        if let imageURL = URL(string: self.playlistData[indexPath.row].coverArtUrl) {
+        if let imageURL = URL(string: self.filteredPlaylist[indexPath.row].coverArtUrl) {
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
             
             cell.imageViewCoverArt.layer.cornerRadius = 10
@@ -88,7 +90,7 @@ class PlaylistsTableViewController: UITableViewController {
             cell.imageViewCoverArt.addSubview(blurView)
         }
         
-        cell.labelName.text = self.playlistData[indexPath.row].name
+        cell.labelName.text = self.filteredPlaylist[indexPath.row].name
 
         return cell
     }
@@ -128,5 +130,12 @@ extension PlaylistsTableViewController: UISearchResultsUpdating  {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         //filterContentForSearchText(searchController.searchBar.text!)
+        if searchController.searchBar.text! == "" {
+            filteredPlaylist = playlistData
+        }
+        else{
+            filteredPlaylist = playlistData.filter( {$0.name.lowercased().contains(searchController.searchBar.text!.lowercased() )} )
+        }
+        self.tableView.reloadData()
     }
 }
