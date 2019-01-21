@@ -120,6 +120,7 @@ class MusicViewController: UIViewController {
         if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl ) {
             playerVC.imageCoverArt.af_setImage(withURL: imageURL)
         }
+        //playerVC.loadData();
         
     }
     

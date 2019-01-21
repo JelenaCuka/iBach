@@ -25,6 +25,9 @@ class MiniPlayerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: NSNotification.Name(rawValue: "changedSong"), object: nil)
+        
+        
+        
     }
     
     @objc func displayMiniPlayer(notification: NSNotification) {
@@ -74,7 +77,7 @@ class MiniPlayerViewController: UIViewController {
         let playerVC = storyboard.instantiateViewController(withIdentifier: "Player") as! MusicPlayerViewController
         
         self.present(playerVC, animated: true, completion: nil)
-        playerVC.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
+        /*playerVC.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
         playerVC.labelSongArtist.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
         if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl ) {
             playerVC.imageCoverArt.af_setImage(withURL: imageURL)
@@ -84,7 +87,9 @@ class MiniPlayerViewController: UIViewController {
             playerVC.shadow.layer.shadowRadius = 23
             playerVC.shadow.layer.masksToBounds = false
             playerVC.shadow.layer.cornerRadius = 4.0
-        }
+        }*/
+        playerVC.loadData();//endtime
+        //playerVC.changePlayPauseIcon();//to update pgb
         
     }
     

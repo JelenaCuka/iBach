@@ -50,6 +50,9 @@ class MusicPlayer {
     
     @discardableResult
     func playSong( song: Int ) -> Bool {
+        
+        
+        
         if ( songIsInSongList(song: song) ) {
             currentSongIndex = song
             player = AVPlayer(playerItem: AVPlayerItem(url: URL(string: songData[currentSongIndex].fileUrl)!) )
@@ -59,6 +62,7 @@ class MusicPlayer {
             }
             setPlayingScreen()
         }
+        
         return playSong()
     }
     

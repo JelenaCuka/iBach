@@ -64,17 +64,55 @@
                                                 <rect key="frame" x="120" y="497" width="134" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Pause"/>
+                                                <connections>
+                                                    <action selector="pauseSong:" destination="Tza-Tl-667" eventType="touchUpInside" id="xz2-IE-WFM"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvt-8L-t5U">
                                                 <rect key="frame" x="8" y="497" width="134" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Backward"/>
+                                                <connections>
+                                                    <action selector="buttonPreviousClick:" destination="Tza-Tl-667" eventType="touchUpInside" id="CJ3-Cd-hlg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvF-uV-MXG">
                                                 <rect key="frame" x="233" y="497" width="134" height="55"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="Forward"/>
+                                                <connections>
+                                                    <action selector="buttonNextClick:" destination="Tza-Tl-667" eventType="touchUpInside" id="nYr-Qd-1gF"/>
+                                                </connections>
                                             </button>
+                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="MKS-15-KGy">
+                                                <rect key="frame" x="27" y="579" width="320" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="changeSongTime:" destination="Tza-Tl-667" eventType="valueChanged" id="VlH-CH-Iww"/>
+                                                    <action selector="changeVolume:" destination="Tza-Tl-667" eventType="valueChanged" id="KXr-mI-uLF"/>
+                                                </connections>
+                                            </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7N-wl-HBQ">
+                                                <rect key="frame" x="29" y="560" width="82" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbI-wS-h8i">
+                                                <rect key="frame" x="259" y="559" width="86" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="q3n-SH-2uo">
+                                                <rect key="frame" x="27" y="616" width="320" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="changeVolume:" destination="Tza-Tl-667" eventType="valueChanged" id="KBr-ym-Hy1"/>
+                                                </connections>
+                                            </slider>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -103,9 +141,13 @@
                         <outlet property="buttonPlay" destination="3gH-Up-32J" id="ZMD-Wa-NGZ"/>
                         <outlet property="buttonPrevious" destination="tvt-8L-t5U" id="6nK-OS-EpE"/>
                         <outlet property="contentView" destination="W9y-m7-a5Q" id="DA8-Qu-SSG"/>
+                        <outlet property="currentTime" destination="H7N-wl-HBQ" id="g5G-qW-7gj"/>
+                        <outlet property="endTime" destination="qbI-wS-h8i" id="SQg-e0-M5h"/>
                         <outlet property="imageCoverArt" destination="Fdf-m6-kcv" id="E7d-fN-RRI"/>
                         <outlet property="labelSongArtist" destination="F9z-L9-b3h" id="fkA-zt-EgV"/>
                         <outlet property="labelSongTitle" destination="B6N-Ob-1UM" id="Hx7-0R-dht"/>
+                        <outlet property="progressSongTime" destination="MKS-15-KGy" id="Bze-8f-99H"/>
+                        <outlet property="progressVolume" destination="q3n-SH-2uo" id="BHe-8T-59D"/>
                         <outlet property="returnButton" destination="LnO-zy-rL4" id="j1a-fN-m58"/>
                         <outlet property="scrollView" destination="BhW-63-8FQ" id="zhc-xY-kUp"/>
                         <outlet property="shadow" destination="dmN-eQ-eZp" id="fe4-gr-iDK"/>
