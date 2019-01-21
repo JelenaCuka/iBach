@@ -34,7 +34,7 @@ class MusicViewController: UIViewController {
         search.searchResultsUpdater = self
         self.navigationItem.searchController = search
         
-        NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: NSNotification.Name(rawValue: "changedSong"), object: nil)//
         
@@ -65,6 +65,9 @@ class MusicViewController: UIViewController {
         
         self.miniPlayerView.addGestureRecognizer(miniPlayerTap)
         self.miniPlayerView.isUserInteractionEnabled = true
+        
+//        self.miniPlayerView.superview?.layoutIfNeeded()
+//        self.miniPlayerView.layoutIfNeeded()
         
         setPlayingIcons()
     }

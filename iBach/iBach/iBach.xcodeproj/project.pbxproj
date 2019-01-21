@@ -55,6 +55,9 @@
 		9CF12FB6219050F500871893 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CF12FB4219050F500871893 /* LaunchScreen.storyboard */; };
 		9CF12FC1219050F500871893 /* iBachTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF12FC0219050F500871893 /* iBachTests.swift */; };
 		9CF12FCC219050F500871893 /* iBachUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF12FCB219050F500871893 /* iBachUITests.swift */; };
+		9D05965521EE1DFD0096DFD0 /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05965421EE1DFD0096DFD0 /* MiniPlayerViewController.swift */; };
+		9D05965721EE2DA80096DFD0 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05965621EE2DA80096DFD0 /* RootView.swift */; };
+		9D05965921EE30180096DFD0 /* RootTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D05965821EE30180096DFD0 /* RootTabBarViewController.swift */; };
 		9D83666B21ED293400A73541 /* LargePlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D83666A21ED293400A73541 /* LargePlayer.storyboard */; };
 		9D83666D21ED2A7F00A73541 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D83666C21ED2A7F00A73541 /* MusicPlayerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -133,6 +136,9 @@
 		9CF12FC7219050F500871893 /* iBachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iBachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CF12FCB219050F500871893 /* iBachUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iBachUITests.swift; sourceTree = "<group>"; };
 		9CF12FCD219050F500871893 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D05965421EE1DFD0096DFD0 /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
+		9D05965621EE2DA80096DFD0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		9D05965821EE30180096DFD0 /* RootTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewController.swift; sourceTree = "<group>"; };
 		9D83666A21ED293400A73541 /* LargePlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LargePlayer.storyboard; sourceTree = "<group>"; };
 		9D83666C21ED2A7F00A73541 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		BD42BC63A36BD04D8C6F6AB4 /* Pods_iBachUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iBachUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,6 +299,8 @@
 				9CF12FB4219050F500871893 /* LaunchScreen.storyboard */,
 				9CF12FB7219050F500871893 /* Info.plist */,
 				9CC91CB32195B76700FE8582 /* Switcher.swift */,
+				9D05965621EE2DA80096DFD0 /* RootView.swift */,
+				9D05965821EE30180096DFD0 /* RootTabBarViewController.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -332,6 +340,7 @@
 				9C23D17D21B984E80047D958 /* MusicPlayer.swift */,
 				9D83666A21ED293400A73541 /* LargePlayer.storyboard */,
 				9D83666C21ED2A7F00A73541 /* MusicPlayerViewController.swift */,
+				9D05965421EE1DFD0096DFD0 /* MiniPlayerViewController.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -676,6 +685,7 @@
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,
+				9D05965921EE30180096DFD0 /* RootTabBarViewController.swift in Sources */,
 				3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */,
 				3433DC3721B2ECCD008EA2AE /* AppLable.swift in Sources */,
 				3433DC3321B2EC5C008EA2AE /* UIWindow.swift in Sources */,
@@ -696,11 +706,13 @@
 				9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */,
 				3433DC2F21B2EBDC008EA2AE /* With.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
+				9D05965721EE2DA80096DFD0 /* RootView.swift in Sources */,
 				3433DC1C21B2D609008EA2AE /* SettingsViewController.swift in Sources */,
 				3433DC2D21B2EBA3008EA2AE /* UITableView.swift in Sources */,
 				9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */,
 				9C5734FD21BB1535002797EB /* Playlist.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
+				9D05965521EE1DFD0096DFD0 /* MiniPlayerViewController.swift in Sources */,
 				933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */,
 				9C9C511821B5C0FD0002ADE2 /* MusicViewController.swift in Sources */,
 				9C23D17B21B94D010047D958 /* LargePlayerViewController.swift in Sources */,

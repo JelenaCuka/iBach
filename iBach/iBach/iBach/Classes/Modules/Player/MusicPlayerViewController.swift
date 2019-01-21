@@ -16,6 +16,13 @@ class MusicPlayerViewController: UIViewController {
     @IBOutlet weak var labelSongTitle: UILabel!
     @IBOutlet weak var labelSongArtist: UILabel!
     @IBOutlet weak var imageCoverArt: UIImageView!
+    @IBOutlet weak var shadow: UIView!
+    @IBOutlet weak var buttonPrevious: UIButton!
+    @IBOutlet weak var buttonPlay: UIButton!
+    @IBOutlet weak var buttonNext: UIButton!
+    
+    
+    @IBOutlet weak var returnButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +50,13 @@ class MusicPlayerViewController: UIViewController {
         
         scrollView.contentInset = scrollViewInsets
     }
+    
+    
+    
+    @IBAction func returnFromLargePlayer(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     
 
