@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var contentView: UIView!
+    @IBOutlet var viewForm: UIView!
     
     @IBOutlet var textFieldUsername: UITextField!
     @IBOutlet var textFieldPassword: UITextField!
@@ -23,6 +24,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.viewForm.layer.cornerRadius = 20
+        
     }
     
     override func viewDidLayoutSubviews() {

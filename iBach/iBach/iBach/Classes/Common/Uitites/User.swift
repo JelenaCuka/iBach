@@ -19,9 +19,9 @@ class User: Unboxable {
     
     required init(unboxer: Unboxer) throws {
         self.id = try unboxer.unbox(key: "id")
-        self.firstName = try unboxer.unbox(key: "first_name")
-        self.lastName = try unboxer.unbox(key: "last_name")
-        self.email = try unboxer.unbox(key: "email")
+        self.firstName = unboxer.unbox(key: "first_name")
+        self.lastName = unboxer.unbox(key: "last_name")
+        self.email = unboxer.unbox(key: "email")
         self.modifiedAt = try unboxer.unbox(key: "modified_at")
         self.username = try unboxer.unbox(key: "username")
         self.password = try unboxer.unbox(key: "password")
