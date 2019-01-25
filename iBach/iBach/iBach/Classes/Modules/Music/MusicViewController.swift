@@ -34,7 +34,7 @@ class MusicViewController: UIViewController {
         search.searchResultsUpdater = self
         self.navigationItem.searchController = search
         
-        NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: NSNotification.Name(rawValue: "changedSong"), object: nil)//
         
@@ -42,9 +42,6 @@ class MusicViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPaused"), object: nil)//
         
-        let storyoard = UIStoryboard(name: "Music", bundle: nil)
-        self.largePlayerViewController = storyoard.instantiateViewController(withIdentifier: "Large Player") as? LargePlayerViewController
-        self.largePlayerViewController.modalPresentationStyle = .fullScreen
     }
     
     @objc func playSongClick(_ sender: Any){
@@ -69,6 +66,9 @@ class MusicViewController: UIViewController {
         self.miniPlayerView.addGestureRecognizer(miniPlayerTap)
         self.miniPlayerView.isUserInteractionEnabled = true
         
+//        self.miniPlayerView.superview?.layoutIfNeeded()
+//        self.miniPlayerView.layoutIfNeeded()
+        
         setPlayingIcons()
     }
     
@@ -84,7 +84,7 @@ class MusicViewController: UIViewController {
     
     func setPlayingIcons() {
         if(MusicPlayer.sharedInstance.isPlaying() ){
-            self.buttonPlay = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(playSongClick) )
+            self.buttonPlay = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.pause, target: self, action: #selector(playSongClick))
         }else{
             self.buttonPlay = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(playSongClick ))
         }
@@ -111,8 +111,16 @@ class MusicViewController: UIViewController {
     }
     
     @objc func openLargePlayer(_ sender: UITapGestureRecognizer) {
-       NotificationCenter.default.post(name: .displayLargePlayer, object: nil)
-        self.present(largePlayerViewController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "LargePlayer", bundle: nil)
+        let playerVC = storyboard.instantiateViewController(withIdentifier: "Player") as! MusicPlayerViewController
+        
+        self.present(playerVC, animated: true, completion: nil)
+        playerVC.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
+        playerVC.labelSongArtist.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
+        if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl ) {
+            playerVC.imageCoverArt.af_setImage(withURL: imageURL)
+        }
+        //playerVC.loadData();
         
     }
     
