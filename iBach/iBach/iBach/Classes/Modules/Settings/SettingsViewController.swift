@@ -11,11 +11,13 @@ import UIKit
 enum DataSourceType: String {
     case musicMix = "Music mix"
     case bilokojiDrugi = "Nesto drugo" // TODO: NAĐI NEKI DRUGI SOURCE ZA LYRICSE
+    case myLyrics = "Eto"
 }
+
 class SettingsViewController: UITableViewController, UITextFieldDelegate{
     
     let myPickerData = ["Light Theme","Dark Theme","Blue Theme"]
-    let songDetailData: [DataSourceType] = [.musicMix, .bilokojiDrugi]
+    let songDetailData: [DataSourceType] = [.musicMix, .bilokojiDrugi, .myLyrics]
     
     @IBOutlet weak var themeTextField: UITextField!
     @IBOutlet weak var songDetailTextField: UITextField!

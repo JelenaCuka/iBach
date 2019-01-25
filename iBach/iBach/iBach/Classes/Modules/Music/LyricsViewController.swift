@@ -37,8 +37,9 @@ class LyricsViewController: UIViewController {
     }
     
     private func _showCurrentPlayingSongLyrics() {
-        guard let datasourceRawValue: String = UserDefaults.standard.string(forKey: "songDataSource") else { return }
-        guard let selectedDatasourceType = DataSourceType(rawValue: datasourceRawValue) else { return }
+        let datasourceRawValue: String = UserDefaults.standard.string(forKey: "songDataSource") ?? ""
+        let defaultDatasource: DataSourceType = .musicMix
+        let selectedDatasourceType: DataSourceType = DataSourceType(rawValue: datasourceRawValue) ?? defaultDatasource
         guard let currentSong = MusicPlayer.sharedInstance.currentSong else { return } //hendlajte logiku ak nema pjesme
         
         var datasource: SongDetailDatasource
@@ -47,6 +48,8 @@ class LyricsViewController: UIViewController {
             datasource = MusicMatchSongDetailsDataSource()
         case .bilokojiDrugi:
             datasource = MusicMatchSongDetailsDataSource() // TODO: dok dodamo novi datasource promjeni klasu
+        case .myLyrics:
+            datasource = MusicMatchSongDetailsDataSource()
         }
         
         datasource.getLyrics(withSongTitle: currentSong.title,
