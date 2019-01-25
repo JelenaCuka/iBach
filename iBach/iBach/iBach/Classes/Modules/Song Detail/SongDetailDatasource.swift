@@ -10,9 +10,9 @@ import Foundation
 
 protocol SongDetailDatasource {
     
-    var apiKey: String { get }
-    var baseURL: URL { get }
+//    var apiKey: String { get }
+//    var baseURL: String { get }
     
-    func getSongDetails(with name: String, artist: String, album: String)
-    func getLyrics(for song: String, artist: String)
+    //func getSongDetails()
+    func getLyrics(withSongTitle songTitle: String, author: String, onSuccess: @escaping (String) -> Void, onFailure: @escaping (Error) -> Void)
 }

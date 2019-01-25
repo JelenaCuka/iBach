@@ -8,31 +8,42 @@
 
 import Foundation
 import Alamofire
+import Unbox
 
-//class MusicMatchSongDetailsDataSource: SongDetailDatasource {
-//
-//    var apiKey: String! {
-//        return "api-key"
-//    }
-//
-//    var baseURL: URL! {
-//        return URL(string: "https://www.google.com")!
-//    }
+class MusicMatchSongDetailsDataSource: SongDetailDatasource {
 
-//    func getSongDetails(with name: String, artist: String, album: String, completion: ) {
-//        Alamofire.request(baseURL.appendPathComponent("/songDetails/"))
-//            .responseJSON({})
-//    }
-//
-//    func getLyrics(for song: String, artist: String) {
-//        <#code#>
+ 
+    var apiKey: String = "6083dead0acf13220fece4c4bef05cfb"
+    var baseURL: String = "https://api.musixmatch.com/ws/1.1"
     
-//        let datasource: SongDetailDatasource
-//        if "source" == "MusicMatch" {
-//            datasource = MusicMatchSongDetailsDataSource()
-//        } else {
-//            datasource = DiscogsSongDetailsDatasource()
-//        }
-//        datasource.
-//    }
-//}
+    func getLyrics(withSongTitle songTitle: String, author: String, onSuccess: @escaping (String) -> Void, onFailure: @escaping (Error) -> Void) {
+        let urlStr = "\(baseURL)/matcher.lyrics.get?q_track=\(songTitle)&q_artist=\(author)&apikey=\(apiKey)"
+        guard
+            let urlString = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: urlString)
+        else { // URL is invalid
+             //Handle this case separatelz
+            return
+        }
+            
+        Alamofire.request(url, method:.get, parameters: nil, encoding: JSONEncoding.default, headers: [:]).responseJSON { response in
+            switch response.result {
+            case .success(let responseJSON):
+                do {
+                    let json = responseJSON as? [String: Any]
+                    let unboxer = try Unboxer(dictionary: json!)
+                    let lyrics: String = try unboxer.unbox(keyPath: "message.body.lyrics.lyrics_body", allowInvalidElements: false)
+                    
+                    onSuccess(lyrics)
+                } catch {
+                    onFailure(error)
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+}
+

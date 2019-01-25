@@ -9,6 +9,18 @@
 import Foundation
 
 //class DiscogsSongDetailsDatasource: SongDetailDatasource {
+//    var apiKey: String = ""
+//    
+//    var baseURL: String = ""
+//    
+//    func getSongDetails(with name: String, album: String) {
+//        <#code#>
+//    }
+//    
+//    func getLyrics(for song: String, artist: String) {
+//        <#code#>
+//    }
+//    
 //    
 //    
 //}

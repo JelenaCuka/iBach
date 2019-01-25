@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         default: theme = LightTheme()
         }
         theme.apply(for: application)
+        
         return true
     }
     

@@ -8,10 +8,14 @@
 
 import UIKit
 
+enum DataSourceType: String {
+    case musicMix = "Music mix"
+    case bilokojiDrugi = "Nesto drugo" // TODO: NAĐI NEKI DRUGI SOURCE ZA LYRICSE
+}
 class SettingsViewController: UITableViewController, UITextFieldDelegate{
     
     let myPickerData = ["Light Theme","Dark Theme","Blue Theme"]
-    let songDetailData = ["musicmix"]
+    let songDetailData: [DataSourceType] = [.musicMix, .bilokojiDrugi]
     
     @IBOutlet weak var themeTextField: UITextField!
     @IBOutlet weak var songDetailTextField: UITextField!
@@ -48,21 +52,48 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1 {
-            return songDetailData[row]
+            return songDetailData[row].rawValue
+        } else {
+            return myPickerData[row]
         }
-        return myPickerData[row]
+    }
+    
+    private func _show(lyrics: String) {
+        print(lyrics)
+    }
+    
+    private func _showLyricsFetching(error: Error) {
+        print(error.localizedDescription)
+    }
+
+    private func _showCurrentPlayingSongLyrics(selectedRow: Int) {
+        guard let currentSong = MusicPlayer.sharedInstance.currentSong else { return } //hendlajte logiku ak nema pjesme
+        
+        let selectedDatasourceType = songDetailData[selectedRow]
+        
+        var datasource: SongDetailDatasource
+        switch selectedDatasourceType {
+        case .musicMix:
+            datasource = MusicMatchSongDetailsDataSource()
+        case .bilokojiDrugi:
+            datasource = MusicMatchSongDetailsDataSource() // TODO: dok dodamo novi datasource promjeni klasu
+        }
+        
+        datasource.getLyrics(withSongTitle: currentSong.title,
+                             author: currentSong.author,
+                             onSuccess: { (lyrics) in self._show(lyrics: lyrics) },
+                             onFailure: {(error) in self._showLyricsFetching(error: error)})
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
         
         if pickerView.tag == 1 {
-            print("works")
-            songDetailTextField.text = songDetailData[row]
+            _showCurrentPlayingSongLyrics(selectedRow: row)
         }
         
         
         let theme: Theme
-        
+
         switch row {
         case 1: theme = DarkTheme()
         case 2: theme = BlueTheme()
@@ -70,17 +101,32 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         themeTextField.text = myPickerData[row]
         self.view.endEditing(true)
-        
+
         UserDefaults.standard.set(Int(row), forKey: "theme")
-        
+
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
             theme.apply(for: UIApplication.shared)
         }
+        
     }
+    
+//    public func changeThemes(){
+//
+//        let themeRow = UserDefaults.standard.integer(forKey: "theme")
+//        let theme: Theme
+//        switch themeRow {
+//        case 1: theme = DarkTheme()
+//        case 2: theme = BlueTheme()
+//        default: theme = LightTheme()
+//
+//        }
+//
+//        UserDefaults.standard.set(Int(themeRow), forKey: "theme")
+//
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
+//            theme.apply(for: UIApplication.shared)
+//        }
+//    }
+    
 }
-
-
-
-
-
 
