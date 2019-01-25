@@ -24,11 +24,10 @@ class MusicPlayer {
     
     //let changeSong = Notification.Name("changeSong")
     
-    /*var currentSong: Song? {
-     get {
-     return (currentSongIndex < 0 || currentSongIndex >= songData.count) ? nil : songData[currentSongIndex]
-     }
-     }*/
+    var currentSong: Song? {
+        guard currentSongIndex > -1, currentSongIndex < songData.count else { return nil }
+        return songData[currentSongIndex]
+    }
     
     private init() {
         //playback

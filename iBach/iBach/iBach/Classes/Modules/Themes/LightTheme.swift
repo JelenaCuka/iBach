@@ -18,6 +18,10 @@ struct LightTheme: Theme {
     let labelColor: UIColor = .black
     let secondaryLabelColor: UIColor = .darkGray
     let subtleLabelColor: UIColor = .lightGray
+    let textFieldColor: UIColor = .black
+    let buttonColor: UIColor = UIColor(red: 83/255, green: 47/255, blue: 189/255, alpha: 1)
+    let textView: UIColor = .black
+    
     
     let barStyle: UIBarStyle = .default
 }

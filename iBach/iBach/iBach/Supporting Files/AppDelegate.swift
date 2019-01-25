@@ -11,14 +11,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let theme = LightTheme()
     var window: UIWindow?
     
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Switcher.updateRootViewController()
-        //theme.apply(for: application)
+        
+        
+        let themeRow = UserDefaults.standard.integer(forKey: "theme")
+        let theme = ThemeSwitcher().switchThemes(row:themeRow)
+        theme.apply(for: application)
+        
         return true
     }
     

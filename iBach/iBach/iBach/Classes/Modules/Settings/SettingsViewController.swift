@@ -8,29 +8,87 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController{
+enum DataSourceType: String {
+    case musicxmatch = "Musicxmatch"
+    case bilokojiDrugi = "Nesto drugo" // TODO: NAĐI NEKI DRUGI SOURCE ZA LYRICSE
+    case myLyrics = "Nesto trece"
+}
+
+enum AvailableThemes: String{
+    case lightTheme = "Light Theme"
+    case darkTheme = "Dark Theme"
+    case blueTheme = "Blue Theme"
+}
+
+class SettingsViewController: UITableViewController, UITextFieldDelegate{
+    
+    let themePickerData: [AvailableThemes] = [.lightTheme, .darkTheme, .blueTheme]
+    let songDetailData: [DataSourceType] = [.musicxmatch, .bilokojiDrugi, .myLyrics]
+    
+    @IBOutlet weak var themeTextField: UITextField!
+    @IBOutlet weak var songDetailTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-   
         
-    @IBAction func themeSegmentedControllChanged(_ sender: UISegmentedControl) {
         
-        let theme: Theme
+        let themePicker = UIPickerView()
+        let songDetailPicker = UIPickerView()
+        themeTextField.inputView = themePicker
+        songDetailTextField.inputView = songDetailPicker
+        songDetailTextField.inputView?.tag = 1
+        themePicker.delegate = self
+        songDetailPicker.delegate = self
         
-        switch sender.selectedSegmentIndex {
-        case 1: theme = DarkTheme()
-        //case 2: theme = OceanTheme()
-        default: theme = LightTheme()
-        }
+        let themeRow = UserDefaults.standard.integer(forKey: "theme")
+        themeTextField.text = themePickerData[themeRow].rawValue
         
-        theme.apply(for: UIApplication.shared)
+        let defaultDatasourceText = DataSourceType.musicxmatch.rawValue
+        songDetailTextField.text = UserDefaults.standard.string(forKey: "songDatasource") ?? defaultDatasourceText
     }
 }
-    
-    
-        
-       
 
+extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == 1{
+            return songDetailData.count
+        }
+        return themePickerData.count
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 1 {
+            return songDetailData[row].rawValue
+        } else {
+            return themePickerData[row].rawValue
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
+        
+        if pickerView.tag == 1 {
+            let selectedDatasourceType = songDetailData[row]
+            UserDefaults.standard.set(selectedDatasourceType.rawValue, forKey: "songDataSource")
+            songDetailTextField.text = selectedDatasourceType.rawValue
+        } else {
+
+            let theme = ThemeSwitcher().switchThemes(row: row)
+            themeTextField.text = themePickerData[row].rawValue
+            
+            UserDefaults.standard.set(Int(row), forKey: "theme")
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
+                theme.apply(for: UIApplication.shared)
+            }
+        }
+         self.view.endEditing(true)
+        
+    }
+    
+}
 

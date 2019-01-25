@@ -20,9 +20,13 @@ protocol Theme {
     var subtleLabelColor: UIColor { get }
     
     var barStyle: UIBarStyle { get }
+    var textFieldColor: UIColor {get}
+    var buttonColor: UIColor{get}
+    var textView: UIColor{get}
+    
     
     func apply(for application: UIApplication)
-    func extend()
+    
 }
 
 extension Theme {
@@ -41,18 +45,11 @@ extension Theme {
             $0.titleTextAttributes = [
                 .foregroundColor: labelColor
             ]
-            
-            if #available(iOS 12.0, *) {
-                $0.largeTitleTextAttributes = [
-                    .foregroundColor: labelColor
-                ]
-            }
         }
         
         UILabel.appearance().textColor = labelColor
+        UITextField.appearance().textColor = textFieldColor
         
-        
-        UICollectionView.appearance().backgroundColor = backgroundColor
         
         UITableView.appearance().with {
             $0.backgroundColor = backgroundColor
@@ -65,38 +62,32 @@ extension Theme {
         }
         
         UIView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-            .backgroundColor = selectionColor
+            .backgroundColor = backgroundColor
         
         UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
             .textColor = labelColor
         
+        UITextView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
+            .textColor = labelColor
         
         
+        
+        AppTextView.appearance().textColor = textView
         AppLabel.appearance().textColor = labelColor
         AppSubhead.appearance().textColor = secondaryLabelColor
         AppFootnote.appearance().textColor = subtleLabelColor
         
         AppButton.appearance().with {
-            $0.setTitleColor(tint, for: .normal)
-            $0.borderColor = tint
-            $0.borderWidth = 1
-            $0.cornerRadius = 3
+            $0.setTitleColor(buttonColor, for: .normal)
+            
         }
         
         AppDangerButton.appearance().with {
             $0.setTitleColor(backgroundColor, for: .normal)
             $0.backgroundColor = tint
-            $0.cornerRadius = 3
+            
         }
         
-        AppSwitch.appearance().with {
-            $0.tintColor = tint
-            $0.onTintColor = tint
-        }
-        
-        
-        
-        AppSegmentedControl.appearance().tintColor = tint
         
         AppView.appearance().backgroundColor = backgroundColor
         
@@ -104,6 +95,8 @@ extension Theme {
             $0.backgroundColor = separatorColor
             $0.alpha = 0.5
         }
+        
+        AppStackView.appearance().backgroundColor = backgroundColor
         
         AppView.appearance(whenContainedInInstancesOf: [AppView.self]).with {
             $0.backgroundColor = selectionColor
@@ -126,14 +119,10 @@ extension Theme {
             $0.backgroundColor = labelColor
         }
         
-        extend()
+        
         
         // Ensure existing views render with new theme
         // https://developer.apple.com/documentation/uikit/uiappearance
         application.windows.reload()
-    }
-    
-    func extend() {
-        // Optionally extend theme
     }
 }
