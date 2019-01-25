@@ -101,6 +101,10 @@ class LargePlayerViewController: UIViewController {
             loadData()
         }
     }
+
+    @IBAction func lyricsButtonTapHandler(_ sender: Any) {
+       
+    }
     
     @objc func changePlayPauseIcon(notification: NSNotification) {
         changePlayPauseIcon()

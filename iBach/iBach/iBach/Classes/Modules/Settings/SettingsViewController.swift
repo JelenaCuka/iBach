@@ -58,54 +58,27 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
-    private func _show(lyrics: String) {
-        print(lyrics)
-    }
-    
-    private func _showLyricsFetching(error: Error) {
-        print(error.localizedDescription)
-    }
-
-    private func _showCurrentPlayingSongLyrics(selectedRow: Int) {
-        guard let currentSong = MusicPlayer.sharedInstance.currentSong else { return } //hendlajte logiku ak nema pjesme
-        
-        let selectedDatasourceType = songDetailData[selectedRow]
-        
-        var datasource: SongDetailDatasource
-        switch selectedDatasourceType {
-        case .musicMix:
-            datasource = MusicMatchSongDetailsDataSource()
-        case .bilokojiDrugi:
-            datasource = MusicMatchSongDetailsDataSource() // TODO: dok dodamo novi datasource promjeni klasu
-        }
-        
-        datasource.getLyrics(withSongTitle: currentSong.title,
-                             author: currentSong.author,
-                             onSuccess: { (lyrics) in self._show(lyrics: lyrics) },
-                             onFailure: {(error) in self._showLyricsFetching(error: error)})
-    }
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
         
         if pickerView.tag == 1 {
-            _showCurrentPlayingSongLyrics(selectedRow: row)
-        }
-        
-        
-        let theme: Theme
-
-        switch row {
-        case 1: theme = DarkTheme()
-        case 2: theme = BlueTheme()
-        default: theme = LightTheme()
-        }
-        themeTextField.text = myPickerData[row]
-        self.view.endEditing(true)
-
-        UserDefaults.standard.set(Int(row), forKey: "theme")
-
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
-            theme.apply(for: UIApplication.shared)
+            let selectedDatasourceType = songDetailData[row]
+            UserDefaults.standard.set(selectedDatasourceType.rawValue, forKey: "songDataSource")
+        } else {
+            let theme: Theme
+            
+            switch row {
+            case 1: theme = DarkTheme()
+            case 2: theme = BlueTheme()
+            default: theme = LightTheme()
+            }
+            themeTextField.text = myPickerData[row]
+            self.view.endEditing(true)
+            
+            UserDefaults.standard.set(Int(row), forKey: "theme")
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
+                theme.apply(for: UIApplication.shared)
+            }
         }
         
     }

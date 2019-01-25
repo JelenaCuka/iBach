@@ -33,8 +33,8 @@ class MusicMatchSongDetailsDataSource: SongDetailDatasource {
                     let json = responseJSON as? [String: Any]
                     let unboxer = try Unboxer(dictionary: json!)
                     let lyrics: String = try unboxer.unbox(keyPath: "message.body.lyrics.lyrics_body", allowInvalidElements: false)
-                    
-                    onSuccess(lyrics)
+                    let lyricsSplitted = lyrics.components(separatedBy: "...").first ?? "No content..."
+                    onSuccess(lyricsSplitted)
                 } catch {
                     onFailure(error)
                 }
