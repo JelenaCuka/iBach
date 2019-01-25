@@ -21,6 +21,7 @@ struct BlueTheme: Theme {
     var subtleLabelColor: UIColor = .lightGray
     let textFieldColor: UIColor = .white
     let buttonColor: UIColor = .blue
+    let textView: UIColor = .black
     
     
     let barStyle: UIBarStyle = .default

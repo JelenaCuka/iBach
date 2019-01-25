@@ -22,6 +22,7 @@ protocol Theme {
     var barStyle: UIBarStyle { get }
     var textFieldColor: UIColor {get}
     var buttonColor: UIColor{get}
+    var textView: UIColor{get}
     
     
     func apply(for application: UIApplication)
@@ -44,12 +45,6 @@ extension Theme {
             $0.titleTextAttributes = [
                 .foregroundColor: labelColor
             ]
-            
-            /*if #available(iOS 11.0, *) {
-             $0.largeTitleTextAttributes = [
-             .foregroundColor: labelColor
-             ]
-             }*/
         }
         
         UILabel.appearance().textColor = labelColor
@@ -72,8 +67,12 @@ extension Theme {
         UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
             .textColor = labelColor
         
+        UITextView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
+            .textColor = labelColor
         
         
+        
+        AppTextView.appearance().textColor = textView
         AppLabel.appearance().textColor = labelColor
         AppSubhead.appearance().textColor = secondaryLabelColor
         AppFootnote.appearance().textColor = subtleLabelColor
@@ -96,6 +95,8 @@ extension Theme {
             $0.backgroundColor = separatorColor
             $0.alpha = 0.5
         }
+        
+        AppStackView.appearance().backgroundColor = backgroundColor
         
         AppView.appearance(whenContainedInInstancesOf: [AppView.self]).with {
             $0.backgroundColor = selectionColor

@@ -38,13 +38,13 @@ class LyricsViewController: UIViewController {
     
     private func _showCurrentPlayingSongLyrics() {
         let datasourceRawValue: String = UserDefaults.standard.string(forKey: "songDataSource") ?? ""
-        let defaultDatasource: DataSourceType = .musicMix
+        let defaultDatasource: DataSourceType = .musicxmatch
         let selectedDatasourceType: DataSourceType = DataSourceType(rawValue: datasourceRawValue) ?? defaultDatasource
         guard let currentSong = MusicPlayer.sharedInstance.currentSong else { return } //hendlajte logiku ak nema pjesme
         
         var datasource: SongDetailDatasource
         switch selectedDatasourceType {
-        case .musicMix:
+        case .musicxmatch:
             datasource = MusicMatchSongDetailsDataSource()
         case .bilokojiDrugi:
             datasource = MusicMatchSongDetailsDataSource() // TODO: dok dodamo novi datasource promjeni klasu

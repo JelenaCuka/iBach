@@ -20,6 +20,7 @@ struct DarkTheme: Theme {
     let secondaryLabelColor: UIColor = .lightGray
     let subtleLabelColor: UIColor = .lightGray
     let buttonColor: UIColor = UIColor(red: 83/255, green: 47/255, blue: 189/255, alpha: 1)
+    let textView: UIColor = .white
     
     
     let barStyle: UIBarStyle = .black

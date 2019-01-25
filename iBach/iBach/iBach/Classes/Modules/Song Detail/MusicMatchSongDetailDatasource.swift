@@ -21,7 +21,7 @@ class MusicMatchSongDetailsDataSource: SongDetailDatasource {
         guard
             let urlString = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: urlString)
-        else { // URL is invalid
+        else { print("Invalid url")
              //Handle this case separatelz
             return
         }

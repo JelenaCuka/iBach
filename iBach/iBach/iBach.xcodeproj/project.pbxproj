@@ -20,16 +20,13 @@
 		3433DC3321B2EC5C008EA2AE /* UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3221B2EC5C008EA2AE /* UIWindow.swift */; };
 		3433DC3521B2ECB3008EA2AE /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3421B2ECB3008EA2AE /* AppButton.swift */; };
 		3433DC3721B2ECCD008EA2AE /* AppLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3621B2ECCD008EA2AE /* AppLable.swift */; };
-		3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3821B2ECE1008EA2AE /* AppSegmentControll.swift */; };
-		3433DC3B21B2ED2D008EA2AE /* AppSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3A21B2ED2D008EA2AE /* AppSwitch.swift */; };
 		3433DC3D21B2ED3F008EA2AE /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3C21B2ED3F008EA2AE /* AppView.swift */; };
 		3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC4021B2F405008EA2AE /* LightTheme.swift */; };
 		3491816B21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491816A21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift */; };
-		3491816D21EE3F2A008E679C /* DiscogsSongDetailsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491816C21EE3F2A008E679C /* DiscogsSongDetailsDatasource.swift */; };
 		349A1CFC21FB60D400869A13 /* LyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A1CFB21FB60D400869A13 /* LyricsViewController.swift */; };
-		34C564F921F8705400185344 /* Lyrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C564F821F8705400185344 /* Lyrics.swift */; };
+		34A68C1221FBB517003270CA /* AppTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68C1121FBB517003270CA /* AppTextView.swift */; };
+		34A68C1421FBBAD2003270CA /* ThemeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */; };
 		34D748F621F7330000B26D3A /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D748F521F7330000B26D3A /* Artist.swift */; };
-		34D748F821F73A0000B26D3A /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D748F721F73A0000B26D3A /* Album.swift */; };
 		376D67662836F202ED134424 /* Pods_iBach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF1E8AE6D0B501D0529BD7 /* Pods_iBach.framework */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */; };
@@ -97,16 +94,13 @@
 		3433DC3221B2EC5C008EA2AE /* UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindow.swift; sourceTree = "<group>"; };
 		3433DC3421B2ECB3008EA2AE /* AppButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
 		3433DC3621B2ECCD008EA2AE /* AppLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLable.swift; sourceTree = "<group>"; };
-		3433DC3821B2ECE1008EA2AE /* AppSegmentControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSegmentControll.swift; sourceTree = "<group>"; };
-		3433DC3A21B2ED2D008EA2AE /* AppSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitch.swift; sourceTree = "<group>"; };
 		3433DC3C21B2ED3F008EA2AE /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		3433DC4021B2F405008EA2AE /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		3491816A21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMatchSongDetailDatasource.swift; sourceTree = "<group>"; };
-		3491816C21EE3F2A008E679C /* DiscogsSongDetailsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsSongDetailsDatasource.swift; sourceTree = "<group>"; };
 		349A1CFB21FB60D400869A13 /* LyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsViewController.swift; sourceTree = "<group>"; };
-		34C564F821F8705400185344 /* Lyrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lyrics.swift; sourceTree = "<group>"; };
+		34A68C1121FBB517003270CA /* AppTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextView.swift; sourceTree = "<group>"; };
+		34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcher.swift; sourceTree = "<group>"; };
 		34D748F521F7330000B26D3A /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
-		34D748F721F73A0000B26D3A /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		917766B6C3AF7B5ED1697F56 /* Pods-iBach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.release.xcconfig"; sourceTree = "<group>"; };
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +180,6 @@
 			children = (
 				34250FFD21ED218A008CB7FD /* SongDetailDatasource.swift */,
 				3491816A21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift */,
-				3491816C21EE3F2A008E679C /* DiscogsSongDetailsDatasource.swift */,
 			);
 			path = "Song Detail";
 			sourceTree = "<group>";
@@ -209,6 +202,7 @@
 				3433DC2A21B2E8B8008EA2AE /* DarkTheme.swift */,
 				3433DC4021B2F405008EA2AE /* LightTheme.swift */,
 				34250FFF21ED2B31008CB7FD /* BlueTheme.swift */,
+				34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -218,9 +212,8 @@
 			children = (
 				3433DC3421B2ECB3008EA2AE /* AppButton.swift */,
 				3433DC3621B2ECCD008EA2AE /* AppLable.swift */,
-				3433DC3821B2ECE1008EA2AE /* AppSegmentControll.swift */,
-				3433DC3A21B2ED2D008EA2AE /* AppSwitch.swift */,
 				3433DC3C21B2ED3F008EA2AE /* AppView.swift */,
+				34A68C1121FBB517003270CA /* AppTextView.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -305,8 +298,6 @@
 				9C0CC19421B2F98F005DEFB0 /* Song.swift */,
 				9C5734FC21BB1535002797EB /* Playlist.swift */,
 				34D748F521F7330000B26D3A /* Artist.swift */,
-				34D748F721F73A0000B26D3A /* Album.swift */,
-				34C564F821F8705400185344 /* Lyrics.swift */,
 			);
 			path = Uitites;
 			sourceTree = "<group>";
@@ -697,7 +688,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */,
 				3491816B21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
@@ -706,14 +696,12 @@
 				34D748F621F7330000B26D3A /* Artist.swift in Sources */,
 				3433DC3721B2ECCD008EA2AE /* AppLable.swift in Sources */,
 				3433DC3321B2EC5C008EA2AE /* UIWindow.swift in Sources */,
-				3433DC3B21B2ED2D008EA2AE /* AppSwitch.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C0CC19521B2F98F005DEFB0 /* Song.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
 				9C5734FB21BB14AD002797EB /* PlaylistsTableViewCell.swift in Sources */,
-				34D748F821F73A0000B26D3A /* Album.swift in Sources */,
 				9CA6972D21B9AC32003BF5A3 /* FavoritesTableViewController.swift in Sources */,
 				34250FFE21ED218A008CB7FD /* SongDetailDatasource.swift in Sources */,
 				9CA6972B21B9AB71003BF5A3 /* FavoriteSongTableViewCell.swift in Sources */,
@@ -729,8 +717,10 @@
 				3425100021ED2B31008CB7FD /* BlueTheme.swift in Sources */,
 				9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */,
 				9C5734FD21BB1535002797EB /* Playlist.swift in Sources */,
+				34A68C1421FBBAD2003270CA /* ThemeSwitcher.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
 				933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */,
+				34A68C1221FBB517003270CA /* AppTextView.swift in Sources */,
 				9C9C511821B5C0FD0002ADE2 /* MusicViewController.swift in Sources */,
 				9C23D17B21B94D010047D958 /* LargePlayerViewController.swift in Sources */,
 				349A1CFC21FB60D400869A13 /* LyricsViewController.swift in Sources */,
@@ -738,8 +728,6 @@
 				3433DC3D21B2ED3F008EA2AE /* AppView.swift in Sources */,
 				9C5734F921BB149B002797EB /* PlaylistsTableViewController.swift in Sources */,
 				3433DC3121B2EC3B008EA2AE /* UIView.swift in Sources */,
-				3491816D21EE3F2A008E679C /* DiscogsSongDetailsDatasource.swift in Sources */,
-				34C564F921F8705400185344 /* Lyrics.swift in Sources */,
 				3433DC3521B2ECB3008EA2AE /* AppButton.swift in Sources */,
 				9CA8AE4C21B2DF0500E62A5A /* TrackTableViewCell.swift in Sources */,
 			);

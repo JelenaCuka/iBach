@@ -9,15 +9,21 @@
 import UIKit
 
 enum DataSourceType: String {
-    case musicMix = "Music mix"
+    case musicxmatch = "Musicxmatch"
     case bilokojiDrugi = "Nesto drugo" // TODO: NAĐI NEKI DRUGI SOURCE ZA LYRICSE
-    case myLyrics = "Eto"
+    case myLyrics = "Nesto trece"
+}
+
+enum AvailableThemes: String{
+    case lightTheme = "Light Theme"
+    case darkTheme = "Dark Theme"
+    case blueTheme = "Blue Theme"
 }
 
 class SettingsViewController: UITableViewController, UITextFieldDelegate{
     
-    let myPickerData = ["Light Theme","Dark Theme","Blue Theme"]
-    let songDetailData: [DataSourceType] = [.musicMix, .bilokojiDrugi, .myLyrics]
+    let themePickerData: [AvailableThemes] = [.lightTheme, .darkTheme, .blueTheme]
+    let songDetailData: [DataSourceType] = [.musicxmatch, .bilokojiDrugi, .myLyrics]
     
     @IBOutlet weak var themeTextField: UITextField!
     @IBOutlet weak var songDetailTextField: UITextField!
@@ -35,7 +41,10 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate{
         songDetailPicker.delegate = self
         
         let themeRow = UserDefaults.standard.integer(forKey: "theme")
-        themeTextField.text = myPickerData[themeRow]
+        themeTextField.text = themePickerData[themeRow].rawValue
+        
+        let defaultDatasourceText = DataSourceType.musicxmatch.rawValue
+        songDetailTextField.text = UserDefaults.standard.string(forKey: "songDatasource") ?? defaultDatasourceText
     }
 }
 
@@ -48,7 +57,7 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         if pickerView.tag == 1{
             return songDetailData.count
         }
-        return myPickerData.count
+        return themePickerData.count
         
     }
     
@@ -56,7 +65,7 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         if pickerView.tag == 1 {
             return songDetailData[row].rawValue
         } else {
-            return myPickerData[row]
+            return themePickerData[row].rawValue
         }
     }
     
@@ -65,16 +74,11 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         if pickerView.tag == 1 {
             let selectedDatasourceType = songDetailData[row]
             UserDefaults.standard.set(selectedDatasourceType.rawValue, forKey: "songDataSource")
+            songDetailTextField.text = selectedDatasourceType.rawValue
         } else {
-            let theme: Theme
-            
-            switch row {
-            case 1: theme = DarkTheme()
-            case 2: theme = BlueTheme()
-            default: theme = LightTheme()
-            }
-            themeTextField.text = myPickerData[row]
-            self.view.endEditing(true)
+
+            let theme = ThemeSwitcher().switchThemes(row: row)
+            themeTextField.text = themePickerData[row].rawValue
             
             UserDefaults.standard.set(Int(row), forKey: "theme")
             
@@ -82,26 +86,9 @@ extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
                 theme.apply(for: UIApplication.shared)
             }
         }
+         self.view.endEditing(true)
         
     }
-    
-//    public func changeThemes(){
-//
-//        let themeRow = UserDefaults.standard.integer(forKey: "theme")
-//        let theme: Theme
-//        switch themeRow {
-//        case 1: theme = DarkTheme()
-//        case 2: theme = BlueTheme()
-//        default: theme = LightTheme()
-//
-//        }
-//
-//        UserDefaults.standard.set(Int(themeRow), forKey: "theme")
-//
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(0.5)) {
-//            theme.apply(for: UIApplication.shared)
-//        }
-//    }
     
 }
 

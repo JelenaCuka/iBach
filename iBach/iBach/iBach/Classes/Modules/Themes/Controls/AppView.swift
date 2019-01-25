@@ -15,3 +15,7 @@ class AppView: UIView {
 class AppSeparator: UIView {
     
 }
+
+class AppStackView: UIStackView {
+    
+}
