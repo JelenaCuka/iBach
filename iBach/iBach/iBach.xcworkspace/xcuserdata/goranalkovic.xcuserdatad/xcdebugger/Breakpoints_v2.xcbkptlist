@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBach/Classes/Modules/Playlists/PlaylistsTableViewController.swift"
-            timestampString = "570221753.666217"
+            timestampString = "570224154.774218"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "12"
@@ -133,11 +133,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBach/Classes/Modules/Playlists/PlaylistDetailsTableViewController.swift"
-            timestampString = "570221753.666353"
+            timestampString = "570224154.774664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "loadData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -149,27 +149,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBach/Classes/Modules/Playlists/PlaylistDetailsTableViewController.swift"
-            timestampString = "570221753.667307"
+            timestampString = "570224154.77669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "loadData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iBach/Classes/Modules/Playlists/PlaylistDetailsTableViewController.swift"
-            timestampString = "570221753.667967"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -291,11 +275,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBach/Classes/Modules/Playlists/PlaylistDetailsTableViewController.swift"
-            timestampString = "570221753.668699"
+            timestampString = "570224154.7781579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -307,11 +291,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBach/Classes/Modules/Playlists/PlaylistDetailsTableViewController.swift"
-            timestampString = "570221753.669253"
+            timestampString = "570224154.779599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -323,11 +307,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iBach/Classes/Modules/Playlists/PlaylistDetailsTableViewController.swift"
-            timestampString = "570221753.669816"
+            timestampString = "570224154.780567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -36,7 +36,25 @@ class PlaylistDetailsTableViewController: UITableViewController {
     }
     
     @objc private func editPlaylist() {
-        print("edit")
+        let alert =  UIAlertController(title: "Rename playlist", message:"Enter a new name", cancelButtonTitle: "Cancel", okButtonTitle: "Rename", validate: TextValidationRule.nonEmpty, onCompletion: commitNewName)
+        self.present(alert, animated: true)
+    }
+    
+    func commitNewName(_ result:UIAlertController.TextInputResult) {
+        switch result
+        {
+        case .ok(let newName):
+        
+            DispatchQueue.main.async {
+                let parameters = ["update": 1, "id" : self.playlistId, "name": newName] as [String : Any]
+                
+                Alamofire.request("https://botticelliproject.com/air/api/playlists/update.php", method: .post, parameters: parameters)
+                
+                self.navigationItem.title = newName
+            }
+            
+        default: break
+        }
     }
     
     @objc private func deletePlaylist() {
