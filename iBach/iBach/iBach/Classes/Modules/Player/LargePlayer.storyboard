@@ -121,14 +121,6 @@
                                                     <action selector="changeVolume:" destination="Tza-Tl-667" eventType="valueChanged" id="KBr-ym-Hy1"/>
                                                 </connections>
                                             </slider>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RK-WD-iqw" userLabel="Lyrics" customClass="AppButton" customModule="iBach" customModuleProvider="target">
-                                                <rect key="frame" x="313" y="28" width="62" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Lyrics"/>
-                                                <connections>
-                                                    <segue destination="7Lm-rh-gYp" kind="presentation" id="oga-TL-Yfv"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
