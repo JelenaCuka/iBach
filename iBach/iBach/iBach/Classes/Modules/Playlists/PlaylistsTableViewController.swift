@@ -20,13 +20,21 @@ class PlaylistsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         
-        loadData()
+        //loadData()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        playlistData.removeAll()
+        filteredPlaylist.removeAll()
+        loadData()
     }
     
     private func loadData() {

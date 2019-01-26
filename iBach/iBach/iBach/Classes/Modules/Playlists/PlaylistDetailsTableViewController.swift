@@ -58,7 +58,22 @@ class PlaylistDetailsTableViewController: UITableViewController {
     }
     
     @objc private func deletePlaylist() {
-        print("delete")
+        let alert = UIAlertController(title: "Delete playlist \(self.playlistName)?", message: "This cannot be undone", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {
+            action in
+            
+            DispatchQueue.main.async {
+                let parameters = ["delete": 1, "playlist_id" : self.playlistId]
+                
+                Alamofire.request("https://botticelliproject.com/air/api/playlists/delete.php", method: .post, parameters: parameters)
+                
+                self.navigationController?.popViewController(animated: true)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        
+        self.present(alert, animated: true)
     }
     
     private func loadData() {
