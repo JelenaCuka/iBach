@@ -226,7 +226,9 @@ class MusicPlayerViewController: UIViewController {
     }
     
     
-    
+    @IBAction func lyricsButtonTapHandler(_ sender: Any) {
+        
+    }
 
     /*
     // MARK: - Navigation

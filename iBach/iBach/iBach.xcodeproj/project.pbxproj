@@ -352,7 +352,6 @@
 				9CA8AE4D21B2E11F00E62A5A /* MusicTableViewController.swift */,
 				9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */,
 				9C23D17A21B94D010047D958 /* LargePlayerViewController.swift */,
-				349A1CFB21FB60D400869A13 /* LyricsViewController.swift */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -364,6 +363,7 @@
 				9D83666A21ED293400A73541 /* LargePlayer.storyboard */,
 				9D83666C21ED2A7F00A73541 /* MusicPlayerViewController.swift */,
 				9D05965421EE1DFD0096DFD0 /* MiniPlayerViewController.swift */,
+				349A1CFB21FB60D400869A13 /* LyricsViewController.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -705,7 +705,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3491816B21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift in Sources */,
-				3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,

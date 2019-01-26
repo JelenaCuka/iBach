@@ -32,10 +32,11 @@ class MusicPlayer {
     private init() {
         //playback
         setSession()
-        UIApplication.shared.beginReceivingRemoteControlEvents()//bg playing controls
+        //UIApplication.shared.beginReceivingRemoteControlEvents()//bg playing controls
+        //UIApplication.shared.beginReceivingRemoteControlEvents()//bg playing controls
         
         //interruptions ex headphones,call...
-        NotificationCenter.default.addObserver(self, selector: "handleInterruption", name: AVAudioSession.interruptionNotification, object: nil )
+        //NotificationCenter.default.addObserver(self, selector: "handleInterruption", name: AVAudioSession.interruptionNotification, object: nil )
         
     }
     
@@ -134,7 +135,7 @@ class MusicPlayer {
     }
     
     //interruptions
-    func handleInterruption(notification: NSNotification) {
+    /*func handleInterruption(notification: NSNotification) {
         pauseSong()
         let interruptionTypeAsObject = notification.userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
         let interruptionType = AVAudioSession.InterruptionType(rawValue: interruptionTypeAsObject.uintValue)
@@ -143,7 +144,7 @@ class MusicPlayer {
                 playSong()
             }
         }
-    }
+    }*/
     
     func updateSongData(songsList: [Song] = [] ) {
         self.songData = songsList
