@@ -33,10 +33,10 @@ class MusicPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageCoverArt.layer.shadowColor = UIColor.black.cgColor
-        imageCoverArt.layer.shadowOpacity = 1
-        imageCoverArt.layer.shadowOffset = CGSize.zero
-        imageCoverArt.layer.shadowRadius = 23
+        shadow.layer.shadowColor = UIColor.black.cgColor
+        shadow.layer.shadowOpacity = 0.8
+        shadow.layer.shadowOffset = CGSize.zero
+        shadow.layer.shadowRadius = 23
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)

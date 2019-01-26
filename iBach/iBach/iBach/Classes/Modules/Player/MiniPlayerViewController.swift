@@ -69,6 +69,7 @@ class MiniPlayerViewController: UIViewController {
             self.imageCoverArt.layer.borderWidth = 0.5
             self.imageCoverArt.layer.borderColor = color.cgColor
             self.imageCoverArt.af_setImage(withURL: imageURL)
+            
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: MusicPlayer.sharedInstance.player?.currentItem)
