@@ -8,6 +8,7 @@
 
 import Foundation
 import Unbox
+import Alamofire
 
 class PlaylistDetailsTableViewController: UITableViewController {
 
@@ -28,6 +29,18 @@ class PlaylistDetailsTableViewController: UITableViewController {
         loadData()
         
         self.navigationItem.title = playlistName
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(editPlaylist)),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deletePlaylist))
+        ]
+    }
+    
+    @objc private func editPlaylist() {
+        print("edit")
+    }
+    
+    @objc private func deletePlaylist() {
+        print("delete")
     }
     
     private func loadData() {
@@ -95,6 +108,33 @@ class PlaylistDetailsTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    
+    // Swipe to delete
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // Intentionally blank in order to be able to use UITableViewRowActions
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteHandler: (UITableViewRowAction, IndexPath) -> Void = { _, indexPath in
+    
+            DispatchQueue.main.async {
+                let parameters = ["delete": 1, "playlistId" : self.playlistId, "songId": self.songData[indexPath.row].id]
+                
+                Alamofire.request("https://botticelliproject.com/air/api/playlistSong/delete.php", method: .post, parameters: parameters)
+                
+                self.songData.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+    
+            
+        }
+        
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.destructive, title: "Remove", handler: deleteHandler)
+        
+        return [deleteAction]
     }
  
 }
