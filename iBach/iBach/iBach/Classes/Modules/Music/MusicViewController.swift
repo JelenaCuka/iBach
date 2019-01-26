@@ -20,8 +20,6 @@ class MusicViewController: UIViewController {
     @IBOutlet var labelSongTitle: UILabel!
     @IBOutlet var labelAuthor: UILabel!
     
-    fileprivate var largePlayerViewController: LargePlayerViewController!
-    
     var buttonPlay: UIBarButtonItem?
     var buttonShuffle: UIBarButtonItem?
     
@@ -34,9 +32,6 @@ class MusicViewController: UIViewController {
         search.searchResultsUpdater = self
         self.navigationItem.searchController = search
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: NSNotification.Name(rawValue: "changedSong"), object: nil)//
         
         NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPlaying"), object: nil)//
         
@@ -54,26 +49,6 @@ class MusicViewController: UIViewController {
     
     @objc func shuffleClick(_ sender: Any){
         MusicPlayer.sharedInstance.shuffleOnOff()
-    }
-    
-    @objc func displayMiniPlayer(notification: NSNotification) {
-        self.miniPlayerView.isHidden = false
-        
-        reloadMiniPlayerData()
-        //NotificationCenter.default.post(name: .displayLargePlayer, object: nil)
-        let miniPlayerTap = UITapGestureRecognizer(target: self, action: #selector(self.openLargePlayer(_:) ))
-        
-        self.miniPlayerView.addGestureRecognizer(miniPlayerTap)
-        self.miniPlayerView.isUserInteractionEnabled = true
-        
-//        self.miniPlayerView.superview?.layoutIfNeeded()
-//        self.miniPlayerView.layoutIfNeeded()
-        
-        setPlayingIcons()
-    }
-    
-    @objc func reloadMiniPlayerData(notification: NSNotification) {
-        reloadMiniPlayerData()
     }
     
     func playpause() {
@@ -94,36 +69,6 @@ class MusicViewController: UIViewController {
         }
     }
     
-    func reloadMiniPlayerData(){
-        self.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
-        self.labelAuthor.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
-        
-        if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl ) {
-            let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
-            
-            self.imageCoverArt.layer.cornerRadius = 3
-            self.imageCoverArt.clipsToBounds = true
-            self.imageCoverArt.layer.borderWidth = 0.5
-            self.imageCoverArt.layer.borderColor = color.cgColor
-            self.imageCoverArt.af_setImage(withURL: imageURL)
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: MusicPlayer.sharedInstance.player?.currentItem)
-    }
-    
-    @objc func openLargePlayer(_ sender: UITapGestureRecognizer) {
-        let storyboard = UIStoryboard(name: "LargePlayer", bundle: nil)
-        let playerVC = storyboard.instantiateViewController(withIdentifier: "Player") as! MusicPlayerViewController
-        
-        self.present(playerVC, animated: true, completion: nil)
-        playerVC.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
-        playerVC.labelSongArtist.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
-        if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl ) {
-            playerVC.imageCoverArt.af_setImage(withURL: imageURL)
-        }
-        //playerVC.loadData();
-        
-    }
-    
 }
 
 extension MusicViewController: UISearchResultsUpdating {
@@ -134,6 +79,4 @@ extension MusicViewController: UISearchResultsUpdating {
     
 }
 
-extension Notification.Name{
-    static let displayLargePlayer = Notification.Name ("displayLargePlayer")//icons
-}
+

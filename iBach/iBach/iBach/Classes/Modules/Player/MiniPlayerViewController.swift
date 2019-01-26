@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import NotificationCenter
+import AVFoundation
 
 class MiniPlayerViewController: UIViewController {
 
@@ -21,10 +22,16 @@ class MiniPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MusicPlayer.sharedInstance.setSession()
+        UIApplication.shared.beginReceivingRemoteControlEvents()//bg playing controls
+        becomeFirstResponder()
 
         NotificationCenter.default.addObserver(self, selector: #selector(displayMiniPlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: NSNotification.Name(rawValue: "changedSong"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption(notification:)), name: AVAudioSession.interruptionNotification, object: nil )
         
         
         
@@ -34,7 +41,6 @@ class MiniPlayerViewController: UIViewController {
         self.miniPlayerView.isHidden = false
         
         reloadMiniPlayerData()
-        //NotificationCenter.default.post(name: .displayLargePlayer, object: nil)
         let miniPlayerTap = UITapGestureRecognizer(target: self, action: #selector(self.openLargePlayer(_:) ))
         
         self.miniPlayerView.addGestureRecognizer(miniPlayerTap)
@@ -63,6 +69,7 @@ class MiniPlayerViewController: UIViewController {
             self.imageCoverArt.layer.borderWidth = 0.5
             self.imageCoverArt.layer.borderColor = color.cgColor
             self.imageCoverArt.af_setImage(withURL: imageURL)
+            
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMiniPlayerData(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: MusicPlayer.sharedInstance.player?.currentItem)
@@ -77,31 +84,34 @@ class MiniPlayerViewController: UIViewController {
         let playerVC = storyboard.instantiateViewController(withIdentifier: "Player") as! MusicPlayerViewController
         
         self.present(playerVC, animated: true, completion: nil)
-        /*playerVC.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
-        playerVC.labelSongArtist.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
-        if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl ) {
-            playerVC.imageCoverArt.af_setImage(withURL: imageURL)
-            playerVC.shadow.layer.shadowColor = UIColor.black.cgColor
-            playerVC.shadow.layer.shadowOpacity = 0.8
-            playerVC.shadow.layer.shadowOffset = CGSize.zero
-            playerVC.shadow.layer.shadowRadius = 23
-            playerVC.shadow.layer.masksToBounds = false
-            playerVC.shadow.layer.cornerRadius = 4.0
-        }*/
-        playerVC.loadData();//endtime
-        //playerVC.changePlayPauseIcon();//to update pgb
+
+        playerVC.loadData();
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override var canBecomeFirstResponder: Bool {return true}
+    @objc func handleInterruption(notification: NSNotification){
+        MusicPlayer.sharedInstance.pauseSong()
+        let interruptionTypeAsObject = notification.userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
+        let interruptionType = AVAudioSession.InterruptionType(rawValue: interruptionTypeAsObject.uintValue)
+        if let type = interruptionType {
+            if type == .ended {
+                MusicPlayer.sharedInstance.playSong()
+            }
+        }
     }
-    */
+        //handling bg playing
+    override func remoteControlReceived(with event: UIEvent?) {
+        if event!.type == UIEvent.EventType.remoteControl{
+            if event!.subtype == UIEvent.EventSubtype.remoteControlPause {
+                MusicPlayer.sharedInstance.pauseSong()
+            }else if event!.subtype == UIEvent.EventSubtype.remoteControlPlay {
+                MusicPlayer.sharedInstance.playSong()
+            }else if event!.subtype == UIEvent.EventSubtype.remoteControlNextTrack {
+                MusicPlayer.sharedInstance.nextSong()
+            }else if event!.subtype == UIEvent.EventSubtype.remoteControlPreviousTrack {
+                MusicPlayer.sharedInstance.previousSong()
+            }
+        }
+    }
 
 }
