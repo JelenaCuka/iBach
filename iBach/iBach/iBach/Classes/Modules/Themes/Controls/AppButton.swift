@@ -16,6 +16,6 @@ class AppDangerButton: UIButton {
     
 }
 
-class AppImageButton: UIButton {
+class AppBarButton: UIBarButtonItem {
     
 }

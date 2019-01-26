@@ -23,6 +23,8 @@
 		3433DC3D21B2ED3F008EA2AE /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC3C21B2ED3F008EA2AE /* AppView.swift */; };
 		3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3433DC4021B2F405008EA2AE /* LightTheme.swift */; };
 		3491816B21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491816A21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift */; };
+		3491FD1921FC6BCD00CE700D /* AppMiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491FD1821FC6BCD00CE700D /* AppMiniPlayer.swift */; };
+		3491FD1B21FC6E0700CE700D /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491FD1A21FC6E0700CE700D /* AppTextField.swift */; };
 		349A1CFC21FB60D400869A13 /* LyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A1CFB21FB60D400869A13 /* LyricsViewController.swift */; };
 		34A68C1221FBB517003270CA /* AppTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68C1121FBB517003270CA /* AppTextView.swift */; };
 		34A68C1421FBBAD2003270CA /* ThemeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */; };
@@ -102,6 +104,8 @@
 		3433DC3C21B2ED3F008EA2AE /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		3433DC4021B2F405008EA2AE /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		3491816A21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicMatchSongDetailDatasource.swift; sourceTree = "<group>"; };
+		3491FD1821FC6BCD00CE700D /* AppMiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMiniPlayer.swift; sourceTree = "<group>"; };
+		3491FD1A21FC6E0700CE700D /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		349A1CFB21FB60D400869A13 /* LyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsViewController.swift; sourceTree = "<group>"; };
 		34A68C1121FBB517003270CA /* AppTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextView.swift; sourceTree = "<group>"; };
 		34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcher.swift; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				3433DC3621B2ECCD008EA2AE /* AppLable.swift */,
 				3433DC3C21B2ED3F008EA2AE /* AppView.swift */,
 				34A68C1121FBB517003270CA /* AppTextView.swift */,
+				3491FD1821FC6BCD00CE700D /* AppMiniPlayer.swift */,
+				3491FD1A21FC6E0700CE700D /* AppTextField.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -705,7 +711,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3491816B21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift in Sources */,
-				3433DC3921B2ECE1008EA2AE /* AppSegmentControll.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,
@@ -728,6 +733,8 @@
 				9CA8AE4E21B2E11F00E62A5A /* MusicTableViewController.swift in Sources */,
 				9CCCC77321AB3C7D005BCB01 /* RegistrationViewController.swift in Sources */,
 				3433DC1F21B2DDA1008EA2AE /* Themes.swift in Sources */,
+				3491FD1B21FC6E0700CE700D /* AppTextField.swift in Sources */,
+				3491FD1921FC6BCD00CE700D /* AppMiniPlayer.swift in Sources */,
 				9C42E2FB21A7327900ED8A63 /* HTTPRequest.swift in Sources */,
 				3433DC2F21B2EBDC008EA2AE /* With.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,

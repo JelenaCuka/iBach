@@ -23,6 +23,8 @@ protocol Theme {
     var textFieldColor: UIColor {get}
     var buttonColor: UIColor{get}
     var textView: UIColor{get}
+    var miniPlayerColor: UIColor {get}
+    var playlistLableColor: UIColor {get}
     
     
     func apply(for application: UIApplication)
@@ -74,17 +76,12 @@ extension Theme {
         
         AppTextView.appearance().textColor = textView
         AppLabel.appearance().textColor = labelColor
-        AppSubhead.appearance().textColor = secondaryLabelColor
-        AppFootnote.appearance().textColor = subtleLabelColor
+        AppSubhead.appearance().textColor =  secondaryLabelColor
+        //AppFootnote.appearance().textColor = subtleLabelColor
+        
         
         AppButton.appearance().with {
             $0.setTitleColor(buttonColor, for: .normal)
-            
-        }
-        
-        AppDangerButton.appearance().with {
-            $0.setTitleColor(backgroundColor, for: .normal)
-            $0.backgroundColor = tint
             
         }
         
@@ -97,29 +94,32 @@ extension Theme {
         }
         
         AppStackView.appearance().backgroundColor = backgroundColor
+        AppMiniPlayer.appearance().backgroundColor = miniPlayerColor
+        AppPlaylistLable.appearance().textColor = playlistLableColor
+        
         
         AppView.appearance(whenContainedInInstancesOf: [AppView.self]).with {
             $0.backgroundColor = selectionColor
             $0.cornerRadius = 10
         }
         
-        // Style differently when inside a special container
-        
-        AppLabel.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = subtleLabelColor
-        AppHeadline.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = secondaryLabelColor
-        AppFootnote.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = labelColor
-        
-        AppButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
-            $0.setTitleColor(labelColor, for: .normal)
-            $0.borderColor = labelColor
-        }
-        
-        AppDangerButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
-            $0.setTitleColor(subtleLabelColor, for: .normal)
-            $0.backgroundColor = labelColor
-        }
-        
-        
+//        // Style differently when inside a special container
+//        
+//        AppLabel.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = subtleLabelColor
+//        AppHeadline.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = secondaryLabelColor
+//        AppFootnote.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = labelColor
+//        
+//        AppButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
+//            $0.setTitleColor(labelColor, for: .normal)
+//            $0.borderColor = labelColor
+//        }
+//        
+//        AppDangerButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
+//            $0.setTitleColor(subtleLabelColor, for: .normal)
+//            $0.backgroundColor = labelColor
+//        }
+//        
+//        
         
         // Ensure existing views render with new theme
         // https://developer.apple.com/documentation/uikit/uiappearance

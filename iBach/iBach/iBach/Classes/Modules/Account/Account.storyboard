@@ -209,7 +209,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Account" id="ufB-un-XAq">
                         <rightBarButtonItems>
-                            <barButtonItem style="plain" id="yZM-T3-2nR">
+                            <barButtonItem style="plain" id="yZM-T3-2nR" customClass="AppBarButton" customModule="iBach" customModuleProvider="target">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ain-wL-LMe">
                                     <rect key="frame" x="325" y="7" width="34" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

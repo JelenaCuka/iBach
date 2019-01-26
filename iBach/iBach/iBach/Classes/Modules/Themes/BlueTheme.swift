@@ -19,9 +19,11 @@ struct BlueTheme: Theme {
     let labelColor: UIColor = .black
     let secondaryLabelColor: UIColor = .darkGray
     var subtleLabelColor: UIColor = .lightGray
-    let textFieldColor: UIColor = .white
+    let textFieldColor: UIColor = .darkGray
     let buttonColor: UIColor = .blue
     let textView: UIColor = .black
+    let miniPlayerColor: UIColor = .white
+    let playlistLableColor: UIColor = .lightGray
     
     
     let barStyle: UIBarStyle = .default

@@ -12,7 +12,7 @@ class AppLabel: UILabel {
     
 }
 
-class AppHeadline: UILabel {
+class AppPlaylistLable: UILabel {
     
 }
 
