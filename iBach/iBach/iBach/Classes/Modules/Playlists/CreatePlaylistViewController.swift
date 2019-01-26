@@ -10,6 +10,14 @@ import UIKit
 
 class CreatePlaylistViewController: UIViewController {
 
+    @IBAction func textfieldPlaylistNameValueChangedEvent(_ sender: Any) {
+        if(texfieldPlaylistName.text!.count > 0){
+            nextButton.isEnabled = true
+        }
+        else{
+            nextButton.isEnabled = false
+        }
+    }
     
     @IBOutlet weak var texfieldPlaylistName: UITextField!
     
