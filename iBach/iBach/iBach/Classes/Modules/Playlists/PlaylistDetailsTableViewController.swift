@@ -19,12 +19,12 @@ class PlaylistDetailsTableViewController: UITableViewController {
     public func customInit(_ id: Int, _ name: String) {
         self.playlistId = id
         self.playlistName = name
-        print("initialized")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+        self.tableView.rowHeight = 70
+        
         loadData()
         
         self.navigationItem.title = playlistName
@@ -59,33 +59,41 @@ class PlaylistDetailsTableViewController: UITableViewController {
         return self.songData.count
     }
     
-  
+    // Custom cell image size
+    func image(_ image:UIImage, withSize newSize:CGSize) -> UIImage {
+        UIGraphicsBeginImageContext(newSize)
+        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!.withRenderingMode(.automatic)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       /*
-        let cellIdentifier = "playlistDetailCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? PlaylistItemTableViewCell else {
-            fatalError("Error")
-        }
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "playlistSongDetail")
         
-        if let imageURL = URL(string: self.songData[indexPath.row].coverArtUrl) {
-            let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
+        cell.textLabel?.text = self.songData[indexPath.row].title
+        cell.textLabel?.font = AppLabel.appearance().font
+        cell.textLabel?.textColor = AppLabel.appearance().textColor
             
-            cell.imageViewCoverArt.layer.cornerRadius = 5
-            cell.imageViewCoverArt.clipsToBounds = true
-            cell.imageViewCoverArt.layer.borderWidth = 0.5
-            cell.imageViewCoverArt.layer.borderColor = color.cgColor
-            cell.imageViewCoverArt.af_setImage(withURL: imageURL)
+        cell.detailTextLabel?.text = self.songData[indexPath.row].author
+        cell.detailTextLabel?.font = cell.detailTextLabel?.font.withSize(14)
+        cell.detailTextLabel?.textColor = AppSubhead.appearance().textColor
+        
+        if URL(string: self.songData[indexPath.row].coverArtUrl) != nil {
+            let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
+        
+            cell.imageView?.layer.cornerRadius = 5
+            cell.imageView?.clipsToBounds = true
+            cell.imageView?.layer.borderWidth = 0.5
+            cell.imageView?.layer.borderColor = color.cgColor
+            
+            // Download cover image
+            let url = URL(string: songData[indexPath.row].coverArtUrl)
+            let data = try? Data(contentsOf: url!)
+        
+            cell.imageView?.image = image(UIImage(data: data!)!, withSize: CGSize(width: 50, height: 50))
         }
         
-        cell.labelName.text = self.songData[indexPath.row].title
-        //cell.labelAuthor.text = self.songData[indexPath.row].author
-        
-        return cell
- */
-        
-        let cell = UITableViewCell()
-        cell.textLabel?.text = songData[indexPath.row].title
-        cell.imageView?.af_setImage(withURL: URL(string: songData[indexPath.row].coverArtUrl)!)
         return cell
     }
  
