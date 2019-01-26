@@ -20,13 +20,21 @@ class PlaylistsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         
-        loadData()
+        //loadData()
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        playlistData.removeAll()
+        filteredPlaylist.removeAll()
+        loadData()
     }
     
     private func loadData() {
@@ -96,6 +104,13 @@ class PlaylistsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print("Tapped on \(self.playlistData[indexPath.row].name)")
+        
+        let newView = PlaylistDetailsTableViewController()
+        newView.customInit(self.filteredPlaylist[indexPath.row].id, self.filteredPlaylist[indexPath.row].name)
+        self.navigationController?.pushViewController(newView, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         /*let playerItem = AVPlayerItem(url: URL(string: self.songData[indexPath.row].fileUrl)!)
          player = AVPlayer(playerItem: playerItem)
          

@@ -30,6 +30,8 @@
 		34A68C1421FBBAD2003270CA /* ThemeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */; };
 		34D748F621F7330000B26D3A /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D748F521F7330000B26D3A /* Artist.swift */; };
 		376D67662836F202ED134424 /* Pods_iBach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF1E8AE6D0B501D0529BD7 /* Pods_iBach.framework */; };
+		4C594CD321FCE667001FD314 /* UIAlertControllerWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C594CD221FCE667001FD314 /* UIAlertControllerWithTextField.swift */; };
+		4C838E1C21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */; };
 		9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFDF21A5EA9A00B9798A /* Login.storyboard */; };
@@ -109,6 +111,8 @@
 		34A68C1121FBB517003270CA /* AppTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextView.swift; sourceTree = "<group>"; };
 		34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcher.swift; sourceTree = "<group>"; };
 		34D748F521F7330000B26D3A /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		4C594CD221FCE667001FD314 /* UIAlertControllerWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIAlertControllerWithTextField.swift; path = "../../../../../../../../Downloads/f76630731c9a0cda90bb6bae28e82927-8ba7bf9680cad21b39a09af263c49bde612de828/UIAlertControllerWithTextField.swift"; sourceTree = "<group>"; };
+		4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailsTableViewController.swift; sourceTree = "<group>"; };
 		917766B6C3AF7B5ED1697F56 /* Pods-iBach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.release.xcconfig"; sourceTree = "<group>"; };
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +287,7 @@
 		9C00EFD921A5BB3E00B9798A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4C594CD221FCE667001FD314 /* UIAlertControllerWithTextField.swift */,
 				9C00EFDC21A5BB7200B9798A /* Uitites */,
 			);
 			path = Common;
@@ -387,6 +392,7 @@
 				9C9C511521B584420002ADE2 /* Playlists.storyboard */,
 				9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */,
 				9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */,
+				4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -711,6 +717,7 @@
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,
+				4C594CD321FCE667001FD314 /* UIAlertControllerWithTextField.swift in Sources */,
 				9D05965921EE30180096DFD0 /* RootTabBarViewController.swift in Sources */,
 				3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */,
 				34D748F621F7330000B26D3A /* Artist.swift in Sources */,
@@ -741,6 +748,7 @@
 				3425100021ED2B31008CB7FD /* BlueTheme.swift in Sources */,
 				9C23D17E21B984E80047D958 /* MusicPlayer.swift in Sources */,
 				9C5734FD21BB1535002797EB /* Playlist.swift in Sources */,
+				4C838E1C21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift in Sources */,
 				34A68C1421FBBAD2003270CA /* ThemeSwitcher.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
 				9D05965521EE1DFD0096DFD0 /* MiniPlayerViewController.swift in Sources */,
