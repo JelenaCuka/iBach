@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,6 +58,9 @@
                     <navigationItem key="navigationItem" title="Playlists" id="org-Ch-L1Z">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="9IB-cz-Ors">
                             <color key="tintColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="gIP-Uc-kXs" kind="show" id="q3l-Yo-TVL"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -67,7 +71,6 @@
         <!--Playlist Details Table View Controller-->
         <scene sceneID="ncu-qe-Awe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GGY-Ub-cMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="o3E-4x-CnG" customClass="PlaylistDetailsTableViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VIy-ih-jgz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -79,8 +82,41 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGY-Ub-cMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1371.0144927536232" y="881.91964285714278"/>
+        </scene>
+        <!--Create Playlist-->
+        <scene sceneID="e9k-Ag-ZBf">
+            <objects>
+                <viewController id="gIP-Uc-kXs" customClass="CreatePlaylistViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C7l-a4-yCa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skc-bn-5ur">
+                                <rect key="frame" x="20" y="51" width="104" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Playlist Name here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cp7-8r-zd3">
+                                <rect key="frame" x="132" y="47" width="262" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="6Ta-k7-qr2"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Playlist" id="VkP-Ab-bVI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LXR-eQ-57E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2131.8840579710145" y="875.89285714285711"/>
         </scene>
         <!--Playlists-->
         <scene sceneID="VCM-jg-vra">

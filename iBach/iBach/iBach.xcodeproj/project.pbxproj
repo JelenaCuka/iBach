@@ -34,6 +34,7 @@
 		4C838E1C21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */; };
+		93F887E021FD0905007D752E /* CreatePlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F887DF21FD0905007D752E /* CreatePlaylistViewController.swift */; };
 		9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFDF21A5EA9A00B9798A /* Login.storyboard */; };
 		9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C00EFE921A6C50300B9798A /* LoginViewController.swift */; };
 		9C0CC19521B2F98F005DEFB0 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0CC19421B2F98F005DEFB0 /* Song.swift */; };
@@ -116,6 +117,7 @@
 		917766B6C3AF7B5ED1697F56 /* Pods-iBach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.release.xcconfig"; sourceTree = "<group>"; };
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		93F887DF21FD0905007D752E /* CreatePlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistViewController.swift; sourceTree = "<group>"; };
 		984B9AAF6BA00B7FA15F9645 /* Pods-iBach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.debug.xcconfig"; sourceTree = "<group>"; };
 		9C00EFDF21A5EA9A00B9798A /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9C00EFE921A6C50300B9798A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */,
 				9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */,
 				4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */,
+				93F887DF21FD0905007D752E /* CreatePlaylistViewController.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 			files = (
 				3491816B21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,
+				93F887E021FD0905007D752E /* CreatePlaylistViewController.swift in Sources */,
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,
 				4C594CD521FCF9F7001FD314 /* UIAlertControllerWithTextField.swift in Sources */,
