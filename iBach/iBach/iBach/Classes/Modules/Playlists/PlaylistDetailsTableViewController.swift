@@ -152,7 +152,10 @@ class PlaylistDetailsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteHandler: (UITableViewRowAction, IndexPath) -> Void = { _, indexPath in
     
-            DispatchQueue.main.async {
+            
+            
+            if self.songData.count > 1 {
+                DispatchQueue.main.async {
                 let parameters = ["delete": 1, "playlistId" : self.playlistId, "songId": self.songData[indexPath.row].id]
                 
                 Alamofire.request("https://botticelliproject.com/air/api/playlistSong/delete.php", method: .post, parameters: parameters)
@@ -162,7 +165,25 @@ class PlaylistDetailsTableViewController: UITableViewController {
             }
             
     
-            
+            }
+            else {
+                let alert = UIAlertController(title: "Delete song?", message:"Deleting the last song will also delete the playlist", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: {
+                    action in
+                    
+                    DispatchQueue.main.async {
+                        let parameters = ["delete": 1, "playlist_id" : self.playlistId]
+                        
+                        Alamofire.request("https://botticelliproject.com/air/api/playlists/delete.php", method: .post, parameters: parameters)
+                        
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+                
+                self.present(alert, animated: true)
+            }
         }
         
         let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.destructive, title: "Remove", handler: deleteHandler)
