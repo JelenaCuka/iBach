@@ -112,7 +112,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Ta-k7-qr2"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Playlist" id="VkP-Ab-bVI"/>
+                    <navigationItem key="navigationItem" title="Create Playlist" id="VkP-Ab-bVI">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="qW8-mU-y4M"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nextButton" destination="qW8-mU-y4M" id="aKQ-pO-Fby"/>
+                        <outlet property="texfieldPlaylistName" destination="cp7-8r-zd3" id="Lu8-dg-bVo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXR-eQ-57E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
