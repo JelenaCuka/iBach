@@ -234,20 +234,6 @@
             </objects>
             <point key="canvasLocation" x="970" y="155"/>
         </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="ZN8-vj-3UR">
-            <objects>
-                <viewControllerPlaceholder id="EpP-dz-tYe" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zAK-zw-hWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="BXb-Oz-dg2">
-            <objects>
-                <viewControllerPlaceholder id="hUl-gv-oDW" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wfk-Rw-ETa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="Backward" width="54" height="54"/>

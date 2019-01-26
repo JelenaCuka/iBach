@@ -41,7 +41,6 @@ class MiniPlayerViewController: UIViewController {
         self.miniPlayerView.isHidden = false
         
         reloadMiniPlayerData()
-        //NotificationCenter.default.post(name: .displayLargePlayer, object: nil)
         let miniPlayerTap = UITapGestureRecognizer(target: self, action: #selector(self.openLargePlayer(_:) ))
         
         self.miniPlayerView.addGestureRecognizer(miniPlayerTap)
@@ -84,19 +83,8 @@ class MiniPlayerViewController: UIViewController {
         let playerVC = storyboard.instantiateViewController(withIdentifier: "Player") as! MusicPlayerViewController
         
         self.present(playerVC, animated: true, completion: nil)
-        /*playerVC.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
-        playerVC.labelSongArtist.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
-        if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl ) {
-            playerVC.imageCoverArt.af_setImage(withURL: imageURL)
-            playerVC.shadow.layer.shadowColor = UIColor.black.cgColor
-            playerVC.shadow.layer.shadowOpacity = 0.8
-            playerVC.shadow.layer.shadowOffset = CGSize.zero
-            playerVC.shadow.layer.shadowRadius = 23
-            playerVC.shadow.layer.masksToBounds = false
-            playerVC.shadow.layer.cornerRadius = 4.0
-        }*/
-        playerVC.loadData();//endtime
-        //playerVC.changePlayPauseIcon();//to update pgb
+
+        playerVC.loadData();
         
     }
     override var canBecomeFirstResponder: Bool {return true}
@@ -124,6 +112,5 @@ class MiniPlayerViewController: UIViewController {
             }
         }
     }
-    
 
 }

@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLayoutSubviews() {
         let scrollViewBounds = scrollView.bounds
-        let containerViewBounds = contentView.bounds
+        //let containerViewBounds = contentView.bounds
         
         var scrollViewInsets = UIEdgeInsets.zero
         scrollViewInsets.top = scrollViewBounds.size.height / 2.0

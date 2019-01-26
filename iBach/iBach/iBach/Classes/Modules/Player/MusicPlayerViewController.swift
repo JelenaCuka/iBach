@@ -38,22 +38,18 @@ class MusicPlayerViewController: UIViewController {
         imageCoverArt.layer.shadowOffset = CGSize.zero
         imageCoverArt.layer.shadowRadius = 23
         
-
-        // Do any additional setup after loading the view.
         
         NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: NSNotification.Name(rawValue: "displayLargePlayer"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPlaying"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPaused"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPlaying"), object: nil)//
         
-        NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPaused"), object: nil)//
-        
-        //progressVolume.value = 1.0
         progressSongTime.maximumValue = 1.0
-        progressVolume.value = MusicPlayer.sharedInstance.player.volume
+        checkOldVolume()
         
-        //
+        
         self.progressSongTime.setThumbImage(UIImage(named: "thumbImage")!, for: .normal)
         self.progressSongTime.setThumbImage(UIImage(named: "thumbImage")!, for: .highlighted)
         
@@ -63,7 +59,7 @@ class MusicPlayerViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         let scrollViewBounds = scrollView.bounds
-        let containerViewBounds = contentView.bounds
+        //let containerViewBounds = contentView.bounds
         
         var scrollViewInsets = UIEdgeInsets.zero
         scrollViewInsets.top = scrollViewBounds.size.height / 2.0
@@ -77,7 +73,6 @@ class MusicPlayerViewController: UIViewController {
     }
     
     
-    
     @IBAction func returnFromLargePlayer(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -89,7 +84,6 @@ class MusicPlayerViewController: UIViewController {
     @objc func displayLargePlayer(notification: NSNotification) {
         loadData()
     }
-    
     
     @IBAction func pauseSong(_ sender: Any) {
         if ( MusicPlayer.sharedInstance.playSong() ){
@@ -121,41 +115,39 @@ class MusicPlayerViewController: UIViewController {
     }
     
     @IBAction func changeVolume(_ sender: Any) {
-        let newVolume = progressVolume.value
-        MusicPlayer.sharedInstance.player.volume = newVolume
+        MusicPlayer.sharedInstance.changeVolume(newVolume: progressVolume.value)
+    }
+    func checkOldVolume() {
+        progressVolume.value = MusicPlayer.sharedInstance.player.volume
     }
     
     func loadData() {
-    self.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
+        self.labelSongTitle.text = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].title
+        
+        if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl) {
+                self.imageCoverArt.layer.cornerRadius = 20
+                self.imageCoverArt.clipsToBounds = true
+            
+                imageCoverArt.layer.shadowColor = UIColor.black.cgColor
+                imageCoverArt.layer.shadowOpacity = 1
+                imageCoverArt.layer.shadowOffset = CGSize.zero
+                imageCoverArt.layer.shadowRadius = 50
+            
+                self.imageCoverArt.af_setImage(withURL: imageURL)
+        }
     
-    if let imageURL = URL(string: MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].coverArtUrl) {
-    self.imageCoverArt.layer.cornerRadius = 20
-    self.imageCoverArt.clipsToBounds = true
-    
-    imageCoverArt.layer.shadowColor = UIColor.black.cgColor
-    imageCoverArt.layer.shadowOpacity = 1
-    imageCoverArt.layer.shadowOffset = CGSize.zero
-    imageCoverArt.layer.shadowRadius = 50
-    
-    self.imageCoverArt.af_setImage(withURL: imageURL)
-    }
-    
-    let artist: String = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
-    //let album: String = (notification.userInfo!["album"]! as? String)!
-    let year: String = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].year
-    
-    self.labelSongArtist.text = "\(artist) - \(year)"
-    
-    //
-    NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: MusicPlayer.sharedInstance.player?.currentItem)
-    
-    self.endTime.text = formatSongDuration( duration: MusicPlayer.sharedInstance.currentSongDuration() )
-    progressVolume.value = MusicPlayer.sharedInstance.player.volume//
-        //changePlayPauseIcon()//
-        progressSongTime.maximumValue = Float ( MusicPlayer.sharedInstance.currentSongDuration() )
-        progressVolume.value = MusicPlayer.sharedInstance.player.volume
-        trackAudio()
-        changePlayPauseIcon()
+        let artist: String = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].author
+        let year: String = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].year
+        
+        self.labelSongArtist.text = "\(artist) - \(year)"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(displayLargePlayer(notification:)), name: Notification.Name.AVPlayerItemDidPlayToEndTime, object: MusicPlayer.sharedInstance.player?.currentItem)
+        
+        self.endTime.text = formatSongDuration( duration: MusicPlayer.sharedInstance.currentSongDuration() )
+            progressSongTime.maximumValue = Float ( MusicPlayer.sharedInstance.currentSongDuration() )
+            trackAudio()
+            changePlayPauseIcon()
+            checkOldVolume()
     
     }
     
@@ -178,9 +170,9 @@ class MusicPlayerViewController: UIViewController {
     }
     
     func stopProgressBar() {
-    if updater != nil {
-    updater.invalidate()
-    }
+        if updater != nil {
+            updater.invalidate()
+        }
     }
     
     @objc func trackAudio() {
@@ -226,20 +218,15 @@ class MusicPlayerViewController: UIViewController {
     }
     
     
-    @IBAction func lyricsButtonTapHandler(_ sender: Any) {
+    //@IBAction func lyricsButtonTapHandler(_ sender: Any) {
         
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    //}
 
 }
 
-
+extension Notification.Name {
+    static let displayLargePlayer = Notification.Name ("displayLargePlayer")//icons
+    static let songIsPlaying = Notification.Name ("songIsPlaying")//icons
+    static let songIsPaused = Notification.Name ("songIsPaused")//icons
+    static let changedSong = Notification.Name ("changedSong")//updateInfo
+}

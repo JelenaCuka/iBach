@@ -30,13 +30,6 @@ class MusicPlayer {
     }
     
     private init() {
-        //playback
-        setSession()
-        //UIApplication.shared.beginReceivingRemoteControlEvents()//bg playing controls
-        //UIApplication.shared.beginReceivingRemoteControlEvents()//bg playing controls
-        
-        //interruptions ex headphones,call...
-        //NotificationCenter.default.addObserver(self, selector: "handleInterruption", name: AVAudioSession.interruptionNotification, object: nil )
         
     }
     
@@ -61,6 +54,7 @@ class MusicPlayer {
                 self?.nextSong()
             }
             setPlayingScreen()
+            checkOldVolume()
         }
         
         return playSong()
@@ -132,6 +126,15 @@ class MusicPlayer {
             return currentTime
         }
         return 0
+    }
+    func changeVolume(newVolume : Float){
+        player.volume = newVolume
+        UserDefaults.standard.set(newVolume, forKey: "MusicVolume")
+    }
+    func checkOldVolume(){
+        if let oldVolume = UserDefaults.standard.value(forKey: "MusicVolume") {
+            changeVolume (newVolume : oldVolume as! Float)
+        }
     }
     
     //interruptions
