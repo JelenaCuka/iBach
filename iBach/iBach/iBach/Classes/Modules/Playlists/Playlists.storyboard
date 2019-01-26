@@ -106,7 +106,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no"/>
                                 <connections>
                                     <action selector="textfieldPlaylistNameValueChangedEvent:" destination="gIP-Uc-kXs" eventType="editingChanged" id="11p-x8-61O"/>
                                 </connections>
@@ -116,7 +116,11 @@
                         <viewLayoutGuide key="safeArea" id="6Ta-k7-qr2"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Playlist" id="VkP-Ab-bVI">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="qW8-mU-y4M"/>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="qW8-mU-y4M">
+                            <connections>
+                                <segue destination="yQV-Cb-VKV" kind="show" identifier="playlistName" id="2Q4-bz-0JN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="nextButton" destination="qW8-mU-y4M" id="aKQ-pO-Fby"/>
@@ -126,6 +130,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXR-eQ-57E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2131.8840579710145" y="875.89285714285711"/>
+        </scene>
+        <!--Choose Songs-->
+        <scene sceneID="Dpu-1g-neC">
+            <objects>
+                <viewController id="yQV-Cb-VKV" customClass="ChooseSongsViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6OB-5A-EyL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aB2-t7-xjc">
+                                <rect key="frame" x="20" y="20" width="374" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="H9s-Tn-PgG"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Choose Songs" id="Mbu-CM-lFO"/>
+                    <connections>
+                        <outlet property="playlistNameLabel" destination="aB2-t7-xjc" id="IAZ-uN-GKu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OKh-fg-V7m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3005.7971014492755" y="875.89285714285711"/>
         </scene>
         <!--Playlists-->
         <scene sceneID="VCM-jg-vra">

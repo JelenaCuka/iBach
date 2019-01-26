@@ -29,5 +29,11 @@ class CreatePlaylistViewController: UIViewController {
         nextButton.isEnabled = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let receiverVC = segue.destination as! ChooseSongsViewController
+        receiverVC.playlistName = texfieldPlaylistName.text
+    }
 
+    
+    
 }
