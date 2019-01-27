@@ -31,7 +31,6 @@
 		34D748F621F7330000B26D3A /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D748F521F7330000B26D3A /* Artist.swift */; };
 		376D67662836F202ED134424 /* Pods_iBach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF1E8AE6D0B501D0529BD7 /* Pods_iBach.framework */; };
 		4C594CD521FCF9F7001FD314 /* UIAlertControllerWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C594CD421FCF9F7001FD314 /* UIAlertControllerWithTextField.swift */; };
-		4C594CDD21FE5E7A001FD314 /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C594CDC21FE5E7A001FD314 /* Playlists.storyboard */; };
 		4C838E1C21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */; };
@@ -45,6 +44,7 @@
 		9C5734FB21BB14AD002797EB /* PlaylistsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */; };
 		9C5734FD21BB1535002797EB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5734FC21BB1535002797EB /* Playlist.swift */; };
 		9C9C511321B583200002ADE2 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511221B583200002ADE2 /* Favorites.storyboard */; };
+		9C9C511621B584420002ADE2 /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C511521B584420002ADE2 /* Playlists.storyboard */; };
 		9C9C511821B5C0FD0002ADE2 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */; };
 		9CA6972B21B9AB71003BF5A3 /* FavoriteSongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6972A21B9AB71003BF5A3 /* FavoriteSongTableViewCell.swift */; };
 		9CA6972D21B9AC32003BF5A3 /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA6972C21B9AC32003BF5A3 /* FavoritesTableViewController.swift */; };
@@ -112,7 +112,6 @@
 		34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcher.swift; sourceTree = "<group>"; };
 		34D748F521F7330000B26D3A /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		4C594CD421FCF9F7001FD314 /* UIAlertControllerWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerWithTextField.swift; sourceTree = "<group>"; };
-		4C594CDC21FE5E7A001FD314 /* Playlists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Playlists.storyboard; path = "../../../../../../../../../Downloads/iBach-Develop/iBach/iBach/iBach/Classes/Modules/Playlists/Playlists.storyboard"; sourceTree = "<group>"; };
 		4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailsTableViewController.swift; sourceTree = "<group>"; };
 		917766B6C3AF7B5ED1697F56 /* Pods-iBach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.release.xcconfig"; sourceTree = "<group>"; };
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewCell.swift; sourceTree = "<group>"; };
 		9C5734FC21BB1535002797EB /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		9C9C511221B583200002ADE2 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
+		9C9C511521B584420002ADE2 /* Playlists.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		9C9C511721B5C0FD0002ADE2 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		9CA6972A21B9AB71003BF5A3 /* FavoriteSongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSongTableViewCell.swift; sourceTree = "<group>"; };
 		9CA6972C21B9AC32003BF5A3 /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -389,7 +389,7 @@
 		9C9C511421B584330002ADE2 /* Playlists */ = {
 			isa = PBXGroup;
 			children = (
-				4C594CDC21FE5E7A001FD314 /* Playlists.storyboard */,
+				9C9C511521B584420002ADE2 /* Playlists.storyboard */,
 				9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */,
 				9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */,
 				4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */,
@@ -583,13 +583,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C594CDD21FE5E7A001FD314 /* Playlists.storyboard in Resources */,
 				9CCCC76D21AB2DFE005BCB01 /* Registration.storyboard in Resources */,
 				9D83666B21ED293400A73541 /* LargePlayer.storyboard in Resources */,
 				9C9C511321B583200002ADE2 /* Favorites.storyboard in Resources */,
 				9CF12FB6219050F500871893 /* LaunchScreen.storyboard in Resources */,
 				9CB9F63121A957B300177DC7 /* Music.storyboard in Resources */,
 				9CF12FB3219050F500871893 /* Assets.xcassets in Resources */,
+				9C9C511621B584420002ADE2 /* Playlists.storyboard in Resources */,
 				9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */,
 				3433DC1A21B2D15E008EA2AE /* Settings.storyboard in Resources */,
 				9CB9F62D21A9565100177DC7 /* Account.storyboard in Resources */,
