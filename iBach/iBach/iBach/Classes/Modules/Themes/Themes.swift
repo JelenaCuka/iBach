@@ -26,6 +26,8 @@ protocol Theme {
     var miniPlayerColor: UIColor {get}
     var playlistLableColor: UIColor {get}
     
+    var statusBarTheme: UIStatusBarStyle {get}
+    
     
     func apply(for application: UIApplication)
     
@@ -47,11 +49,13 @@ extension Theme {
             $0.titleTextAttributes = [
                 .foregroundColor: labelColor
             ]
+            $0.largeTitleTextAttributes = [
+                .foregroundColor: labelColor
+            ]
         }
         
         UILabel.appearance().textColor = labelColor
         UITextField.appearance().textColor = textFieldColor
-        
         
         UITableView.appearance().with {
             $0.backgroundColor = backgroundColor
@@ -65,27 +69,22 @@ extension Theme {
         
         UIView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
             .backgroundColor = backgroundColor
-        
+    
         UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
             .textColor = labelColor
         
         UITextView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
             .textColor = labelColor
         
-        
-        
         AppTextView.appearance().textColor = textView
         AppLabel.appearance().textColor = labelColor
         AppSubhead.appearance().textColor =  secondaryLabelColor
         //AppFootnote.appearance().textColor = subtleLabelColor
         
-        
         AppButton.appearance().with {
             $0.setTitleColor(buttonColor, for: .normal)
-            
         }
-        
-        
+  
         AppView.appearance().backgroundColor = backgroundColor
         
         AppSeparator.appearance().with {
@@ -96,7 +95,6 @@ extension Theme {
         AppStackView.appearance().backgroundColor = backgroundColor
         AppMiniPlayer.appearance().backgroundColor = miniPlayerColor
         AppPlaylistLable.appearance().textColor = playlistLableColor
-        
         
         AppView.appearance(whenContainedInInstancesOf: [AppView.self]).with {
             $0.backgroundColor = selectionColor
@@ -121,8 +119,40 @@ extension Theme {
 //        
 //        
         
+        
         // Ensure existing views render with new theme
         // https://developer.apple.com/documentation/uikit/uiappearance
         application.windows.reload()
+    }
+}
+
+// Boja iz hex koda
+extension UIColor {
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
+        }
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
+    }
+    
+    func toHexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format:"#%06x", rgb)
     }
 }
