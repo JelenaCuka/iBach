@@ -144,7 +144,11 @@
                     </containerView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Choose Songs" id="Mbu-CM-lFO">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="kV7-vo-Thf"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="kV7-vo-Thf">
+                            <connections>
+                                <action selector="addNewPlaylist:" destination="yQV-Cb-VKV" id="jw9-Wg-L0e"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="buttonAdd" destination="kV7-vo-Thf" id="Ahh-Hg-qCq"/>

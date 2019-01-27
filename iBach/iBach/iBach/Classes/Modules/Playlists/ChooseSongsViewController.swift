@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import Foundation
+import Unbox
+import Alamofire
 
 class ChooseSongsViewController: UIViewController, ControllerDelegate {
     
     var selected: [Song] = []
+    var playlistData: [Playlist] = []
+    var playlist: Playlist?
     
     func enableAddButton(songs: [Song]) {
         
@@ -44,4 +49,63 @@ class ChooseSongsViewController: UIViewController, ControllerDelegate {
     }
     
 
+    @IBAction func addNewPlaylist(_ sender: Any) {
+        
+        DispatchQueue.main.async {
+            let parameters = ["user_id": UserDefaults.standard.integer(forKey: "user_id"),
+                              "name" : self.playlistName!,
+                              "cover_art_url" : self.selected[0].coverArtUrl,
+                              "save" : 1] as [String : Any]
+            
+            Alamofire.request("https://botticelliproject.com/air/api/playlists/save.php", method: .post, parameters: parameters)
+        }
+        
+        let alert = UIAlertController(title: "Playlist added", message: "Your playlist has been added to library.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
+            action in
+            
+            DispatchQueue.main.async {
+                self.loadData()
+            }
+        }))
+        
+        self.present(alert, animated: true)
+        
+        
+    }
+    
+    private func loadData() {
+        DispatchQueue.main.async {
+            HTTPRequest().sendGetRequest(urlString: "https://botticelliproject.com/air/api/playlists/findall.php?userId=\(UserDefaults.standard.integer(forKey: "user_id"))", completionHandler: {(response, error) in
+                if let data: NSArray = response as? NSArray {
+                    for playlist in data {
+                        do {
+                            
+                            let playlist: Playlist = try unbox(dictionary: (playlist as! NSDictionary) as! UnboxableDictionary)
+                            self.playlistData.append(playlist)
+                        }
+                        catch {
+                            print("Unable to unbox")
+                        }
+                    }
+                }
+                self.playlist = self.playlistData.last
+                if(self.playlist?.name == self.playlistName){
+                    DispatchQueue.main.async {
+                        for song in self.selected {
+                            do{
+                                let parameters = ["save": 1,
+                                                  "playlistId" : self.playlist?.id,
+                                                  "songId" : song.id] as [String : Any]
+                                
+                                Alamofire.request("https://botticelliproject.com/air/api/playlistSong/save.php", method: .post, parameters: parameters)
+                                print(song.title)
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
 }
