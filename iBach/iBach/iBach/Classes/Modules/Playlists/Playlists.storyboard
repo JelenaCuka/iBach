@@ -56,6 +56,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Playlists" id="org-Ch-L1Z">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="9IB-cz-Ors">
+                        <color key="tintColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                        <segue destination="gIP-Uc-kXs" kind="show" id="q3l-Yo-TVL"/>
+                        </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHW-wb-A4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
