@@ -10,8 +10,11 @@ import UIKit
 
 class ChooseSongsViewController: UIViewController, ControllerDelegate {
     
-    func enableAddButton() {
+    var selected: [Song] = []
+    
+    func enableAddButton(songs: [Song]) {
         buttonAdd.isEnabled = true
+        selected = songs
     }
     
     var playlistName:String?

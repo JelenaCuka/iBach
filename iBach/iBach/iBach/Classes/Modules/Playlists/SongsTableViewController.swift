@@ -11,12 +11,13 @@ import Unbox
 import Alamofire
 
 protocol ControllerDelegate {
-    func enableAddButton()
+    func enableAddButton(songs: [Song])
 }
 
 class SongsTableViewController: UITableViewController {
     
     var songData: [Song] = []
+    var selectedSongs: [Song] = []
     
     var delegate: ControllerDelegate?
     
@@ -91,6 +92,6 @@ extension SongsTableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            delegate?.enableAddButton()
+        delegate?.enableAddButton(songs: songData)
     }
 }
