@@ -10,9 +10,15 @@ import Foundation
 import Unbox
 import Alamofire
 
+protocol ControllerDelegate {
+    func enableAddButton()
+}
+
 class SongsTableViewController: UITableViewController {
     
     var songData: [Song] = []
+    
+    var delegate: ControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,5 +89,8 @@ extension SongsTableViewController {
         }
         
         return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            delegate?.enableAddButton()
     }
 }

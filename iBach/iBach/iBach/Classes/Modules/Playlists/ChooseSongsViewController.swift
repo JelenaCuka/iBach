@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ChooseSongsViewController: UIViewController {
-
+class ChooseSongsViewController: UIViewController, ControllerDelegate {
+    
+    func enableAddButton() {
+        buttonAdd.isEnabled = true
+    }
+    
     var playlistName:String?
     
     @IBOutlet weak var playlistNameLabel: UILabel!
@@ -22,6 +26,12 @@ class ChooseSongsViewController: UIViewController {
         buttonAdd.isEnabled = false
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "veza") {
+            let vc = segue.destination as! SongsTableViewController
+            vc.delegate = self
+        }
+    }
     
 
 }
