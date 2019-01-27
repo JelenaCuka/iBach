@@ -34,6 +34,7 @@
 		4C838E1C21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */; };
+		9353236821FDB2620096AA99 /* SongsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353236721FDB2620096AA99 /* SongsTableViewController.swift */; };
 		93F887E021FD0905007D752E /* CreatePlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F887DF21FD0905007D752E /* CreatePlaylistViewController.swift */; };
 		93F887E221FD0F34007D752E /* ChooseSongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F887E121FD0F34007D752E /* ChooseSongsViewController.swift */; };
 		9C00EFE021A5EA9A00B9798A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C00EFDF21A5EA9A00B9798A /* Login.storyboard */; };
@@ -118,6 +119,7 @@
 		917766B6C3AF7B5ED1697F56 /* Pods-iBach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.release.xcconfig"; sourceTree = "<group>"; };
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
 		933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		9353236721FDB2620096AA99 /* SongsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTableViewController.swift; sourceTree = "<group>"; };
 		93F887DF21FD0905007D752E /* CreatePlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlaylistViewController.swift; sourceTree = "<group>"; };
 		93F887E121FD0F34007D752E /* ChooseSongsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSongsViewController.swift; sourceTree = "<group>"; };
 		984B9AAF6BA00B7FA15F9645 /* Pods-iBach.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.debug.xcconfig"; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				9C9C511521B584420002ADE2 /* Playlists.storyboard */,
+				9353236721FDB2620096AA99 /* SongsTableViewController.swift */,
 				9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */,
 				9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */,
 				4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */,
@@ -737,6 +740,7 @@
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				9CC91CB42195B76700FE8582 /* Switcher.swift in Sources */,
 				9C5734FB21BB14AD002797EB /* PlaylistsTableViewCell.swift in Sources */,
+				9353236821FDB2620096AA99 /* SongsTableViewController.swift in Sources */,
 				9CA6972D21B9AC32003BF5A3 /* FavoritesTableViewController.swift in Sources */,
 				34250FFE21ED218A008CB7FD /* SongDetailDatasource.swift in Sources */,
 				9CA6972B21B9AB71003BF5A3 /* FavoriteSongTableViewCell.swift in Sources */,

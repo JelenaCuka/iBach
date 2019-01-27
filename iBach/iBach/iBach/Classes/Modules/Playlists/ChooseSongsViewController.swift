@@ -14,15 +14,14 @@ class ChooseSongsViewController: UIViewController {
     
     @IBOutlet weak var playlistNameLabel: UILabel!
     
+    @IBOutlet weak var buttonAdd: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let recievedPlaylistName = playlistName {
-            self.navigationItem.title = "Choose Songs"
-            playlistNameLabel.text = "Choose at least one song for your new playlist \(recievedPlaylistName)"
-        }
+        buttonAdd.isEnabled = false
     }
+    
     
 
 }
