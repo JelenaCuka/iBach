@@ -13,8 +13,15 @@ class ChooseSongsViewController: UIViewController, ControllerDelegate {
     var selected: [Song] = []
     
     func enableAddButton(songs: [Song]) {
-        buttonAdd.isEnabled = true
+        
         selected = songs
+        
+        if(selected.count > 0){
+            buttonAdd.isEnabled = true
+        }
+        else{
+            buttonAdd.isEnabled = false
+        }
     }
     
     var playlistName:String?

@@ -92,6 +92,12 @@ extension SongsTableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.enableAddButton(songs: songData)
+        if(selectedSongs.contains(where: {$0.title == self.songData[indexPath.row].title})){
+            selectedSongs.removeAll(where: {$0.title == self.songData[indexPath.row].title})
+        }
+        else{
+            self.selectedSongs.append(self.songData[indexPath.row])
+        }
+        delegate?.enableAddButton(songs: selectedSongs)
     }
 }
