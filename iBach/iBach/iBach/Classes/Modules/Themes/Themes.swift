@@ -11,15 +11,17 @@ import UIKit
 protocol Theme {
     var tint: UIColor { get }
     
-    var backgroundColor: UIColor { get }
-    var separatorColor: UIColor { get }
-    var selectionColor: UIColor { get }
+    var backgroundColor: UIColor {get}
+    var separatorColor: UIColor {get}
+    var selectionColor: UIColor {get}
     
-    var labelColor: UIColor { get }
-    var secondaryLabelColor: UIColor { get }
-    var subtleLabelColor: UIColor { get }
+    var headerColor: UIColor {get}
     
-    var barStyle: UIBarStyle { get }
+    var labelColor: UIColor {get}
+    var secondaryLabelColor: UIColor {get}
+    var subtleLabelColor: UIColor {get}
+    
+    var barStyle: UIBarStyle {get}
     var textFieldColor: UIColor {get}
     var buttonColor: UIColor{get}
     var textView: UIColor{get}
@@ -41,17 +43,23 @@ extension Theme {
         UITabBar.appearance().with {
             $0.barStyle = barStyle
             $0.tintColor = tint
+            $0.barTintColor = headerColor.withAlphaComponent(0.3)
         }
         
         UINavigationBar.appearance().with {
             $0.barStyle = barStyle
             $0.tintColor = tint
+            $0.barTintColor = headerColor
             $0.titleTextAttributes = [
                 .foregroundColor: labelColor
             ]
             $0.largeTitleTextAttributes = [
                 .foregroundColor: labelColor
             ]
+        }
+        
+        UISearchBar.appearance().with {
+            $0.tintColor = tint
         }
         
         UILabel.appearance().textColor = labelColor

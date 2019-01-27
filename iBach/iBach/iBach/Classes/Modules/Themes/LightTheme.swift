@@ -15,6 +15,8 @@ struct LightTheme: Theme {
     let separatorColor: UIColor = .lightGray
     let selectionColor: UIColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1)
     
+    let headerColor: UIColor = UIColor(hexString: "#fefefe")
+    
     let labelColor: UIColor = .black
     let secondaryLabelColor: UIColor = .darkGray
     let subtleLabelColor: UIColor = .lightGray
