@@ -31,8 +31,15 @@ class PlaylistDetailsTableViewController: UITableViewController {
         self.navigationItem.title = playlistName
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(editPlaylist)),
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deletePlaylist))
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deletePlaylist)),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(sharePlaylist))
         ]
+    }
+    
+    @objc private func sharePlaylist() {
+        let items = ["com.ibach://playlist?id=\(playlistId)"]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
     
     @objc private func editPlaylist() {

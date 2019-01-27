@@ -31,6 +31,7 @@
 		34D748F621F7330000B26D3A /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D748F521F7330000B26D3A /* Artist.swift */; };
 		376D67662836F202ED134424 /* Pods_iBach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF1E8AE6D0B501D0529BD7 /* Pods_iBach.framework */; };
 		4C594CD521FCF9F7001FD314 /* UIAlertControllerWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C594CD421FCF9F7001FD314 /* UIAlertControllerWithTextField.swift */; };
+		4C594CDB21FDF718001FD314 /* ImportPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C594CDA21FDF718001FD314 /* ImportPlaylistViewController.swift */; };
 		4C838E1C21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */; };
 		92B8E3F78A0B73F7841EF77E /* Pods_iBachTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62423B824CEF2E51F3AE3CF /* Pods_iBachTests.framework */; };
 		933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933A5D9621B2D19F009ED123 /* AccountTableViewController.swift */; };
@@ -112,6 +113,7 @@
 		34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcher.swift; sourceTree = "<group>"; };
 		34D748F521F7330000B26D3A /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		4C594CD421FCF9F7001FD314 /* UIAlertControllerWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerWithTextField.swift; sourceTree = "<group>"; };
+		4C594CDA21FDF718001FD314 /* ImportPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportPlaylistViewController.swift; sourceTree = "<group>"; };
 		4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailsTableViewController.swift; sourceTree = "<group>"; };
 		917766B6C3AF7B5ED1697F56 /* Pods-iBach.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBach.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBach/Pods-iBach.release.xcconfig"; sourceTree = "<group>"; };
 		92784A192B37ADA074113A88 /* Pods-iBachTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBachTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBachTests/Pods-iBachTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				9C5734F821BB149B002797EB /* PlaylistsTableViewController.swift */,
 				9C5734FA21BB14AD002797EB /* PlaylistsTableViewCell.swift */,
 				4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */,
+				4C594CDA21FDF718001FD314 /* ImportPlaylistViewController.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				9C5734FD21BB1535002797EB /* Playlist.swift in Sources */,
 				4C838E1C21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift in Sources */,
 				34A68C1421FBBAD2003270CA /* ThemeSwitcher.swift in Sources */,
+				4C594CDB21FDF718001FD314 /* ImportPlaylistViewController.swift in Sources */,
 				9CF12FAE219050F300871893 /* ViewController.swift in Sources */,
 				9D05965521EE1DFD0096DFD0 /* MiniPlayerViewController.swift in Sources */,
 				933A5D9721B2D19F009ED123 /* AccountTableViewController.swift in Sources */,
