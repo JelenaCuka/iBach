@@ -80,7 +80,7 @@
                             <constraint firstAttribute="trailing" secondItem="fvg-Z9-U9i" secondAttribute="trailing" constant="16" id="Qdb-zA-Yfy"/>
                             <constraint firstItem="SNu-g1-pXf" firstAttribute="leading" secondItem="dUa-c0-3WA" secondAttribute="leading" id="TVB-1p-Ps3"/>
                             <constraint firstItem="SNu-g1-pXf" firstAttribute="top" secondItem="sRw-Pj-UQ3" secondAttribute="top" id="qaM-cE-RSl"/>
-                            <constraint firstItem="SNu-g1-pXf" firstAttribute="bottom" secondItem="dUa-c0-3WA" secondAttribute="bottom" id="rTw-U0-6vn"/>
+                            <constraint firstItem="SNu-g1-pXf" firstAttribute="bottom" secondItem="sRw-Pj-UQ3" secondAttribute="bottom" id="rTw-U0-6vn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dUa-c0-3WA"/>
                     </view>

@@ -24,7 +24,7 @@ struct LightTheme: Theme {
     let miniPlayerColor: UIColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
     let playlistLableColor: UIColor = .darkGray
     
-    
+    let statusBarTheme: UIStatusBarStyle = UIStatusBarStyle.default
     
     let barStyle: UIBarStyle = .default
 }

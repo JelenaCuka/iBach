@@ -23,6 +23,8 @@ class RootTabBarViewController: UITabBarController {
             view.setNeedsLayout()
             view.layoutIfNeeded()
         }
+        
+        self.tabBar.invalidateIntrinsicContentSize()
     }
 
     /*
