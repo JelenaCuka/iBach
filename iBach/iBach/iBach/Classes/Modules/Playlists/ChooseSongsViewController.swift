@@ -67,6 +67,7 @@ class ChooseSongsViewController: UIViewController, ControllerDelegate {
             
             DispatchQueue.main.async {
                 self.loadData()
+                Switcher.updateRootViewController()
             }
         }))
         
