@@ -92,11 +92,17 @@ extension SongsTableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell:UITableViewCell? = tableView.cellForRow(at: indexPath)
+        
         if(selectedSongs.contains(where: {$0.title == self.songData[indexPath.row].title})){
             selectedSongs.removeAll(where: {$0.title == self.songData[indexPath.row].title})
+            cell!.textLabel!.textColor = UIColor.black
         }
         else{
             self.selectedSongs.append(self.songData[indexPath.row])
+            
+            cell!.textLabel!.textColor = UIColor.purple
         }
         delegate?.enableAddButton(songs: selectedSongs)
     }
