@@ -128,10 +128,12 @@ class MusicTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MusicPlayer.sharedInstance.updateSongData(songsList: filteredSongs as [Song])
+        MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
         
         if(MusicPlayer.sharedInstance.playSong(song: filteredSongs[indexPath.row].id)){
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+            self.searchController.searchBar.text! = ""
+            self.searchController.isActive = false
         }
     }
     
