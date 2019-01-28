@@ -69,7 +69,6 @@ class FavoritesTableViewController: UIViewController {
                 
                 if (serverResponse == "OK. Favorite song removed") {
                     DispatchQueue.main.async {
-                        //self.tableViewFavorites.tableFooterView = UIView(frame: CGRect.zero)//
                         let oldFavorites : [Song] = self.songData
                         
                         

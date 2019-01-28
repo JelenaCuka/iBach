@@ -157,18 +157,33 @@ class PlaylistDetailsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
         let deleteHandler: (UITableViewRowAction, IndexPath) -> Void = { _, indexPath in
     
-            
-            
+ 
             if self.songData.count > 1 {
+                
                 DispatchQueue.main.async {
                 let parameters = ["delete": 1, "playlistId" : self.playlistId, "songId": self.songData[indexPath.row].id]
+                    if(self.songData[indexPath.row].id != MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id){
+                        
+                        let oldPlaylist : [Song] = self.songData
+                        Alamofire.request("https://botticelliproject.com/air/api/playlistSong/delete.php", method: .post, parameters: parameters)
+                        
+                        self.songData.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        
+                            if (oldPlaylist.count > 0 ){
+                                if  oldPlaylist.elementsEqual(MusicPlayer.sharedInstance.songData, by: { $0.id == $1.id }) {
+                                    let currentSongId = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id
+                                    MusicPlayer.sharedInstance.updateSongData(songsList: self.songData as [Song])
+                                    let newCurrentSongIndex = MusicPlayer.sharedInstance.getSongIndex(song: currentSongId)
+                                    MusicPlayer.sharedInstance.currentSongIndex = newCurrentSongIndex
+                                }
+                            }
+                        //})
+                    }
                 
-                Alamofire.request("https://botticelliproject.com/air/api/playlistSong/delete.php", method: .post, parameters: parameters)
-                
-                self.songData.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
             }
             
     
@@ -184,6 +199,12 @@ class PlaylistDetailsTableViewController: UITableViewController {
                         
                         Alamofire.request("https://botticelliproject.com/air/api/playlists/delete.php", method: .post, parameters: parameters)
                         
+                        
+                        
+                        //
+                        
+                        //
+                        
                         self.navigationController?.popViewController(animated: true)
                     }
                 }))
@@ -196,6 +217,15 @@ class PlaylistDetailsTableViewController: UITableViewController {
         let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.destructive, title: "Remove", handler: deleteHandler)
         
         return [deleteAction]
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
+        
+        if(MusicPlayer.sharedInstance.playSong(song: songData[indexPath.row].id)){
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+        }
+        
     }
  
 }
