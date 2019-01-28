@@ -121,6 +121,17 @@
                                                     <action selector="changeVolume:" destination="Tza-Tl-667" eventType="valueChanged" id="KBr-ym-Hy1"/>
                                                 </connections>
                                             </slider>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-83-0QC">
+                                                <rect key="frame" x="40" y="594" width="60" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                </accessibility>
+                                                <state key="normal" image="Favorite"/>
+                                                <connections>
+                                                    <action selector="buttonFavoriteClick:" destination="Tza-Tl-667" eventType="touchUpInside" id="ya5-XU-fXi"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -146,6 +157,7 @@
                         <viewLayoutGuide key="safeArea" id="Nu8-Zn-PV1"/>
                     </view>
                     <connections>
+                        <outlet property="buttonFavorite" destination="aOT-83-0QC" id="xPz-7G-3em"/>
                         <outlet property="buttonNext" destination="HvF-uV-MXG" id="Sb2-fJ-e3b"/>
                         <outlet property="buttonPlay" destination="3gH-Up-32J" id="ZMD-Wa-NGZ"/>
                         <outlet property="buttonPrevious" destination="tvt-8L-t5U" id="6nK-OS-EpE"/>
@@ -238,6 +250,7 @@
     </scenes>
     <resources>
         <image name="Backward" width="54" height="54"/>
+        <image name="Favorite" width="60" height="60"/>
         <image name="Forward" width="54" height="54"/>
         <image name="Pause" width="54" height="54"/>
     </resources>
