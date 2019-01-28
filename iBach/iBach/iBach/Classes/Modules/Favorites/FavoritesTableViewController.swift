@@ -83,7 +83,6 @@ class FavoritesTableViewController: UITableViewController {
             if (serverResponse == "OK. Favorite song removed") {
                 DispatchQueue.main.async {
                     let oldFavorites : [Song] = self.songData
-                    //let oldFavorites : [Song] = self.filteredFavorites
                     self.songData.removeAll()
                     
                     HTTPRequest().sendGetRequest(urlString: "http://botticelliproject.com/air/api/favorite/findall.php?userId=\(UserDefaults.standard.integer(forKey: "user_id"))", completionHandler: {(response, error) in
@@ -102,7 +101,6 @@ class FavoritesTableViewController: UITableViewController {
                         }
                         self.filteredFavorites = self.songData
                         self.tableView.reloadData()
-                        //self.tableViewFavorites.reloadData()
                         
                         //if favorites are playling and song from favorites is deleted
                         //update player
@@ -129,20 +127,17 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return self.filteredFavorites.count
-        return self.songData.count
+        return self.filteredFavorites.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "favoriteCell"
-        //guard let cell = tableViewFavorites.dequeueReusableCell
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FavoriteSongTableViewCell else {
             fatalError("Error")
         }
         
-        //if let imageURL = URL(string: self.filteredFavorites[indexPath.row].coverArtUrl) {
-        if let imageURL = URL(string: self.songData[indexPath.row].coverArtUrl) {
+        if let imageURL = URL(string: self.filteredFavorites[indexPath.row].coverArtUrl) {
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
             
             cell.imageViewCoverArt.layer.cornerRadius = 5
@@ -152,13 +147,10 @@ class FavoritesTableViewController: UITableViewController {
             cell.imageViewCoverArt.af_setImage(withURL: imageURL)
         }
         
-        //cell.labelTrackTitle.text = self.filteredFavorites[indexPath.row].title
-        //cell.labelAuthor.text = self.filteredFavorites[indexPath.row].author
-        //cell.id = self.filteredFavorites[indexPath.row].id
+        cell.labelTrackTitle.text = self.filteredFavorites[indexPath.row].title
+        cell.labelAuthor.text = self.filteredFavorites[indexPath.row].author
+        cell.id = self.filteredFavorites[indexPath.row].id
         
-        cell.labelTrackTitle.text = self.songData[indexPath.row].title
-        cell.labelAuthor.text = self.songData[indexPath.row].author
-        cell.id = self.songData[indexPath.row].id
         
         return cell
         
@@ -175,16 +167,9 @@ class FavoritesTableViewController: UITableViewController {
             
             if(MusicPlayer.sharedInstance.currentSongIndex == -1 ||
                 !( self.songData.elementsEqual(MusicPlayer.sharedInstance.songData, by: { $0.id == $1.id }) &&
-                self.songData[indexPath.row].id == MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id) ){
-                self.removeFavourite(songId: self.songData[indexPath.row].id)
-            }
-            
-            
-            /*if(MusicPlayer.sharedInstance.currentSongIndex == -1 ||
-                !( self.songData.elementsEqual(MusicPlayer.sharedInstance.songData, by: { $0.id == $1.id }) &&
                     self.filteredFavorites[indexPath.row].id == MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id) ){
                 self.removeFavourite(songId: self.filteredFavorites[indexPath.row].id)
-            }*/
+            }
             
         })
         deleteAction.backgroundColor = .red
@@ -196,22 +181,19 @@ class FavoritesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        //MusicPlayer.sharedInstance.updateSongData(songsList: filteredFavorites as [Song])
         MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
         
-        //if(MusicPlayer.sharedInstance.playSong(song: filteredFavorites[indexPath.row].id)){
-        if(MusicPlayer.sharedInstance.playSong(song: songData[indexPath.row].id)){
+        if(MusicPlayer.sharedInstance.playSong(song: filteredFavorites[indexPath.row].id)){
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+            self.searchController.searchBar.text! = ""
+            self.searchController.isActive = false
         }
     }
     
 }
 
 extension FavoritesTableViewController: UISearchResultsUpdating  {
-    // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
-        
-        //filterContentForSearchText(searchController.searchBar.text!)
         if searchController.searchBar.text! == "" {
             filteredFavorites = songData
         }
