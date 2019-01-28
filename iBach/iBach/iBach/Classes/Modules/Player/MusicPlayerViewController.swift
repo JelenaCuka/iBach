@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import AVKit//
+import AVKit
+import Alamofire
+import Unbox
 
 class MusicPlayerViewController: UIViewController {
     
@@ -21,6 +23,7 @@ class MusicPlayerViewController: UIViewController {
     @IBOutlet weak var buttonPrevious: UIButton!
     @IBOutlet weak var buttonPlay: UIButton!
     @IBOutlet weak var buttonNext: UIButton!
+    @IBOutlet weak var buttonFavorite: UIButton!
     
     var updater : CADisplayLink! = nil
     @IBOutlet weak var progressSongTime: UISlider!
@@ -108,6 +111,50 @@ class MusicPlayerViewController: UIViewController {
         }
     }
     
+    @IBAction func buttonFavoriteClick(_ sender: Any) {
+        //
+        setFavoriteIcon()
+       
+    }
+    func setFavoriteIcon(){
+        DispatchQueue.main.async {
+            
+            let parameters: Parameters = [
+                "save": 1,
+                "songId": MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id,
+                "userId": UserDefaults.standard.integer(forKey: "user_id")
+            ]
+            
+            HTTPRequest().sendPostRequest2(urlString: "https://botticelliproject.com/air/api/favorite/save.php", parameters: parameters, completionHandler: {(response, error) in
+                var serverResponse: String = ""
+                serverResponse = response!["description"]! as! String ?? ""
+                
+                if (serverResponse == "OK. Favorite song removed") {
+                    self.buttonFavorite.setImage(UIImage(named: "Favorite"), for: .normal)
+                }
+                if (serverResponse == "OK. Favorite song added.") {
+                    self.buttonFavorite.setImage(UIImage(named: "UnFavorite"), for: .normal)
+                }
+            })
+        }
+        
+    }
+    func isFavoriteIcon(){
+        DispatchQueue.main.async {
+            HTTPRequest().sendGetRequest(urlString: "http://botticelliproject.com/air/api/favorite/findone.php?userId=\(UserDefaults.standard.integer(forKey: "user_id"))&songId=\(MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id)", completionHandler: {(response, error) in
+                do {
+                    let singleSong: Song = try unbox(dictionary: (response as! NSDictionary) as! UnboxableDictionary)
+                        if (singleSong.id == MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id ) {
+                            self.buttonFavorite.setImage(UIImage(named: "UnFavorite"), for: .normal)
+                        }
+                }
+                catch {
+                    self.buttonFavorite.setImage(UIImage(named: "Favorite"), for: .normal)
+                }
+            })
+        }
+        
+    }
     
     @IBAction func changeSongTime(_ sender: Any) {
         let newTime = Double (progressSongTime.value )
@@ -148,6 +195,8 @@ class MusicPlayerViewController: UIViewController {
             trackAudio()
             changePlayPauseIcon()
             checkOldVolume()
+        
+        isFavoriteIcon()
     
     }
     

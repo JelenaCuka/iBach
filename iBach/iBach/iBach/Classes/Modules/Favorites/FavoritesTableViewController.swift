@@ -9,21 +9,40 @@
 import UIKit
 import Unbox
 import AlamofireImage
+import Alamofire
 
-class FavoritesTableViewController: UIViewController {
+class FavoritesTableViewController: UITableViewController {
     
     @IBOutlet weak var tableViewFavorites: UITableView!
     
+    
     var songData: [Song] = []
+    var filteredFavorites: [Song] = []
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableViewFavorites.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        songData.removeAll()
+        filteredFavorites.removeAll()
         loadData()
     }
     
     private func loadData() {
+        songData = []
         DispatchQueue.main.async {
             HTTPRequest().sendGetRequest(urlString: "http://botticelliproject.com/air/api/favorite/findall.php?userId=\(UserDefaults.standard.integer(forKey: "user_id"))", completionHandler: {(response, error) in
                 if let data: NSArray = response as? NSArray {
@@ -39,30 +58,87 @@ class FavoritesTableViewController: UIViewController {
                         }
                     }
                 }
-                self.tableViewFavorites.reloadData()
+                self.filteredFavorites = self.songData
+                self.tableView.reloadData()
+                
             })
         }
     }
+    private func removeFavourite(songId: Int) {
+        
+            let parameters: Parameters = [
+                "save": 1,
+                "songId": songId,
+                "userId": UserDefaults.standard.integer(forKey: "user_id")
+            ]
+        
+            HTTPRequest().sendPostRequest2(urlString: "https://botticelliproject.com/air/api/favorite/save.php", parameters: parameters, completionHandler: {(response, error) in
+   
+                var serverResponse: String = ""
+                serverResponse = response!["description"]! as! String
+                
+                if (serverResponse == "OK. Favorite song removed") {
+                    DispatchQueue.main.async {
+                        let oldFavorites : [Song] = self.filteredFavorites
+                        
+                        
+                        self.songData = []
+                        
+                        HTTPRequest().sendGetRequest(urlString: "http://botticelliproject.com/air/api/favorite/findall.php?userId=\(UserDefaults.standard.integer(forKey: "user_id"))", completionHandler: {(response, error) in
+                            if let data: NSArray = response as? NSArray {
+                                for song in data {
+                                    do {
+                                        
+                                        let singleSong: Song = try unbox(dictionary: (song as! NSDictionary) as! UnboxableDictionary)
+                                        self.songData.append(singleSong)
+                                        
+                                    }
+                                    catch {
+                                        print("Unable to unbox")
+                                    }
+                                }
+                            }
+                            self.filteredFavorites = self.songData
+                            self.tableViewFavorites.reloadData()
+                            
+                            if (oldFavorites.count > 0 ){
+                                
+                                if  oldFavorites.elementsEqual(MusicPlayer.sharedInstance.songData, by: { $0.id == $1.id }) {
+                                    
+                                    //dohvati id trenurno reproducirane pjesme favorita
+                                    let currentSongId = MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id
+                                    //update favorita
+                                    MusicPlayer.sharedInstance.updateSongData(songsList: self.filteredFavorites as [Song])
+                                    //index trenutne pjesme u prociscenoj listi
+                                    let newCurrentSongIndex = MusicPlayer.sharedInstance.getSongIndex(song: currentSongId)
+                                    MusicPlayer.sharedInstance.currentSongIndex = newCurrentSongIndex
+                                    
+                                }
+                            }
+                            
+                        })
+                        //
+                        
+                    }
+                }
+            })
+    }
     
-}
-
-extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.songData.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.filteredFavorites.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "trackCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FavoriteSongTableViewCell else {
             fatalError("Error")
         }
         
-        if let imageURL = URL(string: self.songData[indexPath.row].coverArtUrl) {
+        if let imageURL = URL(string: self.filteredFavorites[indexPath.row].coverArtUrl) {
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
             
             cell.imageViewCoverArt.layer.cornerRadius = 5
@@ -72,39 +148,50 @@ extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSour
             cell.imageViewCoverArt.af_setImage(withURL: imageURL)
         }
         
-        cell.labelTrackTitle.text = self.songData[indexPath.row].title
-        cell.labelAuthor.text = self.songData[indexPath.row].author
+        cell.labelTrackTitle.text = self.filteredFavorites[indexPath.row].title
+        cell.labelAuthor.text = self.filteredFavorites[indexPath.row].author
+        cell.id = self.filteredFavorites[indexPath.row].id
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*let playerItem = AVPlayerItem(url: URL(string: self.songData[indexPath.row].fileUrl)!)
-         player = AVPlayer(playerItem: playerItem)
-         
-         do {
-         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-         try AVAudioSession.sharedInstance().setActive(true)
-         } catch {
-         print(error)
-         }
-         
-         player.play() */
+    override func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let deleteAction = UIContextualAction(style: .normal, title:  "Remove", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            success(true)
+            //ne moze ukloniti pjesmu koja trenutno svira
+            if(self.filteredFavorites[indexPath.row].id != MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id){
+                self.removeFavourite(songId: self.filteredFavorites[indexPath.row].id)
+            }
+        })
+        deleteAction.backgroundColor = .red
         
-        //player.playMusicFromUrl(url: URL(string: self.songData[indexPath.row].fileUrl)!)
-        
-        
-        /*let songInfo = ["title": self.songData[indexPath.row].title,
-                        "author": self.songData[indexPath.row].author,
-                        "cover_art": self.songData[indexPath.row].coverArtUrl,
-                        "year": self.songData[indexPath.row].year,
-                        "id": self.songData[indexPath.row].id,
-                        /*"album": self.songData[indexPath.row].album*/] as [String : Any] */
-        
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil, userInfo: songInfo)
-        
-        //let songsToPlay = ["id": self.songData[indexPath.row].id, "others": songData] as [String: Any]
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendSongList"), object: nil, userInfo: songsToPlay)
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MusicPlayer.sharedInstance.updateSongData(songsList: filteredFavorites as [Song])
+        
+        if(MusicPlayer.sharedInstance.playSong(song: filteredFavorites[indexPath.row].id)){
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+        }
+        
+    }
+
+}
+
+extension FavoritesTableViewController: UISearchResultsUpdating  {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        //filterContentForSearchText(searchController.searchBar.text!)
+        if searchController.searchBar.text! == "" {
+            filteredFavorites = songData
+        }
+        else{
+            filteredFavorites = songData.filter( {$0.title.lowercased().contains(searchController.searchBar.text!.lowercased() )} )
+        }
+        self.tableView.reloadData()
+    }
 }

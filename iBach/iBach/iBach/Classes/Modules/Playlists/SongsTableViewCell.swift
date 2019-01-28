@@ -1,27 +1,23 @@
 //
-//  FavoriteSongTableViewCell.swift
+//  SongsTableViewCell.swift
 //  iBach
 //
-//  Created by Petar Jedek on 06.12.18.
-//  Copyright © 2018 Petar Jedek. All rights reserved.
+//  Created by Petar Jedek on 28.01.19.
+//  Copyright © 2019 Petar Jedek. All rights reserved.
 //
 
 import UIKit
 
-class FavoriteSongTableViewCell: UITableViewCell {
-    
+class SongsTableViewCell: UITableViewCell {
+
     @IBOutlet var imageViewCoverArt: UIImageView!
     @IBOutlet var labelTrackTitle: UILabel!
     @IBOutlet var labelAuthor: UILabel!
-    var id: Int!
-    
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,7 +25,5 @@ class FavoriteSongTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
-    
+
 }

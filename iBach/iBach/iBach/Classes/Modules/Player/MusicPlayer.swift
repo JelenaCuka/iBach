@@ -43,11 +43,8 @@ class MusicPlayer {
     
     @discardableResult
     func playSong( song: Int ) -> Bool {
-        
-        
-        
         if ( songIsInSongList(song: song) ) {
-            currentSongIndex = song
+            currentSongIndex = getSongIndex(song: song)
             player = AVPlayer(playerItem: AVPlayerItem(url: URL(string: songData[currentSongIndex].fileUrl)!) )
             
             NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: .main ) { [weak self] _ in self?.player?.seek(to: CMTime.zero)
@@ -62,7 +59,7 @@ class MusicPlayer {
     
     @discardableResult
     func playSong() -> Bool {
-        if( !isPlaying() && songIsInSongList(song: currentSongIndex) ){
+        if( !isPlaying() && songIsInSongList(song: songData[currentSongIndex].id) ){
             player.play()
             NotificationCenter.default.post(name: .songIsPlaying, object: nil)
 
@@ -75,7 +72,7 @@ class MusicPlayer {
     
     @discardableResult
     func pauseSong() -> Bool {
-        if( isPlaying() && songIsInSongList(song: currentSongIndex) ){
+        if( isPlaying() && songIsInSongList(song: songData[currentSongIndex].id)  ){
             player.pause()
             NotificationCenter.default.post(name: .songIsPaused, object: nil)
             return true
@@ -95,7 +92,7 @@ class MusicPlayer {
                 currentSongIndex = currentSongIndex - 1
             }
         }
-        return playSong(song: currentSongIndex )
+        return playSong(song: songData[currentSongIndex].id)
     }
     
     @discardableResult
@@ -109,7 +106,7 @@ class MusicPlayer {
                 currentSongIndex = currentSongIndex + 1
             }
         }
-        return playSong( song: currentSongIndex )
+        return playSong(song: songData[currentSongIndex].id)
     }
     
     func currentSongDuration() -> Int {
@@ -165,11 +162,20 @@ class MusicPlayer {
     }
     
     func songIsInSongList( song: Int) -> Bool {
-        if ((song >= 0 && song < songData.count ) && song != -1  ){
+        let contains = songData.contains { $0.id == song }
+        if (contains ){
             return true
         }else{
             return false
         }
+    }
+    
+    func getSongIndex(song: Int) -> Int {
+        var index = -1
+        if (songIsInSongList( song: song)){
+            index = songData.index(where: { $0.id == song }) ?? -1
+        }
+        return index
     }
     
     func firstSongInTheList() -> Bool {
@@ -197,6 +203,8 @@ class MusicPlayer {
             shuffle = true
         }
     }
+    
+    
     
     func setPlayingScreen() {
         if (songIsInSongList(song: currentSongIndex)) {

@@ -22,6 +22,14 @@ class HTTPRequest {
                 completionHandler(response.result.value as? [String: Any], response.result.error as? NSError)
             }
     }
+    public func sendPostRequest2(urlString: String, parameters: Parameters, completionHandler: @escaping ([String: Any]?, NSError?) -> ()) {
+        
+        let url = URL(string: urlString)
+        Alamofire.request(url ?? "",method: .post, parameters: parameters).responseJSON(//completionHandler: { (response) in
+            completionHandler: {response in
+            completionHandler(response.result.value as? [String: Any], response.result.error as? NSError)
+        })
+    }
     
     public func sendGetRequest(urlString: String, completionHandler: @escaping (Any, NSError?) -> ()) {
         
