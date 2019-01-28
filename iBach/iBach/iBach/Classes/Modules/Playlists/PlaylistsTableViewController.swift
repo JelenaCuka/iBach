@@ -73,7 +73,7 @@ class PlaylistsTableViewController: UITableViewController {
             fatalError("Error")
         }
         
-        if let imageURL = URL(string: self.filteredPlaylist[indexPath.row].coverArtUrl) {
+        if let imageURL = URL(string: self.filteredPlaylist[indexPath.row].coverArtUrl ?? "https://botticelliproject.com/air/musicapp/src/img/5bfef740a7f6e.mp3.jpg") {
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
             
             cell.imageViewCoverArt.layer.cornerRadius = 10

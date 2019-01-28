@@ -14,7 +14,7 @@ class Playlist: Unboxable {
     var userId: Int
     var modifiedAt: String
     var deletedAt: String?
-    var coverArtUrl: String
+    var coverArtUrl: String?
     
     required init(unboxer: Unboxer) throws {
         self.id = try unboxer.unbox(key: "id")
@@ -22,6 +22,6 @@ class Playlist: Unboxable {
         self.userId = try unboxer.unbox(key: "user_id")
         self.modifiedAt = try unboxer.unbox(key: "modified_at")
         self.deletedAt = unboxer.unbox(key: "deleted_at")
-        self.coverArtUrl = try unboxer.unbox(key: "cover_art_url")
+        self.coverArtUrl = unboxer.unbox(key: "cover_art_url")
     }
 }
