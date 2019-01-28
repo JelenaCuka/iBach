@@ -142,7 +142,6 @@ class MusicPlayerViewController: UIViewController {
     func isFavoriteIcon(){
         DispatchQueue.main.async {
             HTTPRequest().sendGetRequest(urlString: "http://botticelliproject.com/air/api/favorite/findone.php?userId=\(UserDefaults.standard.integer(forKey: "user_id"))&songId=\(MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id)", completionHandler: {(response, error) in
-                print(response)
                 do {
                     let singleSong: Song = try unbox(dictionary: (response as! NSDictionary) as! UnboxableDictionary)
                         if (singleSong.id == MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id ) {
