@@ -13,12 +13,10 @@ import AlamofireImage
 import AVKit
 import AVFoundation
 
-class MusicViewController: UIViewController {
+class MusicTableViewController: UITableViewController {
+   
     
-    @IBOutlet var miniPlayerView: UIView!
-    @IBOutlet var imageCoverArt: UIImageView!
-    @IBOutlet var labelSongTitle: UILabel!
-    @IBOutlet var labelAuthor: UILabel!
+    var songData: [Song] = []
     
     var buttonPlay: UIBarButtonItem?
     var buttonShuffle: UIBarButtonItem?
@@ -27,10 +25,7 @@ class MusicViewController: UIViewController {
         super.viewDidLoad()
         
         setPlayingIcons()
-        
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        self.navigationItem.searchController = search
+        loadTracks()
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(changePlayPauseIcon(notification:)), name: NSNotification.Name(rawValue: "songIsPlaying"), object: nil)//
@@ -69,14 +64,62 @@ class MusicViewController: UIViewController {
         }
     }
     
-}
-
-extension MusicViewController: UISearchResultsUpdating {
+    private func loadTracks() {
+        DispatchQueue.main.async {
+            HTTPRequest().sendGetRequest(urlString: "https://botticelliproject.com/air/api/song/findall.php", completionHandler: {(response, error) in
+                if let data: NSArray = response as? NSArray {
+                    for song in data {
+                        do {
+                            let singleSong: Song = try unbox(dictionary: (song as! NSDictionary) as! UnboxableDictionary)
+                            self.songData.append(singleSong)
+                            
+                        }
+                        catch {
+                            print("Unable to unbox")
+                        }
+                    }
+                }
+                self.tableView.reloadData()
+            })
+        }
+    }
     
-    func updateSearchResults(for searchController: UISearchController) {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.songData.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "trackCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? TrackTableViewCell else {
+            fatalError("Error")
+        }
         
+        if let imageURL = URL(string: self.songData[indexPath.row].coverArtUrl) {
+            let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
+            
+            cell.imageViewCoverArt.layer.cornerRadius = 5
+            cell.imageViewCoverArt.clipsToBounds = true
+            cell.imageViewCoverArt.layer.borderWidth = 0.5
+            cell.imageViewCoverArt.layer.borderColor = color.cgColor
+            cell.imageViewCoverArt.af_setImage(withURL: imageURL)
+        }
+        
+        cell.labelTrackTitle.text = self.songData[indexPath.row].title
+        cell.labelAuthor.text = self.songData[indexPath.row].author
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
+        
+        if(MusicPlayer.sharedInstance.playSong(song: songData[indexPath.row].id)){
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
+        }
     }
     
 }
-
-

@@ -20,6 +20,8 @@ class PlaylistDetailsTableViewController: UITableViewController {
     public func customInit(_ id: Int, _ name: String) {
         self.playlistId = id
         self.playlistName = name
+        
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     override func viewDidLoad() {

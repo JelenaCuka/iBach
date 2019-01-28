@@ -11,7 +11,7 @@ import Unbox
 import AlamofireImage
 import Alamofire
 
-class FavoritesTableViewController: UIViewController {
+class FavoritesTableViewController: UITableViewController {
     
     @IBOutlet weak var tableViewFavorites: UITableView!
     
@@ -21,7 +21,7 @@ class FavoritesTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableViewFavorites.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
     }
     
@@ -49,7 +49,7 @@ class FavoritesTableViewController: UIViewController {
                         }
                     }
                 }
-                self.tableViewFavorites.reloadData()
+                self.tableView.reloadData()
                 
             })
         }
@@ -113,19 +113,15 @@ class FavoritesTableViewController: UIViewController {
             })
     }
     
-}
-
-extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.songData.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "trackCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FavoriteSongTableViewCell else {
             fatalError("Error")
@@ -148,7 +144,7 @@ extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    func tableView(_ tableView: UITableView,
+    override func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let deleteAction = UIContextualAction(style: .normal, title:  "Remove", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
@@ -158,13 +154,13 @@ extension FavoritesTableViewController: UITableViewDelegate, UITableViewDataSour
                 self.removeFavourite(songId: self.songData[indexPath.row].id)
             }
         })
-        deleteAction.backgroundColor = .purple
+        deleteAction.backgroundColor = .red
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
         
         if(MusicPlayer.sharedInstance.playSong(song: songData[indexPath.row].id)){
