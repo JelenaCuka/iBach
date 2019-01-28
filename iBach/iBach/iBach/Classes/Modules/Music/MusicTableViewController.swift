@@ -82,10 +82,8 @@ extension MusicTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
-        MusicPlayer.sharedInstance.playSong(song: indexPath.row )
         
-        
-        if(MusicPlayer.sharedInstance.playSong(song: indexPath.row )){
+        if(MusicPlayer.sharedInstance.playSong(song: songData[indexPath.row].id)){
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         }
     }

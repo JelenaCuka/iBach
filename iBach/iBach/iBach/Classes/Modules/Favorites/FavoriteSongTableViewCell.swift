@@ -13,10 +13,15 @@ class FavoriteSongTableViewCell: UITableViewCell {
     @IBOutlet var imageViewCoverArt: UIImageView!
     @IBOutlet var labelTrackTitle: UILabel!
     @IBOutlet var labelAuthor: UILabel!
+    var id: Int!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,5 +29,7 @@ class FavoriteSongTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    
+    
 }

@@ -40,7 +40,7 @@
             <objects>
                 <tableViewController id="cbi-Qu-cG8" customClass="FavoritesTableViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pkt-3H-AKS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -71,10 +71,12 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="imageViewCoverArt" destination="YeJ-BQ-fn1" id="4hc-ut-vT0"/>
                                     <outlet property="labelAuthor" destination="Vew-d0-qOc" id="BJe-t7-jyE"/>
                                     <outlet property="labelTrackTitle" destination="ebI-rb-DMz" id="1LF-ne-dPa"/>
+                                    <outletCollection property="gestureRecognizers" destination="q7f-kM-5lf" appends="YES" id="yyM-VX-w8s"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -88,8 +90,9 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKC-1Z-b3J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="q7f-kM-5lf"/>
             </objects>
-            <point key="canvasLocation" x="2057" y="186"/>
+            <point key="canvasLocation" x="2056.8000000000002" y="185.30734632683661"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="Nb6-rr-odE">
