@@ -107,7 +107,7 @@
         <scene sceneID="e9k-Ag-ZBf">
             <objects>
                 <viewController id="gIP-Uc-kXs" customClass="CreatePlaylistViewController" customModule="iBach" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="C7l-a4-yCa">
+                    <view key="view" contentMode="scaleToFill" id="C7l-a4-yCa" customClass="AppView" customModule="iBach" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -118,7 +118,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Playlist Name here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cp7-8r-zd3">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Playlist Name here..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cp7-8r-zd3" customClass="AppTextField" customModule="iBach" customModuleProvider="target">
                                 <rect key="frame" x="132" y="47" width="217" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SongsTableViewCell: UITableViewCell {
+class SongsTableViewCell: CheckableTableViewCell {
 
     @IBOutlet var imageViewCoverArt: UIImageView!
     @IBOutlet var labelTrackTitle: UILabel!

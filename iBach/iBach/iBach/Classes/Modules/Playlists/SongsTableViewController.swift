@@ -26,6 +26,8 @@ class SongsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         loadTracks()
+        
+        self.tableView.allowsMultipleSelection = true
     }
     
     
@@ -80,23 +82,43 @@ extension SongsTableViewController {
         
         return cell
     }
+    
+    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as? SongsTableViewCell else {
             fatalError("Error")
         }
         
-        if(selectedSongs.contains(where: {$0.title == self.songData[indexPath.row].title})){
-            selectedSongs.removeAll(where: {$0.title == self.songData[indexPath.row].title})
+        if(selectedSongs.contains(where: {$0.id == self.songData[indexPath.row].id})){
+            selectedSongs.removeAll(where: {$0.id == self.songData[indexPath.row].id})
             
             cell.labelTrackTitle.textColor = UIColor.black
         }
         else{
             self.selectedSongs.append(self.songData[indexPath.row])
+            /*
             cell.labelTrackTitle.textColor = UIColor(red: 88/256, green: 86/256, blue: 214/256, alpha: 1.0)
             cell.backgroundColor = UIColor(red: 88/256, green: 86/256, blue: 214/256, alpha: 1.0)
             cell.labelAuthor.textColor = UIColor(red: 88/256, green: 86/256, blue: 214/256, alpha: 1.0)
-        }
+            */
+ }
         delegate?.enableAddButton(songs: selectedSongs)
+    }
+ */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedSongs.append(songData[indexPath.row])
+        
+        delegate?.enableAddButton(songs: selectedSongs)
+        //self.navigationItem.rightBarButtonItem?.isEnabled = selectedSongs.count > 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let ind = selectedSongs.index(where: {$0.id == songData[indexPath.row].id})
+        selectedSongs.remove(at: ind!)
+        
+        delegate?.enableAddButton(songs: selectedSongs)
+        //self.navigationItem.rightBarButtonItem?.isEnabled = selectedSongs.count > 0
     }
 }

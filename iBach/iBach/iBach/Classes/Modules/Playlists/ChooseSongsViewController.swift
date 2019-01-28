@@ -48,7 +48,7 @@ class ChooseSongsViewController: UIViewController, ControllerDelegate {
         }
     }
     
-
+    
     @IBAction func addNewPlaylist(_ sender: Any) {
         
         DispatchQueue.main.async {
@@ -67,7 +67,10 @@ class ChooseSongsViewController: UIViewController, ControllerDelegate {
             
             DispatchQueue.main.async {
                 self.loadData()
-                Switcher.updateRootViewController()
+                //Switcher.updateRootViewController()
+                
+                let playlistScreen = (self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 3])!
+                self.navigationController?.popToViewController(playlistScreen, animated: true)
             }
         }))
         
@@ -101,7 +104,7 @@ class ChooseSongsViewController: UIViewController, ControllerDelegate {
                                                   "songId" : song.id] as [String : Any]
                                 
                                 Alamofire.request("https://botticelliproject.com/air/api/playlistSong/save.php", method: .post, parameters: parameters)
-                                print(song.title)
+                                //print(song.title)
                             }
                         }
                     }
