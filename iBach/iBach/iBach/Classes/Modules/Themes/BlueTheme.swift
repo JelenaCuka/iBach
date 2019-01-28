@@ -26,7 +26,7 @@ struct BlueTheme: Theme {
     let textFieldColor: UIColor = UIColor(hexString: "#0d47a1")
     let buttonColor: UIColor = UIColor(hexString: "#2962ff")
     let textView: UIColor = UIColor(hexString: "#1a237e")
-    let miniPlayerColor: UIColor = .white
+    let miniPlayerColor: UIColor = UIColor(hexString: "#e3f2fd")
     let playlistLableColor: UIColor = UIColor(hexString: "#0091ea")
     
     let statusBarTheme: UIStatusBarStyle = UIStatusBarStyle.default
