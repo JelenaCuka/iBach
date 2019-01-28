@@ -18,11 +18,23 @@ class MusicTableViewController: UITableViewController {
     
     var songData: [Song] = []
     
+    var filteredSongs: [Song] = []
+    let searchController = UISearchController(searchResultsController: nil)
+
+    
     var buttonPlay: UIBarButtonItem?
     var buttonShuffle: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+
         
         setPlayingIcons()
         loadTracks()
@@ -79,6 +91,7 @@ class MusicTableViewController: UITableViewController {
                         }
                     }
                 }
+                self.filteredSongs = self.songData
                 self.tableView.reloadData()
             })
         }
@@ -89,7 +102,7 @@ class MusicTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.songData.count
+        return self.filteredSongs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,7 +111,7 @@ class MusicTableViewController: UITableViewController {
             fatalError("Error")
         }
         
-        if let imageURL = URL(string: self.songData[indexPath.row].coverArtUrl) {
+        if let imageURL = URL(string: self.filteredSongs[indexPath.row].coverArtUrl) {
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
             
             cell.imageViewCoverArt.layer.cornerRadius = 5
@@ -108,18 +121,32 @@ class MusicTableViewController: UITableViewController {
             cell.imageViewCoverArt.af_setImage(withURL: imageURL)
         }
         
-        cell.labelTrackTitle.text = self.songData[indexPath.row].title
-        cell.labelAuthor.text = self.songData[indexPath.row].author
+        cell.labelTrackTitle.text = self.filteredSongs[indexPath.row].title
+        cell.labelAuthor.text = self.filteredSongs[indexPath.row].author
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        MusicPlayer.sharedInstance.updateSongData(songsList: songData as [Song])
+        MusicPlayer.sharedInstance.updateSongData(songsList: filteredSongs as [Song])
         
-        if(MusicPlayer.sharedInstance.playSong(song: songData[indexPath.row].id)){
+        if(MusicPlayer.sharedInstance.playSong(song: filteredSongs[indexPath.row].id)){
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "displayMiniPlayer"), object: nil)
         }
     }
     
+}
+
+extension MusicTableViewController: UISearchResultsUpdating  {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        //filterContentForSearchText(searchController.searchBar.text!)
+        if searchController.searchBar.text! == "" {
+            filteredSongs = songData
+        }
+        else{
+            filteredSongs = songData.filter( {$0.title.lowercased().contains(searchController.searchBar.text!.lowercased() )} )
+        }
+        self.tableView.reloadData()
+    }
 }
