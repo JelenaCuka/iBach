@@ -60,6 +60,30 @@ class MusicPlayerViewController: UIViewController {
         self.progressSongTime.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateUiColors()
+    }
+    
+    func updateUiColors() {
+        let themeRow = UserDefaults.standard.integer(forKey: "theme")
+        let currentTheme = ThemeSwitcher().switchThemes(row: themeRow)
+        
+        labelSongTitle.textColor = currentTheme.labelColor
+        labelSongArtist.textColor = currentTheme.buttonColor
+        
+        buttonPrevious.tintColor = currentTheme.labelColor
+        buttonNext.tintColor = currentTheme.labelColor
+        buttonPlay.tintColor = currentTheme.labelColor
+        returnButton.tintColor = currentTheme.buttonColor
+    
+        
+        buttonFavorite.tintColor = currentTheme.buttonColor
+        
+        progressVolume.tintColor = currentTheme.buttonColor
+        progressSongTime.tintColor = currentTheme.buttonColor
+    }
+    
     override func viewDidLayoutSubviews() {
         let scrollViewBounds = scrollView.bounds
         //let containerViewBounds = contentView.bounds
@@ -82,10 +106,12 @@ class MusicPlayerViewController: UIViewController {
     
     @objc func changePlayPauseIcon(notification: NSNotification) {
         changePlayPauseIcon()
+        updateUiColors()
     }
     
     @objc func displayLargePlayer(notification: NSNotification) {
         loadData()
+        updateUiColors()
     }
     
     @IBAction func pauseSong(_ sender: Any) {
@@ -114,7 +140,7 @@ class MusicPlayerViewController: UIViewController {
     @IBAction func buttonFavoriteClick(_ sender: Any) {
         //
         setFavoriteIcon()
-       
+        updateUiColors()
     }
     func setFavoriteIcon(){
         DispatchQueue.main.async {
@@ -146,10 +172,12 @@ class MusicPlayerViewController: UIViewController {
                     let singleSong: Song = try unbox(dictionary: (response as! NSDictionary) as! UnboxableDictionary)
                         if (singleSong.id == MusicPlayer.sharedInstance.songData[MusicPlayer.sharedInstance.currentSongIndex].id ) {
                             self.buttonFavorite.setImage(UIImage(named: "UnFavorite"), for: .normal)
+                            self.updateUiColors()
                         }
                 }
                 catch {
                     self.buttonFavorite.setImage(UIImage(named: "Favorite"), for: .normal)
+                    self.updateUiColors()
                 }
             })
         }
@@ -197,6 +225,8 @@ class MusicPlayerViewController: UIViewController {
             checkOldVolume()
         
         isFavoriteIcon()
+        
+        updateUiColors()
     
     }
     
@@ -204,9 +234,11 @@ class MusicPlayerViewController: UIViewController {
         if ( MusicPlayer.sharedInstance.isPlaying() ){
             buttonPlay.setImage(UIImage(named: "Pause"), for: .normal)
             startProgressBar()
+            updateUiColors()
         } else {
             buttonPlay.setImage(UIImage(named: "Play"), for: .normal)
             stopProgressBar()
+            updateUiColors()
         }
         
     }

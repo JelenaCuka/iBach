@@ -11,13 +11,13 @@ import UIKit
 struct DarkTheme: Theme {
     
     let tint: UIColor = UIColor(hexString: "#7e57c2")
-    let backgroundColor: UIColor = .black
+    let backgroundColor: UIColor = UIColor(hexString: "#000000")
     let separatorColor: UIColor = .darkGray
     let selectionColor: UIColor = .init(red: 38/255, green: 38/255, blue: 40/255, alpha: 1)
     
-    let headerColor: UIColor = UIColor(hexString: "#121212")
+    let headerColor: UIColor = UIColor(hexString: "#000000")
     
-    let specialBackgroundColor: UIColor = UIColor(hexString: "#000000")
+    let specialBackgroundColor: UIColor = UIColor(hexString: "#111111")
     
     let labelColor: UIColor = .white
     let textFieldColor: UIColor = .lightGray
@@ -29,6 +29,8 @@ struct DarkTheme: Theme {
     let playlistLableColor: UIColor = .white
     
     let barStyle: UIBarStyle = .black
+    
+    let buttonDangerColor: UIColor = UIColor(hexString: "#ff3b30")
     
     let statusBarTheme: UIStatusBarStyle = UIStatusBarStyle.lightContent
     

@@ -19,8 +19,6 @@ class Switcher {
         
         if (status == true) {
             rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            
-        
         }
         else {
             rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()

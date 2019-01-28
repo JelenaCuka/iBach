@@ -25,13 +25,14 @@ protocol Theme {
     
     var barStyle: UIBarStyle {get}
     var textFieldColor: UIColor {get}
-    var buttonColor: UIColor{get}
-    var textView: UIColor{get}
+    var buttonColor: UIColor {get}
+    var textView: UIColor {get}
     var miniPlayerColor: UIColor {get}
     var playlistLableColor: UIColor {get}
     
     var statusBarTheme: UIStatusBarStyle {get}
     
+    var buttonDangerColor : UIColor {get}
     
     func apply(for application: UIApplication)
     
@@ -80,13 +81,17 @@ extension Theme {
         }
         
         UIView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-            .backgroundColor = backgroundColor
+            .backgroundColor = specialBackgroundColor
     
         UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
             .textColor = labelColor
         
         UITextView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self, UITableViewCell.self])
             .textColor = labelColor
+        
+        AppInputTableCell.appearance().with {
+            $0.backgroundColor = backgroundColor
+        }
         
         AppTextView.appearance().textColor = textView
         AppLabel.appearance().textColor = labelColor
@@ -95,6 +100,10 @@ extension Theme {
         
         AppButton.appearance().with {
             $0.setTitleColor(buttonColor, for: .normal)
+        }
+        
+        AppDangerButton.appearance().with {
+            $0.tintColor = buttonDangerColor
         }
   
         AppView.appearance().backgroundColor = backgroundColor
@@ -109,7 +118,7 @@ extension Theme {
         AppPlaylistLable.appearance().textColor = playlistLableColor
         
         AppView.appearance(whenContainedInInstancesOf: [AppView.self]).with {
-            $0.backgroundColor = selectionColor
+            $0.backgroundColor = specialBackgroundColor
             $0.cornerRadius = 10
         }
         

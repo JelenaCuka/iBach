@@ -12,7 +12,7 @@ import Foundation
 class RootViewController: UIViewController  {
     
    
-    // Set light statusbar theme globally
+    // Set statusbar theme globally
     override var preferredStatusBarStyle: UIStatusBarStyle {
         let themeRow = UserDefaults.standard.integer(forKey: "theme")
         let theme = ThemeSwitcher().switchThemes(row:themeRow)
