@@ -15,6 +15,8 @@ protocol Theme {
     var separatorColor: UIColor {get}
     var selectionColor: UIColor {get}
     
+    var specialBackgroundColor: UIColor {get}
+    
     var headerColor: UIColor {get}
     
     var labelColor: UIColor {get}
@@ -50,6 +52,7 @@ extension Theme {
             $0.barStyle = barStyle
             $0.tintColor = tint
             $0.barTintColor = headerColor
+            $0.backgroundColor = .clear
             $0.titleTextAttributes = [
                 .foregroundColor: labelColor
             ]
@@ -64,6 +67,7 @@ extension Theme {
         
         UILabel.appearance().textColor = labelColor
         UITextField.appearance().textColor = textFieldColor
+        
         
         UITableView.appearance().with {
             $0.backgroundColor = backgroundColor

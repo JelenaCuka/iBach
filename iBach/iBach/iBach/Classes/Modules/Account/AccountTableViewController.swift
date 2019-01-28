@@ -40,6 +40,14 @@ class AccountTableViewController: UITableViewController {
         buttonResetChanges.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let themeRow = UserDefaults.standard.integer(forKey: "theme")
+        let currentTheme = ThemeSwitcher().switchThemes(row: themeRow)
+        self.tableView.backgroundColor = currentTheme.specialBackgroundColor
+    }
+    
     @IBAction func usernameEdited(_ sender: Any?) {
         if (username == textFieldUsername.text)
         {

@@ -17,6 +17,8 @@ struct DarkTheme: Theme {
     
     let headerColor: UIColor = UIColor(hexString: "#121212")
     
+    let specialBackgroundColor: UIColor = UIColor(hexString: "#000000")
+    
     let labelColor: UIColor = .white
     let textFieldColor: UIColor = .lightGray
     let secondaryLabelColor: UIColor = .lightGray

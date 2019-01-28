@@ -11,11 +11,13 @@ import UIKit
 struct LightTheme: Theme {
     let tint: UIColor = UIColor(red: 83/255, green: 47/255, blue: 189/255, alpha: 1)
     
-    let backgroundColor: UIColor = .white
+    let backgroundColor: UIColor = UIColor(hexString: "#ffffff")//.white
     let separatorColor: UIColor = .lightGray
     let selectionColor: UIColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1)
     
-    let headerColor: UIColor = UIColor(hexString: "#fefefe")
+    let headerColor: UIColor = UIColor(hexString: "#ffffff")
+    
+    let specialBackgroundColor: UIColor = UIColor(hexString: "#f8f8f8")
     
     let labelColor: UIColor = .black
     let secondaryLabelColor: UIColor = .darkGray

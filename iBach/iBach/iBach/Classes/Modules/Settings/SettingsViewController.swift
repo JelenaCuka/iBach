@@ -28,9 +28,18 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate{
     @IBOutlet weak var themeTextField: UITextField!
     @IBOutlet weak var songDetailTextField: UITextField!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let themeRow = UserDefaults.standard.integer(forKey: "theme")
+        let currentTheme = ThemeSwitcher().switchThemes(row: themeRow)
+        self.tableView.backgroundColor = currentTheme.specialBackgroundColor
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         let themePicker = UIPickerView()
         let songDetailPicker = UIPickerView()

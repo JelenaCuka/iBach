@@ -18,6 +18,8 @@ struct BlueTheme: Theme {
     let separatorColor: UIColor = UIColor(hexString: "#e1f5fe")
     let selectionColor: UIColor = UIColor(hexString: "#bbdefb")
     
+    let specialBackgroundColor: UIColor = UIColor(hexString: "#ffffff")
+    
     let headerColor: UIColor = UIColor(hexString: "#e3f2fd")
     
     let labelColor: UIColor = UIColor(hexString: "#0091ea")
