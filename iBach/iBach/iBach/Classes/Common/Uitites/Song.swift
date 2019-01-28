@@ -16,6 +16,10 @@ class Song: Unboxable {
     var fileUrl: String
     var coverArtUrl: String
     
+    func fixFormattingIssues(_ input: String) -> String {
+        return input.replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&#923;", with: "Λ").replacingOccurrences(of: "&#246;", with: "ö")
+    }
+    
     required init(unboxer: Unboxer) throws {
         self.id = try unboxer.unbox(key: "id")
         self.title = try unboxer.unbox(key: "title")
@@ -23,5 +27,8 @@ class Song: Unboxable {
         self.year = try unboxer.unbox(key: "year")
         self.fileUrl = try unboxer.unbox(key: "file_url")
         self.coverArtUrl = try unboxer.unbox(key: "cover_art_url")
+        
+        self.title = fixFormattingIssues(self.title)
+        self.author = fixFormattingIssues(self.author)
     }
 }

@@ -36,11 +36,20 @@ class PlaylistDetailsTableViewController: UITableViewController {
         
         self.navigationItem.title = playlistName
         
+        self.navigationItem.backBarButtonItem?.title = playlistName
+        
         self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addToPlaylist)),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(editPlaylist)),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deletePlaylist)),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(sharePlaylist))
         ]
+    }
+    
+    @objc private func addToPlaylist() {
+        let newView = AddToPlaylistTableViewController()
+        newView.customInit(playlistId, songData)
+        self.navigationController?.pushViewController(newView, animated: true)
     }
     
     @objc private func sharePlaylist() {
@@ -90,7 +99,7 @@ class PlaylistDetailsTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    private func loadData() {
+    public func loadData() {
         DispatchQueue.main.async {
             HTTPRequest().sendGetRequest(urlString: "https://botticelliproject.com/air/api/playlistSong/findall.php?playlistId=\(self.playlistId)", completionHandler: {(response, error) in
                 if let data: NSArray = response as? NSArray {
