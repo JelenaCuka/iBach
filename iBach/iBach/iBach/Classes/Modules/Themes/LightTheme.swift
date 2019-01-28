@@ -30,6 +30,8 @@ struct LightTheme: Theme {
     
     let statusBarTheme: UIStatusBarStyle = UIStatusBarStyle.default
     
+    let buttonDangerColor: UIColor = UIColor(hexString: "#ff3b30")
+    
     let barStyle: UIBarStyle = .default
 }
 
