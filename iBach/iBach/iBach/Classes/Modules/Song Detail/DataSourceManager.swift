@@ -11,9 +11,11 @@ import Foundation
 
 class DataSourceManager {
     
-    
-    
-    public func currentDataSource(selectedDatasourceType: DataSourceType) -> SongDetailDatasource {
+    public func currentDataSource() -> SongDetailDatasource {
+        
+        let datasourceRawValue: String = UserDefaults.standard.string(forKey: "songDataSource") ?? ""
+        let defaultDatasource: DataSourceType = .musicxmatch
+        let selectedDatasourceType: DataSourceType = DataSourceType(rawValue: datasourceRawValue) ?? defaultDatasource
         
         var datasource: SongDetailDatasource
         switch selectedDatasourceType {
@@ -24,7 +26,7 @@ class DataSourceManager {
         case .myLyrics:
             datasource = MusicMatchSongDetailsDataSource()
             
-        
+            
         }
         return datasource
     }

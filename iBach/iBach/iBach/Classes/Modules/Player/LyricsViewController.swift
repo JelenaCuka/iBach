@@ -37,12 +37,10 @@ class LyricsViewController: UIViewController {
     }
     
     private func _showCurrentPlayingSongLyrics() {
-        let datasourceRawValue: String = UserDefaults.standard.string(forKey: "songDataSource") ?? ""
-        let defaultDatasource: DataSourceType = .musicxmatch
-        let selectedDatasourceType: DataSourceType = DataSourceType(rawValue: datasourceRawValue) ?? defaultDatasource
+    
         guard let currentSong = MusicPlayer.sharedInstance.currentSong else { return } //hendlajte logiku ak nema pjesme
         
-        let datasource = DataSourceManager().currentDataSource(selectedDatasourceType: selectedDatasourceType)
+        let datasource = DataSourceManager().currentDataSource()
         
         datasource.getLyrics(withSongTitle: currentSong.title,
                              author: currentSong.author,
