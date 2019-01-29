@@ -122,24 +122,6 @@ extension Theme {
             $0.cornerRadius = 10
         }
         
-//        // Style differently when inside a special container
-//        
-//        AppLabel.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = subtleLabelColor
-//        AppHeadline.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = secondaryLabelColor
-//        AppFootnote.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).textColor = labelColor
-//        
-//        AppButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
-//            $0.setTitleColor(labelColor, for: .normal)
-//            $0.borderColor = labelColor
-//        }
-//        
-//        AppDangerButton.appearance(whenContainedInInstancesOf: [AppView.self, AppView.self]).with {
-//            $0.setTitleColor(subtleLabelColor, for: .normal)
-//            $0.backgroundColor = labelColor
-//        }
-//        
-//        
-        
         
         // Ensure existing views render with new theme
         // https://developer.apple.com/documentation/uikit/uiappearance

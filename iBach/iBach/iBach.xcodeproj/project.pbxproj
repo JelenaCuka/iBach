@@ -26,9 +26,9 @@
 		3491FD1921FC6BCD00CE700D /* AppMiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491FD1821FC6BCD00CE700D /* AppMiniPlayer.swift */; };
 		3491FD1B21FC6E0700CE700D /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3491FD1A21FC6E0700CE700D /* AppTextField.swift */; };
 		349A1CFC21FB60D400869A13 /* LyricsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349A1CFB21FB60D400869A13 /* LyricsViewController.swift */; };
+		34A2F4B72200861800B2224B /* DataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2F4B62200861800B2224B /* DataSourceManager.swift */; };
 		34A68C1221FBB517003270CA /* AppTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68C1121FBB517003270CA /* AppTextView.swift */; };
 		34A68C1421FBBAD2003270CA /* ThemeSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */; };
-		34D748F621F7330000B26D3A /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D748F521F7330000B26D3A /* Artist.swift */; };
 		376D67662836F202ED134424 /* Pods_iBach.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5CF1E8AE6D0B501D0529BD7 /* Pods_iBach.framework */; };
 		4C594CD521FCF9F7001FD314 /* UIAlertControllerWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C594CD421FCF9F7001FD314 /* UIAlertControllerWithTextField.swift */; };
 		4C594CE121FF2E02001FD314 /* AddToPlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C594CE021FF2E02001FD314 /* AddToPlaylistTableViewController.swift */; };
@@ -112,9 +112,9 @@
 		3491FD1821FC6BCD00CE700D /* AppMiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMiniPlayer.swift; sourceTree = "<group>"; };
 		3491FD1A21FC6E0700CE700D /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		349A1CFB21FB60D400869A13 /* LyricsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsViewController.swift; sourceTree = "<group>"; };
+		34A2F4B62200861800B2224B /* DataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceManager.swift; sourceTree = "<group>"; };
 		34A68C1121FBB517003270CA /* AppTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextView.swift; sourceTree = "<group>"; };
 		34A68C1321FBBAD2003270CA /* ThemeSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSwitcher.swift; sourceTree = "<group>"; };
-		34D748F521F7330000B26D3A /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		4C594CD421FCF9F7001FD314 /* UIAlertControllerWithTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerWithTextField.swift; sourceTree = "<group>"; };
 		4C594CE021FF2E02001FD314 /* AddToPlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToPlaylistTableViewController.swift; sourceTree = "<group>"; };
 		4C838E1B21FCA2AB00D25BFA /* PlaylistDetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailsTableViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +204,7 @@
 			children = (
 				34250FFD21ED218A008CB7FD /* SongDetailDatasource.swift */,
 				3491816A21EE3F1A008E679C /* MusicMatchSongDetailDatasource.swift */,
+				34A2F4B62200861800B2224B /* DataSourceManager.swift */,
 			);
 			path = "Song Detail";
 			sourceTree = "<group>";
@@ -324,7 +325,6 @@
 				9C42E2FC21A8169800ED8A63 /* User.swift */,
 				9C0CC19421B2F98F005DEFB0 /* Song.swift */,
 				9C5734FC21BB1535002797EB /* Playlist.swift */,
-				34D748F521F7330000B26D3A /* Artist.swift */,
 			);
 			path = Uitites;
 			sourceTree = "<group>";
@@ -731,9 +731,9 @@
 				9C00EFEA21A6C50300B9798A /* LoginViewController.swift in Sources */,
 				3433DC2B21B2E8B8008EA2AE /* DarkTheme.swift in Sources */,
 				4C594CD521FCF9F7001FD314 /* UIAlertControllerWithTextField.swift in Sources */,
+				34A2F4B72200861800B2224B /* DataSourceManager.swift in Sources */,
 				9D05965921EE30180096DFD0 /* RootTabBarViewController.swift in Sources */,
 				3433DC4121B2F405008EA2AE /* LightTheme.swift in Sources */,
-				34D748F621F7330000B26D3A /* Artist.swift in Sources */,
 				3433DC3721B2ECCD008EA2AE /* AppLable.swift in Sources */,
 				3433DC3321B2EC5C008EA2AE /* UIWindow.swift in Sources */,
 				9CCCC76F21AB2E15005BCB01 /* RegistrationTableViewController.swift in Sources */,

@@ -10,8 +10,8 @@ import UIKit
 
 enum DataSourceType: String {
     case musicxmatch = "Musicxmatch"
-    case bilokojiDrugi = "Nesto drugo" // TODO: NAĐI NEKI DRUGI SOURCE ZA LYRICSE
-    case myLyrics = "Nesto trece"
+    case songLyrics = "songLyrics" // TODO: NAĐI NEKI DRUGI SOURCE ZA LYRICSE
+    case myLyrics = "myLyrics"
 }
 
 enum AvailableThemes: String{
@@ -23,7 +23,7 @@ enum AvailableThemes: String{
 class SettingsViewController: UITableViewController, UITextFieldDelegate{
     
     let themePickerData: [AvailableThemes] = [.lightTheme, .darkTheme, .blueTheme]
-    let songDetailData: [DataSourceType] = [.musicxmatch, .bilokojiDrugi, .myLyrics]
+    let songDetailData: [DataSourceType] = [.musicxmatch, .songLyrics, .myLyrics]
     
     @IBOutlet weak var themeTextField: UITextField!
     @IBOutlet weak var songDetailTextField: UITextField!
