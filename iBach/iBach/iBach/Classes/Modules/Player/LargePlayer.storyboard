@@ -126,9 +126,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnO-zy-rL4">
-                                                <rect key="frame" x="147" y="36" width="80" height="21"/>
+                                                <rect key="frame" x="172" y="29" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="Down Arrow"/>
+                                                <state key="normal" image="Close"/>
                                                 <connections>
                                                     <action selector="returnFromLargePlayer:" destination="Tza-Tl-667" eventType="touchUpInside" id="YGh-Om-Pfl"/>
                                                 </connections>
@@ -251,7 +251,7 @@
     </scenes>
     <resources>
         <image name="Backward" width="54" height="54"/>
-        <image name="Down Arrow" width="36" height="36"/>
+        <image name="Close" width="75" height="75"/>
         <image name="Favorite" width="60" height="60"/>
         <image name="Forward" width="54" height="54"/>
         <image name="Pause" width="54" height="54"/>
