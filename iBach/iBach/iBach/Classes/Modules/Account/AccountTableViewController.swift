@@ -427,6 +427,7 @@ class AccountTableViewController: UITableViewController {
     private func logoutUser()
     {
         UserDefaults.standard.set(false, forKey: "status")
+        MusicPlayer.sharedInstance.turnOff()
         Switcher.updateRootViewController()
     }
     
