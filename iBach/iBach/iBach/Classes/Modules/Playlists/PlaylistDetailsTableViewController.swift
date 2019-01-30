@@ -9,6 +9,7 @@
 import Foundation
 import Unbox
 import Alamofire
+import AlamofireImage
 
 class PlaylistDetailsTableViewController: UITableViewController {
 
@@ -17,11 +18,16 @@ class PlaylistDetailsTableViewController: UITableViewController {
     var playlistId: Int = -1
     var playlistName: String = ""
     
+    let placeholder = try? Data(contentsOf: URL(string: "https://botticelliproject.com/air/musicapp/src/img/5bfef740a7f6e.mp3.jpg")!)
+    
     public func customInit(_ id: Int, _ name: String) {
         self.playlistId = id
         self.playlistName = name
+        
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
@@ -29,11 +35,21 @@ class PlaylistDetailsTableViewController: UITableViewController {
         loadData()
         
         self.navigationItem.title = playlistName
+        
+        self.navigationItem.backBarButtonItem?.title = playlistName
+        
         self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addToPlaylist)),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(editPlaylist)),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.trash, target: self, action: #selector(deletePlaylist)),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(sharePlaylist))
         ]
+    }
+    
+    @objc private func addToPlaylist() {
+        let newView = AddToPlaylistTableViewController()
+        newView.customInit(playlistId, songData)
+        self.navigationController?.pushViewController(newView, animated: true)
     }
     
     @objc private func sharePlaylist() {
@@ -83,7 +99,7 @@ class PlaylistDetailsTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    private func loadData() {
+    public func loadData() {
         DispatchQueue.main.async {
             HTTPRequest().sendGetRequest(urlString: "https://botticelliproject.com/air/api/playlistSong/findall.php?playlistId=\(self.playlistId)", completionHandler: {(response, error) in
                 if let data: NSArray = response as? NSArray {
@@ -124,6 +140,10 @@ class PlaylistDetailsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "playlistSongDetail")
         
+        cell.preservesSuperviewLayoutMargins = true
+        cell.separatorInset = UIEdgeInsets.init(top: 0, left: 18, bottom: 0, right: 0)
+        //cell.layoutMargins = UIEdgeInsets.zero
+        
         cell.textLabel?.text = self.songData[indexPath.row].title
         cell.textLabel?.font = AppLabel.appearance().font
         cell.textLabel?.textColor = AppLabel.appearance().textColor
@@ -133,6 +153,7 @@ class PlaylistDetailsTableViewController: UITableViewController {
         cell.detailTextLabel?.textColor = AppSubhead.appearance().textColor
         
         if URL(string: self.songData[indexPath.row].coverArtUrl) != nil {
+            
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
         
             cell.imageView?.layer.cornerRadius = 5
@@ -142,9 +163,18 @@ class PlaylistDetailsTableViewController: UITableViewController {
             
             // Download cover image
             let url = URL(string: songData[indexPath.row].coverArtUrl)
-            let data = try? Data(contentsOf: url!)
+            //let data = try? Data(contentsOf: url!)
         
-            cell.imageView?.image = image(UIImage(data: data!)!, withSize: CGSize(width: 50, height: 50))
+            //cell.imageView?.image = image(UIImage(data: data!)!, withSize: CGSize(width: 50, height: 50))
+           
+            let filter = AspectScaledToFillSizeFilter (size: CGSize(width: 50, height: 50))
+            
+            let placeholderImg = image(UIImage(data: placeholder!)!, withSize: CGSize(width: 50, height: 50))
+            
+            //cell.imageView?.af_setImage(withURL: url!)
+            cell.imageView?.af_setImage(withURL: url!, placeholderImage: placeholderImg, filter: filter )
+            
+        
         }
         
         return cell

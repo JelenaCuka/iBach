@@ -11,3 +11,7 @@ import UIKit
 class AppTextField: UITextField {
     
 }
+
+class AppInputTableCell: UITableViewCell {
+    
+}

@@ -45,14 +45,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnO-zy-rL4">
-                                                <rect key="frame" x="8" y="28" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Return"/>
-                                                <connections>
-                                                    <action selector="returnFromLargePlayer:" destination="Tza-Tl-667" eventType="touchUpInside" id="YGh-Om-Pfl"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9z-L9-b3h">
                                                 <rect key="frame" x="8" y="432" width="359" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -60,9 +52,10 @@
                                                 <color key="textColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="highlightedColor" red="0.32565315950000001" green="0.183454901" blue="0.74090373519999997" alpha="1" colorSpace="calibratedRGB"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6h-O5-2DE" userLabel="Lyrics">
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6h-O5-2DE" userLabel="Lyrics" customClass="AppButton" customModule="iBach" customModuleProvider="target">
                                                 <rect key="frame" x="252" y="615" width="115" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                 <state key="normal" title="Lyrics"/>
                                                 <connections>
                                                     <segue destination="oPA-hg-EPT" kind="presentation" id="dV1-vj-rQc"/>
@@ -121,6 +114,25 @@
                                                     <action selector="changeVolume:" destination="Tza-Tl-667" eventType="valueChanged" id="KBr-ym-Hy1"/>
                                                 </connections>
                                             </slider>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOT-83-0QC">
+                                                <rect key="frame" x="29" y="605" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                </accessibility>
+                                                <state key="normal" image="Favorite"/>
+                                                <connections>
+                                                    <action selector="buttonFavoriteClick:" destination="Tza-Tl-667" eventType="touchUpInside" id="ya5-XU-fXi"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnO-zy-rL4">
+                                                <rect key="frame" x="22" y="28" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="Close"/>
+                                                <connections>
+                                                    <action selector="returnFromLargePlayer:" destination="Tza-Tl-667" eventType="touchUpInside" id="YGh-Om-Pfl"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -146,6 +158,7 @@
                         <viewLayoutGuide key="safeArea" id="Nu8-Zn-PV1"/>
                     </view>
                     <connections>
+                        <outlet property="buttonFavorite" destination="aOT-83-0QC" id="xPz-7G-3em"/>
                         <outlet property="buttonNext" destination="HvF-uV-MXG" id="Sb2-fJ-e3b"/>
                         <outlet property="buttonPlay" destination="3gH-Up-32J" id="ZMD-Wa-NGZ"/>
                         <outlet property="buttonPrevious" destination="tvt-8L-t5U" id="6nK-OS-EpE"/>
@@ -197,9 +210,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="298-FF-Fcu">
-                                <rect key="frame" x="329" y="32.5" width="30" height="36"/>
+                                <rect key="frame" x="309" y="32.5" width="50" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="X"/>
+                                <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="didSelectCloseButton:" destination="oPA-hg-EPT" eventType="touchUpInside" id="WKo-Do-Kt7"/>
                                 </connections>
@@ -238,6 +251,8 @@
     </scenes>
     <resources>
         <image name="Backward" width="54" height="54"/>
+        <image name="Close" width="75" height="75"/>
+        <image name="Favorite" width="60" height="60"/>
         <image name="Forward" width="54" height="54"/>
         <image name="Pause" width="54" height="54"/>
     </resources>

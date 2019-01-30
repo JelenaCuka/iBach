@@ -134,17 +134,6 @@ class MusicPlayer {
         }
     }
     
-    //interruptions
-    /*func handleInterruption(notification: NSNotification) {
-        pauseSong()
-        let interruptionTypeAsObject = notification.userInfo![AVAudioSessionInterruptionTypeKey] as! NSNumber
-        let interruptionType = AVAudioSession.InterruptionType(rawValue: interruptionTypeAsObject.uintValue)
-        if let type = interruptionType {
-            if type == .ended {
-                playSong()
-            }
-        }
-    }*/
     
     func updateSongData(songsList: [Song] = [] ) {
         self.songData = songsList

@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Switcher.updateRootViewController()
         
-        
         let themeRow = UserDefaults.standard.integer(forKey: "theme")
         let theme = ThemeSwitcher().switchThemes(row:themeRow)
         theme.apply(for: application)

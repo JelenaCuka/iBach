@@ -22,6 +22,13 @@ class PlaylistsTableViewController: UITableViewController {
         
         //loadData()
         
+        self.navigationItem.title = "Playlists"
+        
+        // It doesn't change properly sometimes, hardcoded it is
+        let backItem = UIBarButtonItem()
+        backItem.title = "Playlists"
+        self.navigationItem.backBarButtonItem = backItem
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -36,7 +43,7 @@ class PlaylistsTableViewController: UITableViewController {
         filteredPlaylist.removeAll()
         loadData()
     }
-    
+
     private func loadData() {
         DispatchQueue.main.async {
             HTTPRequest().sendGetRequest(urlString: "https://botticelliproject.com/air/api/playlists/findall.php?userId=\(UserDefaults.standard.integer(forKey: "user_id"))", completionHandler: {(response, error) in

@@ -9,6 +9,7 @@
 import Foundation
 import Unbox
 import Alamofire
+import AlamofireImage
 
 protocol ControllerDelegate {
     func enableAddButton(songs: [Song])
@@ -25,6 +26,8 @@ class SongsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         loadTracks()
+        
+        self.tableView.allowsMultipleSelection = true
     }
     
     
@@ -54,56 +57,68 @@ extension SongsTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songData.count
     }
-    
-    func image(_ image:UIImage, withSize newSize:CGSize) -> UIImage {
-        UIGraphicsBeginImageContext(newSize)
-        image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!.withRenderingMode(.automatic)
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
 
-        cell.textLabel?.text = self.songData[indexPath.row].title
-        cell.textLabel?.font = AppLabel.appearance().font
-        cell.textLabel?.textColor = AppLabel.appearance().textColor
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as? SongsTableViewCell else {
+            fatalError("Error")
+        }
+
+        cell.labelAuthor.text = self.songData[indexPath.row].author
+        cell.labelTrackTitle.text = self.songData[indexPath.row].title
         
-        cell.detailTextLabel?.text = self.songData[indexPath.row].author
-        cell.detailTextLabel?.font = cell.detailTextLabel?.font.withSize(14)
-        cell.detailTextLabel?.textColor = AppSubhead.appearance().textColor
         
         if URL(string: self.songData[indexPath.row].coverArtUrl) != nil {
             let color: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.4)
             
-            cell.imageView?.layer.cornerRadius = 5
-            cell.imageView?.clipsToBounds = true
-            cell.imageView?.layer.borderWidth = 0.5
-            cell.imageView?.layer.borderColor = color.cgColor
+            cell.imageViewCoverArt.layer.cornerRadius = 5
+            cell.imageViewCoverArt.clipsToBounds = true
+            cell.imageViewCoverArt.layer.borderWidth = 0.5
+            cell.imageViewCoverArt.layer.borderColor = color.cgColor
             
             // Download cover image
             let url = URL(string: songData[indexPath.row].coverArtUrl)
-            let data = try? Data(contentsOf: url!)
-            
-            cell.imageView?.image = image(UIImage(data: data!)!, withSize: CGSize(width: 50, height: 50))
+            cell.imageViewCoverArt.af_setImage(withURL: url!)
         }
         
         return cell
     }
+    
+    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell:UITableViewCell? = tableView.cellForRow(at: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath) as? SongsTableViewCell else {
+            fatalError("Error")
+        }
         
-        if(selectedSongs.contains(where: {$0.title == self.songData[indexPath.row].title})){
-            selectedSongs.removeAll(where: {$0.title == self.songData[indexPath.row].title})
-            cell!.textLabel!.textColor = UIColor.black
+        if(selectedSongs.contains(where: {$0.id == self.songData[indexPath.row].id})){
+            selectedSongs.removeAll(where: {$0.id == self.songData[indexPath.row].id})
+            
+            cell.labelTrackTitle.textColor = UIColor.black
         }
         else{
             self.selectedSongs.append(self.songData[indexPath.row])
-            
-            cell!.textLabel!.textColor = UIColor.purple
-        }
+            /*
+            cell.labelTrackTitle.textColor = UIColor(red: 88/256, green: 86/256, blue: 214/256, alpha: 1.0)
+            cell.backgroundColor = UIColor(red: 88/256, green: 86/256, blue: 214/256, alpha: 1.0)
+            cell.labelAuthor.textColor = UIColor(red: 88/256, green: 86/256, blue: 214/256, alpha: 1.0)
+            */
+ }
         delegate?.enableAddButton(songs: selectedSongs)
+    }
+ */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedSongs.append(songData[indexPath.row])
+        
+        delegate?.enableAddButton(songs: selectedSongs)
+        //self.navigationItem.rightBarButtonItem?.isEnabled = selectedSongs.count > 0
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let ind = selectedSongs.index(where: {$0.id == songData[indexPath.row].id})
+        selectedSongs.remove(at: ind!)
+        
+        delegate?.enableAddButton(songs: selectedSongs)
+        //self.navigationItem.rightBarButtonItem?.isEnabled = selectedSongs.count > 0
     }
 }
