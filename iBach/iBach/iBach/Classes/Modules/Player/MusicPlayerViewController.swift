@@ -89,13 +89,14 @@ class MusicPlayerViewController: UIViewController {
         //let containerViewBounds = contentView.bounds
         
         var scrollViewInsets = UIEdgeInsets.zero
+        /*
         scrollViewInsets.top = scrollViewBounds.size.height / 2.0
         scrollViewInsets.top -= contentView.bounds.size.height / 2.0
         
         scrollViewInsets.bottom  = scrollViewBounds.size.height/2.0
         scrollViewInsets.bottom -= contentView.bounds.size.height/2.0
         scrollViewInsets.bottom += 1
-        
+        */
         scrollView.contentInset = scrollViewInsets
     }
     
